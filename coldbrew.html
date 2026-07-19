@@ -230,6 +230,16 @@
         </div>
 
         <div class="field">
+          <label for="timeslot">Khung giờ giao <span class="req">*</span></label>
+          <select id="timeslot">
+            <option value="Sáng (8:00 – 11:00)">Sáng (8:00 – 11:00)</option>
+            <option value="Trưa (11:00 – 14:00)">Trưa (11:00 – 14:00)</option>
+            <option value="Chiều (14:00 – 17:00)">Chiều (14:00 – 17:00)</option>
+            <option value="Tối (17:00 – 20:00)">Tối (17:00 – 20:00)</option>
+          </select>
+        </div>
+
+        <div class="field">
           <label for="phone">Số điện thoại <span class="req">*</span></label>
           <input type="tel" id="phone" placeholder="0387566754" required
                  pattern="[0-9]{9,11}" inputmode="numeric" />
@@ -286,6 +296,7 @@
   const typeEl  = document.getElementById("bottle-type");
   const qtyEl   = document.getElementById("qty");
   const dateEl  = document.getElementById("date");
+  const slotEl  = document.getElementById("timeslot");
   const phoneEl = document.getElementById("phone");
   const addrEl  = document.getElementById("address");
   const noteEl  = document.getElementById("note");
@@ -337,6 +348,7 @@
 
     const qty = clampQty();
     const date = dateEl.value;
+    const slot = slotEl.value;
     const phone = phoneEl.value.trim();
     const addr = addrEl.value.trim();
     const note = noteEl.value.trim();
@@ -359,6 +371,7 @@
 Loại: ${qty} chai (${typeLabel()})
 Đơn giá: ${fmt(unit)}/chai
 Ngày muốn nhận: ${dateVN}
+Khung giờ giao: ${slot}
 SĐT: ${phone}
 Địa chỉ: ${addr}
 ${note ? "Ghi chú: " + note + "\n" : ""}--------------------------------
