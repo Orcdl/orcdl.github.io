@@ -291,6 +291,9 @@
 
 <script>
   const ZALO_PHONE = "0387566754";
+  // Dán URL Web App Google Apps Script vào đây để đơn tự lưu vào Google Sheet.
+  // Để trống "" thì form vẫn chạy bình thường, chỉ không tự lưu.
+  const SHEET_ENDPOINT = "";
   const fmt = (n) => n.toLocaleString("vi-VN") + "đ";
 
   const typeEl  = document.getElementById("bottle-type");
@@ -381,6 +384,28 @@ TỔNG CỘNG: ${fmt(total)}
     document.getElementById("receipt").textContent = text;
     document.getElementById("btn-zalo").href = "https://zalo.me/" + ZALO_PHONE;
     document.getElementById("overlay").classList.add("show");
+
+    // Tự động lưu đơn vào Google Sheet (nếu đã cấu hình SHEET_ENDPOINT)
+    if (SHEET_ENDPOINT) {
+      const payload = {
+        loai_chai: typeLabel(),
+        so_luong: qty,
+        don_gia: unit,
+        tong_tien: total,
+        ngay_nhan: dateVN,
+        khung_gio: slot,
+        sdt: phone,
+        dia_chi: addr,
+        ghi_chu: note
+      };
+      // text/plain để tránh preflight CORS; no-cors vì Apps Script trả về opaque
+      fetch(SHEET_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      }).catch(() => { /* lỗi mạng: khách vẫn có thể gửi qua Zalo */ });
+    }
   });
 
   // modal actions
