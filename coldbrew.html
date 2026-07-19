@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cold Brew Đà Lạt - Uống ngon, Sống xanh</title>
+<style>
+  :root {
+    --amber-50:  #fdf8f0;
+    --amber-100: #f6ebd9;
+    --amber-200: #ecd9bd;
+    --amber-400: #d8a657;
+    --amber-600: #b4761f;
+    --amber-700: #8f5c17;
+    --amber-800: #6b4413;
+    --amber-900: #4f320e;
+    --ink: #3a3128;
+    --muted: #8a7c6b;
+    --ok: #2e7d5b;
+    --line: #e7ddcd;
+    --shadow: 0 6px 22px rgba(90, 63, 20, 0.10);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #fdfbf7 0%, #ede7de 100%);
+    color: var(--ink);
+    line-height: 1.55;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", "Playfair Display", serif; }
+
+  header.site { padding: 30px 20px 10px; text-align: center; }
+  header.site h1 { margin: 0 0 6px; font-size: 2.3rem; color: var(--amber-900); }
+  header.site .tag { color: var(--amber-700); font-style: italic; }
+
+  main { max-width: 680px; margin: 0 auto; padding: 16px 16px 48px; }
+
+  .card {
+    border-radius: 26px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .card h2 { font-size: 1.5rem; margin: 0 0 14px; color: var(--amber-900); }
+
+  .card-story { background: var(--amber-50); border: 1px solid var(--amber-200); }
+  .card-story p { margin: 0 0 14px; color: #5f5647; }
+  .card-story .quote {
+    font-style: italic;
+    border-left: 4px solid var(--amber-400);
+    padding: 4px 0 4px 16px;
+    margin-bottom: 0;
+  }
+
+  .card-why { background: #fff; border: 1px solid var(--amber-100); box-shadow: var(--shadow); }
+  .card-why ul { list-style: none; margin: 0; padding: 0; }
+  .card-why li { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; color: #5f5647; }
+  .card-why li .ic { font-size: 1.2rem; line-height: 1.4; }
+
+  .card-price { background: var(--amber-900); color: var(--amber-50); }
+  .card-price h2 { color: var(--amber-50); text-align: center; }
+  .price-grid { display: grid; gap: 14px; }
+  @media (min-width: 520px) { .price-grid { grid-template-columns: 1fr 1fr; } }
+  .price-box { background: var(--amber-800); border-radius: 16px; padding: 16px; }
+  .price-box.pick { border: 2px solid var(--amber-400); }
+  .price-box h3 { margin: 0; font-size: 1.05rem; }
+  .price-box .num { font-size: 1.9rem; font-weight: 800; margin: 4px 0; }
+  .price-box .sub { font-size: 0.82rem; opacity: 0.8; }
+
+  /* ORDER FORM */
+  .card-form { background: #fff; border: 1px solid var(--amber-100); box-shadow: var(--shadow); }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; color: var(--amber-800); }
+  .field label .req { color: #c0392b; }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #fffdf9;
+    color: var(--ink);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--amber-400);
+    box-shadow: 0 0 0 3px rgba(216, 166, 87, 0.22);
+  }
+  .field textarea { resize: vertical; min-height: 60px; }
+  .field .hint { font-size: 0.8rem; color: var(--muted); margin-top: 5px; }
+
+  /* quantity stepper */
+  .stepper { display: inline-flex; align-items: center; gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .stepper button {
+    width: 46px; height: 46px; border: none; background: var(--amber-50);
+    font-size: 1.4rem; color: var(--amber-800); cursor: pointer; line-height: 1;
+  }
+  .stepper button:hover { background: var(--amber-100); }
+  .stepper input {
+    width: 64px; height: 46px; text-align: center; border: none;
+    border-left: 1px solid var(--line); border-right: 1px solid var(--line);
+    font-size: 1.1rem; font-weight: 700; background: #fff; border-radius: 0;
+  }
+  .stepper input:focus { box-shadow: none; }
+
+  .summary {
+    background: var(--amber-50);
+    border: 1px dashed var(--amber-200);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 4px 0 18px;
+  }
+  .summary .row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.92rem; color: #5f5647; }
+  .summary .grand { border-top: 1px solid var(--amber-200); margin-top: 8px; padding-top: 10px; font-size: 1.2rem; font-weight: 800; color: var(--amber-900); }
+
+  .btn-submit {
+    width: 100%; border: none; background: var(--ok); color: #fff;
+    padding: 15px; border-radius: 14px; font-size: 1.08rem; font-weight: 700; cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .btn-submit:hover { opacity: 0.92; }
+
+  .cta { text-align: center; }
+  .cta p { margin: 0 0 14px; color: #5f5647; }
+  .btn-zalo {
+    display: inline-block; background: var(--amber-600); color: #fff; font-weight: 700;
+    padding: 14px 30px; border-radius: 999px; text-decoration: none; box-shadow: var(--shadow);
+    transition: background 0.15s ease;
+  }
+  .btn-zalo:hover { background: var(--amber-700); }
+  .cta .phone { margin-top: 14px; font-size: 0.9rem; color: var(--muted); }
+
+  footer.site { text-align: center; padding: 24px; font-size: 0.85rem; color: var(--muted); }
+
+  /* modal */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(50, 38, 20, 0.55);
+    display: none; align-items: center; justify-content: center; padding: 18px; z-index: 60;
+  }
+  .overlay.show { display: flex; }
+  .modal { background: #fff; border-radius: 20px; max-width: 440px; width: 100%; padding: 24px; box-shadow: 0 16px 46px rgba(0,0,0,0.32); }
+  .modal h3 { margin: 0 0 4px; color: var(--ok); font-size: 1.3rem; }
+  .modal .lead { color: var(--muted); font-size: 0.9rem; margin: 0 0 14px; }
+  .modal pre {
+    background: var(--amber-50); border: 1px solid var(--amber-200); border-radius: 12px;
+    padding: 14px; font-size: 0.86rem; white-space: pre-wrap; word-break: break-word;
+    max-height: 260px; overflow: auto; margin: 0;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  .modal .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .modal .actions .full { grid-column: 1 / -1; }
+  .modal button, .modal a.mbtn {
+    display: block; text-align: center; text-decoration: none;
+    padding: 13px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; font-size: 0.95rem;
+  }
+  .b-copy { background: var(--amber-700); color: #fff; }
+  .b-zalo { background: var(--amber-600); color: #fff; }
+  .b-close { background: var(--line); color: var(--ink); }
+</style>
+</head>
+<body>
+  <header class="site">
+    <h1>Cold Brew Đà Lạt</h1>
+    <div class="tag">Nuôi dự án cà phê ủ lạnh thủ công</div>
+  </header>
+
+  <main>
+    <!-- Story -->
+    <section class="card card-story">
+      <h2>Gọi hội mê cà — Cùng mình nuôi dự án</h2>
+      <p>Dạo này mình đang lên cơn nghiền thử hạt từ <b>Pacamara, robusta Đắk Lắk</b>, cho đến những mẻ <b>blend lạ</b>… loại nào cũng muốn brew thử để xem ly cold brew thay đổi thế nào.</p>
+      <p class="quote">Mà thử nhiều thì tốn hạt, tốn công ủ, nên mình nghĩ ra vụ này: bạn ủng hộ một chai, mình có kinh phí xoay vòng mua hạt + ủ mẻ mới — đổi lại bạn được uống đủ loại cold brew ngon, mỗi mẻ một vị. Win-win đúng không?</p>
+    </section>
+
+    <!-- Why -->
+    <section class="card card-why">
+      <h2>Tại sao chọn Cold Brew của mình?</h2>
+      <ul>
+        <li><span class="ic">☕</span><span>Ủ chậm bằng bình Hario, hương vị trọn vẹn, mượt mà, không gắt.</span></li>
+        <li><span class="ic">💧</span><span>Sử dụng nước khoáng sạch cho vị cân bằng nhất.</span></li>
+        <li><span class="ic">🌱</span><span>Mỗi mẻ là một trải nghiệm hạt khác nhau.</span></li>
+      </ul>
+    </section>
+
+    <!-- Pricing -->
+    <section class="card card-price">
+      <h2>Mô hình tuần hoàn</h2>
+      <div class="price-grid">
+        <div class="price-box pick">
+          <h3>Chai đầu tiên</h3>
+          <div class="num">55k</div>
+          <div class="sub">(Đã bao gồm chai thủy tinh cao cấp)</div>
+        </div>
+        <div class="price-box">
+          <h3>Đổi vỏ cũ</h3>
+          <div class="num">45k</div>
+          <div class="sub">Tiết kiệm và bảo vệ môi trường</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER FORM -->
+    <section class="card card-form">
+      <h2>📝 Đặt cold brew ngay</h2>
+      <form id="order-form" novalidate>
+        <div class="field">
+          <label for="bottle-type">Loại chai</label>
+          <select id="bottle-type">
+            <option value="new" data-price="55000">Chai mới — kèm chai thủy tinh (55k/chai)</option>
+            <option value="refill" data-price="45000">Đổi vỏ cũ — mang chai cũ đổi (45k/chai)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Số lượng chai <span class="req">*</span></label>
+          <div class="stepper">
+            <button type="button" id="qty-minus" aria-label="Giảm">−</button>
+            <input type="number" id="qty" value="1" min="1" max="50" inputmode="numeric" />
+            <button type="button" id="qty-plus" aria-label="Tăng">+</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="date">Ngày muốn nhận <span class="req">*</span></label>
+          <input type="date" id="date" required />
+          <div class="hint">Mình ủ theo mẻ nên đặt trước 1–2 ngày sẽ tươi ngon nhất nhé!</div>
+        </div>
+
+        <div class="field">
+          <label for="phone">Số điện thoại <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="0387566754" required
+                 pattern="[0-9]{9,11}" inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="address">Địa chỉ nhận hàng <span class="req">*</span></label>
+          <textarea id="address" placeholder="Số nhà, đường, phường/xã — khu vực Đà Lạt" required></textarea>
+          <div class="hint">Hiện mình chỉ nhận đơn tại khu vực <b>Đà Lạt</b> thôi nha.</div>
+        </div>
+
+        <div class="field">
+          <label for="note">Ghi chú (không bắt buộc)</label>
+          <textarea id="note" placeholder="Muốn thử mẻ mới nhất, giao giờ chiều..."></textarea>
+        </div>
+
+        <div class="summary">
+          <div class="row"><span id="s-desc">1 chai mới</span><span id="s-unit">55.000đ</span></div>
+          <div class="row grand"><span>Tổng cộng</span><span id="s-total">55.000đ</span></div>
+        </div>
+
+        <button type="submit" class="btn-submit">Xác nhận đơn hàng</button>
+      </form>
+    </section>
+
+    <!-- CTA -->
+    <section class="card cta" style="background:transparent;padding:8px 0 0;">
+      <p>Cần tư vấn vị cà phê mẻ mới nhất? Nhắn mình nhé!</p>
+      <a class="btn-zalo" href="https://zalo.me/0387566754" target="_blank" rel="noopener">Kết nối Zalo</a>
+      <div class="phone">Hoặc gọi/nhắn: <b>0387.566.754</b></div>
+    </section>
+  </main>
+
+  <footer class="site">© 2026 Cold Brew Đà Lạt — Uống ngon, sống xanh.</footer>
+
+  <!-- Order modal -->
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <h3>✅ Đơn của bạn đã sẵn sàng!</h3>
+      <p class="lead">Bấm <b>Gửi qua Zalo</b> rồi <b>dán</b> nội dung bên dưới cho mình để chốt đơn nha.</p>
+      <pre id="receipt"></pre>
+      <div class="actions">
+        <button class="b-copy" id="btn-copy">📋 Sao chép đơn</button>
+        <a class="mbtn b-zalo" id="btn-zalo" href="https://zalo.me/0387566754" target="_blank" rel="noopener">💬 Gửi qua Zalo</a>
+        <button class="b-close full" id="btn-close">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const ZALO_PHONE = "0387566754";
+  const fmt = (n) => n.toLocaleString("vi-VN") + "đ";
+
+  const typeEl  = document.getElementById("bottle-type");
+  const qtyEl   = document.getElementById("qty");
+  const dateEl  = document.getElementById("date");
+  const phoneEl = document.getElementById("phone");
+  const addrEl  = document.getElementById("address");
+  const noteEl  = document.getElementById("note");
+
+  // date min = today
+  const today = new Date();
+  const pad = (n) => String(n).padStart(2, "0");
+  const todayStr = today.getFullYear() + "-" + pad(today.getMonth() + 1) + "-" + pad(today.getDate());
+  dateEl.min = todayStr;
+
+  // quantity stepper
+  function clampQty() {
+    let v = parseInt(qtyEl.value, 10);
+    if (isNaN(v) || v < 1) v = 1;
+    if (v > 50) v = 50;
+    qtyEl.value = v;
+    return v;
+  }
+  document.getElementById("qty-minus").addEventListener("click", () => { qtyEl.value = clampQty() - 1; updateSummary(); });
+  document.getElementById("qty-plus").addEventListener("click",  () => { qtyEl.value = clampQty() + 1; updateSummary(); });
+  qtyEl.addEventListener("input", updateSummary);
+  typeEl.addEventListener("change", updateSummary);
+
+  function currentUnitPrice() {
+    return parseInt(typeEl.selectedOptions[0].dataset.price, 10);
+  }
+  function typeLabel() {
+    return typeEl.value === "new" ? "chai mới" : "đổi vỏ cũ";
+  }
+
+  const sDesc = document.getElementById("s-desc");
+  const sUnit = document.getElementById("s-unit");
+  const sTotal = document.getElementById("s-total");
+
+  function updateSummary() {
+    const qty = clampQty();
+    const unit = currentUnitPrice();
+    sDesc.textContent = qty + " chai (" + typeLabel() + ")";
+    sUnit.textContent = fmt(unit) + " x " + qty;
+    sTotal.textContent = fmt(unit * qty);
+  }
+  updateSummary();
+
+  // submit
+  document.getElementById("order-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const qty = clampQty();
+    const date = dateEl.value;
+    const phone = phoneEl.value.trim();
+    const addr = addrEl.value.trim();
+    const note = noteEl.value.trim();
+
+    // basic validation
+    if (!date) { alert("Bạn chọn ngày muốn nhận giúp mình nhé!"); dateEl.focus(); return; }
+    if (!/^[0-9]{9,11}$/.test(phone)) { alert("Số điện thoại chưa hợp lệ (9–11 chữ số)."); phoneEl.focus(); return; }
+    if (!addr) { alert("Bạn nhập địa chỉ nhận hàng nhé!"); addrEl.focus(); return; }
+
+    const unit = currentUnitPrice();
+    const total = unit * qty;
+
+    // format date to dd/mm/yyyy
+    const [y, m, d] = date.split("-");
+    const dateVN = d + "/" + m + "/" + y;
+
+    const text =
+`===== ĐƠN COLD BREW ĐÀ LẠT =====
+Loại: ${qty} chai (${typeLabel()})
+Đơn giá: ${fmt(unit)}/chai
+Ngày muốn nhận: ${dateVN}
+SĐT: ${phone}
+Địa chỉ: ${addr}
+${note ? "Ghi chú: " + note + "\n" : ""}--------------------------------
+TỔNG CỘNG: ${fmt(total)}
+================================`;
+
+    document.getElementById("receipt").textContent = text;
+    document.getElementById("btn-zalo").href = "https://zalo.me/" + ZALO_PHONE;
+    document.getElementById("overlay").classList.add("show");
+  });
+
+  // modal actions
+  document.getElementById("btn-close").addEventListener("click", () => {
+    document.getElementById("overlay").classList.remove("show");
+  });
+  document.getElementById("overlay").addEventListener("click", (e) => {
+    if (e.target.id === "overlay") e.currentTarget.classList.remove("show");
+  });
+  document.getElementById("btn-copy").addEventListener("click", async () => {
+    const text = document.getElementById("receipt").textContent;
+    const btn = document.getElementById("btn-copy");
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      document.execCommand("copy"); ta.remove();
+    }
+    btn.textContent = "✅ Đã sao chép!";
+    setTimeout(() => (btn.textContent = "📋 Sao chép đơn"), 1600);
+  });
+</script>
+</body>
+</html>
