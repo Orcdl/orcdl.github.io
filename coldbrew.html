@@ -226,7 +226,7 @@
         <div class="field">
           <label for="date">Ngày muốn nhận <span class="req">*</span></label>
           <input type="date" id="date" required />
-          <div class="hint">Mình ủ theo mẻ nên đặt trước 1–2 ngày sẽ tươi ngon nhất nhé!</div>
+          <div class="hint">Mình ủ theo mẻ nên nhận đơn trước tối thiểu <b>1 ngày</b> (sớm nhất là ngày mai) nhé!</div>
         </div>
 
         <div class="field">
@@ -290,11 +290,13 @@
   const addrEl  = document.getElementById("address");
   const noteEl  = document.getElementById("note");
 
-  // date min = today
-  const today = new Date();
+  // date min = tomorrow (đặt trước tối thiểu 1 ngày)
   const pad = (n) => String(n).padStart(2, "0");
-  const todayStr = today.getFullYear() + "-" + pad(today.getMonth() + 1) + "-" + pad(today.getDate());
-  dateEl.min = todayStr;
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const minStr = tomorrow.getFullYear() + "-" + pad(tomorrow.getMonth() + 1) + "-" + pad(tomorrow.getDate());
+  dateEl.min = minStr;
+  dateEl.value = minStr; // gợi ý sẵn ngày sớm nhất có thể nhận
 
   // quantity stepper
   function clampQty() {
@@ -341,6 +343,7 @@
 
     // basic validation
     if (!date) { alert("Bạn chọn ngày muốn nhận giúp mình nhé!"); dateEl.focus(); return; }
+    if (date < dateEl.min) { alert("Mình cần đặt trước tối thiểu 1 ngày, bạn chọn từ ngày mai trở đi nhé!"); dateEl.focus(); return; }
     if (!/^[0-9]{9,11}$/.test(phone)) { alert("Số điện thoại chưa hợp lệ (9–11 chữ số)."); phoneEl.focus(); return; }
     if (!addr) { alert("Bạn nhập địa chỉ nhận hàng nhé!"); addrEl.focus(); return; }
 
