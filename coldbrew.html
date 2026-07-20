@@ -209,8 +209,9 @@
         <div class="field">
           <label for="bottle-type">Loại chai</label>
           <select id="bottle-type">
-            <option value="new" data-price="55000">Chai mới — kèm chai thủy tinh (55k/chai)</option>
-            <option value="refill" data-price="45000">Đổi vỏ cũ — mang chai cũ đổi (45k/chai)</option>
+            <option value="new" data-price="55000" data-label="chai mới">Chai mới — kèm chai thủy tinh (55k/chai)</option>
+            <option value="refill" data-price="45000" data-label="đổi vỏ cũ">Đổi vỏ cũ — mang chai cũ đổi (45k/chai)</option>
+            <option value="250ml" data-price="40000" data-label="chai 250ml">Chai 250ml (40k/chai)</option>
           </select>
         </div>
 
@@ -329,7 +330,7 @@
     return parseInt(typeEl.selectedOptions[0].dataset.price, 10);
   }
   function typeLabel() {
-    return typeEl.value === "new" ? "chai mới" : "đổi vỏ cũ";
+    return typeEl.selectedOptions[0].dataset.label;
   }
 
   const sDesc = document.getElementById("s-desc");
