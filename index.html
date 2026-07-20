@@ -1,645 +1,482 @@
-<!DOCTYPE HTML>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Future Imperfect by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-	</head>
-	<body>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>COOL BREW · Cold Brew ủ lạnh thủ công · Đà Lạt</title>
+<style>
+  :root {
+    --green-900: #16301f;
+    --green-800: #1e3b2b;
+    --green-700: #274a37;
+    --green-600: #305a43;
+    --green-card: #244535;
+    --pink: #f0a0c6;
+    --pink-bright: #ec7fb0;
+    --pink-soft: #f7c6dc;
+    --cream: #f4ecda;
+    --cream-2: #faf4e6;
+    --ink: #21402f;
+    --muted-cream: #cbd9cd;
+    --amber: #b4571f;
+    --ok: #2e7d5b;
+    --shadow: 0 10px 30px rgba(0,0,0,0.22);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--green-800);
+    color: var(--cream);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .rounded-face { font-family: "Arial Rounded MT Bold", "SF Pro Rounded", system-ui, "Segoe UI", sans-serif; }
+  h1, h2, h3 { font-family: "Arial Rounded MT Bold", "SF Pro Rounded", system-ui, "Segoe UI", sans-serif; }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+  main, header.site, footer.site { max-width: 720px; margin: 0 auto; }
+  main { padding: 8px 16px 48px; }
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="#">Future Imperfect</a></h1>
-						<nav class="links">
-							<ul>
-								<li><a href="#">Lorem</a></li>
-								<li><a href="#">Ipsum</a></li>
-								<li><a href="#">Feugiat</a></li>
-								<li><a href="#">Tempus</a></li>
-								<li><a href="#">Adipiscing</a></li>
-							</ul>
-						</nav>
-						<nav class="main">
-							<ul>
-								<li class="search">
-									<a class="fa-search" href="#search">Search</a>
-									<form id="search" method="get" action="#">
-										<input type="text" name="query" placeholder="Search" />
-									</form>
-								</li>
-								<li class="menu">
-									<a class="fa-bars" href="#menu">Menu</a>
-								</li>
-							</ul>
-						</nav>
-					</header>
+  /* dotted texture */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: radial-gradient(rgba(240,160,198,0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  header.site, main, footer.site { position: relative; z-index: 1; }
 
-				<!-- Menu -->
-					<section id="menu">
+  /* HEADER */
+  header.site { padding: 26px 16px 6px; text-align: center; }
+  .eyebrow {
+    display: inline-block; border: 1.5px solid rgba(240,160,198,0.5);
+    color: var(--pink); font-weight: 700; font-size: 0.72rem; letter-spacing: 2px;
+    padding: 6px 16px; border-radius: 999px; text-transform: uppercase;
+  }
+  .loc { color: var(--pink); font-size: 0.8rem; font-weight: 600; margin-top: 10px; letter-spacing: 1px; }
+  .wordmark { font-size: clamp(3rem, 16vw, 5rem); line-height: 0.92; margin: 12px 0 4px; letter-spacing: 1px; text-wrap: balance; }
+  .wordmark .cool { color: var(--pink); }
+  .wordmark .brew { color: var(--cream); }
+  .subtag { color: var(--cream); font-weight: 600; font-size: 1.05rem; }
+  .subtag2 { color: var(--muted-cream); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
 
-						<!-- Search -->
-							<section>
-								<form class="search" method="get" action="#">
-									<input type="text" name="query" placeholder="Search" />
-								</form>
-							</section>
+  /* HERO */
+  .hero {
+    position: relative; margin: 20px 0 8px; border-radius: 26px; overflow: hidden;
+    box-shadow: var(--shadow); border: 1px solid rgba(240,160,198,0.25);
+  }
+  .hero .hero-media { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; background: var(--green-900); }
+  .hero .badge {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--pink); color: var(--green-900);
+    width: 92px; height: 92px; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.28); text-align: center;
+  }
+  .hero .badge b { font-size: 1.7rem; line-height: 1; }
+  .hero .badge span { font-size: 0.7rem; font-weight: 700; }
 
-						<!-- Links -->
-							<section>
-								<ul class="links">
-									<li>
-										<a href="#">
-											<h3>Lorem ipsum</h3>
-											<p>Feugiat tempus veroeros dolor</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<h3>Dolor sit amet</h3>
-											<p>Sed vitae justo condimentum</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<h3>Feugiat veroeros</h3>
-											<p>Phasellus sed ultricies mi congue</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<h3>Etiam sed consequat</h3>
-											<p>Porta lectus amet ultricies</p>
-										</a>
-									</li>
-								</ul>
-							</section>
+  /* CARDS */
+  .card { border-radius: 24px; padding: 22px; margin: 16px 0; }
+  .card h2 { font-size: 1.35rem; margin: 0 0 12px; }
+  .card-glass { background: var(--green-card); border: 1px solid rgba(240,160,198,0.18); }
+  .card-cream { background: var(--cream); color: var(--ink); box-shadow: var(--shadow); }
+  .card-cream h2 { color: var(--green-800); }
 
-						<!-- Actions -->
-							<section>
-								<ul class="actions vertical">
-									<li><a href="#" class="button big fit">Log In</a></li>
-								</ul>
-							</section>
+  .story p { margin: 0 0 12px; color: #e7ecdf; }
+  .story .quote {
+    border-left: 4px solid var(--pink); padding: 4px 0 4px 16px; font-style: italic; margin: 0;
+    color: #f3ead8;
+  }
 
-					</section>
+  /* WHY (feature chips) */
+  .why { display: grid; gap: 12px; }
+  .feat { display: flex; gap: 14px; align-items: center; background: var(--green-700); border-radius: 16px; padding: 14px 16px; }
+  .feat .chip {
+    flex: none; width: 44px; height: 44px; border-radius: 12px; background: var(--pink);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .feat .chip svg { width: 24px; height: 24px; }
+  .feat .t { font-weight: 800; color: var(--cream); }
+  .feat .d { font-size: 0.86rem; color: var(--muted-cream); }
 
-				<!-- Main -->
-					<div id="main">
+  /* SIZES */
+  .sizes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .sizes { grid-template-columns: 1fr; } }
+  .size {
+    background: var(--green-card); border: 1px solid rgba(240,160,198,0.18);
+    border-radius: 20px; overflow: hidden; display: flex; flex-direction: column;
+  }
+  .size .ph { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+  .size .body { padding: 14px 16px 16px; }
+  .size .vol { font-family: "Arial Rounded MT Bold","SF Pro Rounded",system-ui,sans-serif; font-size: 1.5rem; color: var(--pink); }
+  .size .shape { font-size: 0.82rem; color: var(--muted-cream); margin-bottom: 8px; }
+  .size .prices { display: flex; gap: 10px; }
+  .size .prices div { flex: 1; background: var(--green-700); border-radius: 12px; padding: 8px 10px; text-align: center; }
+  .size .prices .lab { font-size: 0.68rem; color: var(--muted-cream); text-transform: uppercase; letter-spacing: 0.5px; }
+  .size .prices .val { font-weight: 800; font-size: 1.05rem; color: var(--cream); }
 
-						<!-- Post -->
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="#">Magna sed adipiscing</a></h2>
-										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-11-01">November 1, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-									</div>
-								</header>
-								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-								<footer>
-									<ul class="actions">
-										<li><a href="#" class="button big">Continue Reading</a></li>
-									</ul>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon fa-heart">28</a></li>
-										<li><a href="#" class="icon fa-comment">128</a></li>
-									</ul>
-								</footer>
-							</article>
+  .recirc-note {
+    display: flex; gap: 10px; align-items: center; margin-top: 14px;
+    background: var(--pink-soft); color: var(--green-900); border-radius: 14px; padding: 12px 14px; font-size: 0.9rem; font-weight: 600;
+  }
 
-						<!-- Post -->
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="#">Ultricies sed magna euismod enim vitae gravida</a></h2>
-										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-10-25">October 25, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-									</div>
-								</header>
-								<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper.</p>
-								<footer>
-									<ul class="actions">
-										<li><a href="#" class="button big">Continue Reading</a></li>
-									</ul>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon fa-heart">28</a></li>
-										<li><a href="#" class="icon fa-comment">128</a></li>
-									</ul>
-								</footer>
-							</article>
+  /* FORM */
+  .field { margin-bottom: 15px; }
+  .field label { display: block; font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; color: var(--green-800); }
+  .field label .req { color: #c0392b; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 12px 13px; border: 1.5px solid #e0d6bf; border-radius: 12px;
+    font-size: 1rem; font-family: inherit; background: #fffdf8; color: var(--ink);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--pink-bright); box-shadow: 0 0 0 3px rgba(236,127,176,0.22);
+  }
+  .field textarea { resize: vertical; min-height: 58px; }
+  .field .hint { font-size: 0.78rem; color: #8a7c62; margin-top: 5px; }
 
-						<!-- Post -->
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="#">Euismod et accumsan</a></h2>
-										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-10-22">October 22, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-									</div>
-								</header>
-								<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Cras vehicula tellus eu ligula viverra, ac fringilla turpis suscipit. Quisque vestibulum rhoncus ligula.</p>
-								<footer>
-									<ul class="actions">
-										<li><a href="#" class="button big">Continue Reading</a></li>
-									</ul>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon fa-heart">28</a></li>
-										<li><a href="#" class="icon fa-comment">128</a></li>
-									</ul>
-								</footer>
-							</article>
+  .stepper { display: inline-flex; align-items: center; border: 1.5px solid #e0d6bf; border-radius: 12px; overflow: hidden; }
+  .stepper button { width: 46px; height: 46px; border: none; background: var(--cream); font-size: 1.4rem; color: var(--green-800); cursor: pointer; line-height: 1; }
+  .stepper button:hover { background: var(--pink-soft); }
+  .stepper input { width: 64px; height: 46px; text-align: center; border: none; border-left: 1.5px solid #e0d6bf; border-right: 1.5px solid #e0d6bf; font-size: 1.1rem; font-weight: 800; background: #fff; }
+  .stepper input:focus { box-shadow: none; }
 
-						<!-- Post -->
-						<!--
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="#">Elements</a></h2>
-										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-10-18">October 18, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-									</div>
-								</header>
+  .summary { background: #fbf5e7; border: 1.5px dashed var(--pink-bright); border-radius: 14px; padding: 14px 16px; margin: 6px 0 16px; }
+  .summary .row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.92rem; color: #5f5647; }
+  .summary .grand { border-top: 1px solid #e6dcc4; margin-top: 8px; padding-top: 10px; font-size: 1.25rem; font-weight: 800; color: var(--green-800); }
+  .summary .grand span:last-child { color: var(--amber); }
 
-								<section>
-									<h3>Text</h3>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-									<hr />
-									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-									<hr />
-									<h2>Heading Level 2</h2>
-									<h3>Heading Level 3</h3>
-									<h4>Heading Level 4</h4>
-									<hr />
-									<h4>Blockquote</h4>
-									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-									<h4>Preformatted</h4>
-									<pre><code>i = 0;
+  .btn-submit { width: 100%; border: none; background: var(--ok); color: #fff; padding: 15px; border-radius: 14px; font-size: 1.08rem; font-weight: 800; cursor: pointer; transition: opacity .15s; }
+  .btn-submit:hover { opacity: 0.92; }
 
-while (!deck.isInOrder()) {
-  print 'Iteration ' + i;
-  deck.shuffle();
-  i++;
-}
+  /* BEANS trust */
+  .beans { display: grid; grid-template-columns: 1fr 1.1fr; gap: 16px; align-items: center; }
+  @media (max-width: 520px) { .beans { grid-template-columns: 1fr; } }
+  .beans img { width: 100%; border-radius: 18px; display: block; box-shadow: var(--shadow); }
+  .beans .t { font-weight: 800; color: var(--cream); margin-bottom: 6px; font-size: 1.1rem; }
+  .beans .d { color: var(--muted-cream); font-size: 0.92rem; }
+  .beans .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .beans .tags span { background: var(--green-700); color: var(--pink); font-size: 0.78rem; font-weight: 700; padding: 5px 12px; border-radius: 999px; }
 
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-								</section>
+  /* CTA */
+  .cta { text-align: center; padding: 8px 0; }
+  .cta p { color: var(--muted-cream); margin: 0 0 14px; }
+  .btn-zalo { display: inline-block; background: var(--pink); color: var(--green-900); font-weight: 800; padding: 15px 34px; border-radius: 999px; text-decoration: none; box-shadow: var(--shadow); font-size: 1.05rem; transition: transform .1s, background .15s; }
+  .btn-zalo:hover { background: var(--pink-bright); }
+  .btn-zalo:active { transform: scale(0.97); }
+  .cta .phone { margin-top: 14px; color: var(--cream); font-size: 1.15rem; font-weight: 800; letter-spacing: 1px; }
+  .cta .phone small { display:block; font-weight:600; font-size:0.72rem; color:var(--muted-cream); letter-spacing:2px; text-transform:uppercase; margin-bottom:2px; }
 
-								<section>
-									<h3>Lists</h3>
-									<div class="row">
-										<div class="6u 12u$(medium)">
-											<h4>Unordered</h4>
-											<ul>
-												<li>Dolor pulvinar etiam.</li>
-												<li>Sagittis adipiscing.</li>
-												<li>Felis enim feugiat.</li>
-											</ul>
-											<h4>Alternate</h4>
-											<ul class="alt">
-												<li>Dolor pulvinar etiam.</li>
-												<li>Sagittis adipiscing.</li>
-												<li>Felis enim feugiat.</li>
-											</ul>
-										</div>
-										<div class="6u$ 12u$(medium)">
-											<h4>Ordered</h4>
-											<ol>
-												<li>Dolor pulvinar etiam.</li>
-												<li>Etiam vel felis viverra.</li>
-												<li>Felis enim feugiat.</li>
-												<li>Dolor pulvinar etiam.</li>
-												<li>Etiam vel felis lorem.</li>
-												<li>Felis enim et feugiat.</li>
-											</ol>
-											<h4>Icons</h4>
-											<ul class="icons">
-												<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-											</ul>
-										</div>
-									</div>
-									<h3>Actions</h3>
-									<div class="row">
-										<div class="6u 12u$(medium)">
-											<ul class="actions">
-												<li><a href="#" class="button">Default</a></li>
-												<li><a href="#" class="button">Default</a></li>
-												<li><a href="#" class="button">Default</a></li>
-											</ul>
-											<ul class="actions small">
-												<li><a href="#" class="button small">Small</a></li>
-												<li><a href="#" class="button small">Small</a></li>
-												<li><a href="#" class="button small">Small</a></li>
-											</ul>
-											<ul class="actions vertical">
-												<li><a href="#" class="button">Default</a></li>
-												<li><a href="#" class="button">Default</a></li>
-												<li><a href="#" class="button">Default</a></li>
-											</ul>
-											<ul class="actions vertical small">
-												<li><a href="#" class="button small">Small</a></li>
-												<li><a href="#" class="button small">Small</a></li>
-												<li><a href="#" class="button small">Small</a></li>
-											</ul>
-										</div>
-										<div class="6u 12u$(medium)">
-											<ul class="actions vertical">
-												<li><a href="#" class="button fit">Default</a></li>
-												<li><a href="#" class="button fit">Default</a></li>
-											</ul>
-											<ul class="actions vertical small">
-												<li><a href="#" class="button small fit">Small</a></li>
-												<li><a href="#" class="button small fit">Small</a></li>
-											</ul>
-										</div>
-									</div>
-								</section>
+  footer.site { text-align: center; padding: 26px 16px 34px; color: var(--muted-cream); font-size: 0.82rem; }
+  footer.site b { color: var(--pink); }
 
-								<section>
-									<h3>Table</h3>
-									<h4>Default</h4>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
+  /* MODAL */
+  .overlay { position: fixed; inset: 0; background: rgba(10,25,16,0.62); display: none; align-items: center; justify-content: center; padding: 18px; z-index: 60; }
+  .overlay.show { display: flex; }
+  .modal { background: var(--cream); color: var(--ink); border-radius: 22px; max-width: 440px; width: 100%; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+  .modal h3 { margin: 0 0 4px; color: var(--ok); font-size: 1.3rem; }
+  .modal .lead { color: #7a6f58; font-size: 0.9rem; margin: 0 0 14px; }
+  .modal pre { background: #fbf5e7; border: 1.5px solid #ece0c8; border-radius: 12px; padding: 14px; font-size: 0.85rem; white-space: pre-wrap; word-break: break-word; max-height: 250px; overflow: auto; margin: 0; font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .modal .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .modal .actions .full { grid-column: 1 / -1; }
+  .modal button, .modal a.mbtn { display: block; text-align: center; text-decoration: none; padding: 13px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; font-size: 0.95rem; }
+  .b-copy { background: var(--green-700); color: #fff; }
+  .b-zalo { background: var(--pink); color: var(--green-900); }
+  .b-close { background: #e7ddc6; color: var(--ink); }
 
-									<h4>Alternate</h4>
-									<div class="table-wrapper">
-										<table class="alt">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</section>
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+  <header class="site">
+    <span class="eyebrow">Specialty Cold Brew</span>
+    <h1 class="wordmark"><span class="cool">COOL</span> <span class="brew">BREW</span></h1>
+    <div class="subtag">Cold Brew ủ lạnh · nhà làm thủ công</div>
+    <div class="subtag2">Mỗi mẻ một loại hạt · một vị riêng</div>
+    <div class="loc">📍 TP. Đà Lạt</div>
+  </header>
 
-								<section>
-									<h3>Buttons</h3>
-									<ul class="actions">
-										<li><a href="#" class="button big">Big</a></li>
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-									<ul class="actions fit">
-										<li><a href="#" class="button fit">Fit</a></li>
-										<li><a href="#" class="button fit">Fit</a></li>
-										<li><a href="#" class="button fit">Fit</a></li>
-									</ul>
-									<ul class="actions fit small">
-										<li><a href="#" class="button fit small">Fit + Small</a></li>
-										<li><a href="#" class="button fit small">Fit + Small</a></li>
-										<li><a href="#" class="button fit small">Fit + Small</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button icon fa-download">Icon</a></li>
-										<li><a href="#" class="button icon fa-upload">Icon</a></li>
-										<li><a href="#" class="button icon fa-save">Icon</a></li>
-									</ul>
-									<ul class="actions">
-										<li><span class="button disabled">Disabled</span></li>
-										<li><span class="button disabled icon fa-download">Disabled</span></li>
-									</ul>
-								</section>
+  <main>
+    <!-- HERO -->
+    <div class="hero">
+      <video class="hero-media" autoplay muted loop playsinline preload="metadata"
+             poster="images/coolbrew/hero-poster.jpg">
+        <source src="videos/coolbrew-hero.mp4" type="video/mp4" />
+        <img class="hero-media" src="images/coolbrew/bottle-330-a.jpg" alt="Ly Cold Brew COOL BREW ủ lạnh giữa vườn Đà Lạt" />
+      </video>
+      <div class="badge"><b>330</b><span>ml / chai</span></div>
+    </div>
 
-								<section>
-									<h3>Form</h3>
-									<form method="post" action="#">
-										<div class="row uniform">
-											<div class="6u 12u$(xsmall)">
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-											</div>
-											<div class="6u$ 12u$(xsmall)">
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-											</div>
-											<div class="12u$">
-												<div class="select-wrapper">
-													<select name="demo-category" id="demo-category">
-														<option value="">- Category -</option>
-														<option value="1">Manufacturing</option>
-														<option value="1">Shipping</option>
-														<option value="1">Administration</option>
-														<option value="1">Human Resources</option>
-													</select>
-												</div>
-											</div>
-											<div class="4u 12u$(small)">
-												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-												<label for="demo-priority-low">Low</label>
-											</div>
-											<div class="4u 12u$(small)">
-												<input type="radio" id="demo-priority-normal" name="demo-priority">
-												<label for="demo-priority-normal">Normal</label>
-											</div>
-											<div class="4u$ 12u$(small)">
-												<input type="radio" id="demo-priority-high" name="demo-priority">
-												<label for="demo-priority-high">High</label>
-											</div>
-											<div class="6u 12u$(small)">
-												<input type="checkbox" id="demo-copy" name="demo-copy">
-												<label for="demo-copy">Email me a copy</label>
-											</div>
-											<div class="6u$ 12u$(small)">
-												<input type="checkbox" id="demo-human" name="demo-human" checked>
-												<label for="demo-human">Not a robot</label>
-											</div>
-											<div class="12u$">
-												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-											</div>
-											<div class="12u$">
-												<ul class="actions">
-													<li><input type="submit" value="Send Message" /></li>
-													<li><input type="reset" value="Reset" /></li>
-												</ul>
-											</div>
-										</div>
-									</form>
-								</section>
+    <!-- STORY -->
+    <section class="card card-glass story">
+      <h2>Gọi hội mê cà — cùng mình nuôi dự án</h2>
+      <p>Dạo này mình đang lên cơn nghiền thử hạt từ <b>Son Pacamara, Robusta Đắk Lắk</b>, cho đến những mẻ <b>blend lạ</b>… loại nào cũng muốn brew thử để xem ly cold brew đổi vị thế nào.</p>
+      <p class="quote">Thử nhiều thì tốn hạt, tốn công ủ — nên mình nghĩ ra vụ này: bạn ủng hộ một chai, mình có kinh phí xoay vòng mua hạt + ủ mẻ mới, đổi lại bạn được uống đủ loại cold brew ngon, mỗi mẻ một vị. Win-win đúng không? ☕</p>
+    </section>
 
-								<section>
-									<h3>Image</h3>
-									<h4>Fit</h4>
-									<div class="box alt">
-										<div class="row uniform">
-											<div class="12u$"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
-											<div class="4u$"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
-											<div class="4u$"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
-											<div class="4u$"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
-										</div>
-									</div>
-									<h4>Left &amp; Right</h4>
-									<p><span class="image left"><img src="images/pic07.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-									<p><span class="image right"><img src="images/pic04.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-								</section>
+    <!-- WHY -->
+    <section class="card card-glass">
+      <h2>Tại sao chọn COOL BREW?</h2>
+      <div class="why">
+        <div class="feat">
+          <div class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#16301f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4M9 6h6M9 6v3l-2 4v7a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-7l-2-4V6"/></svg>
+          </div>
+          <div><div class="t">Ủ bằng bình Hario</div><div class="d">Lưới lọc dài, siêu mịn — không lẫn cặn bột</div></div>
+        </div>
+        <div class="feat">
+          <div class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#16301f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
+          </div>
+          <div><div class="t">Nước khoáng sạch</div><div class="d">Nước ngon thì cà mới ngon, vị cân bằng</div></div>
+        </div>
+        <div class="feat">
+          <div class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#16301f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12c4-8 14-8 14 0-4 8-14 8-14 0z"/><path d="M9 15c2-4 4-6 6-6"/></svg>
+          </div>
+          <div><div class="t">Đa dạng hạt cà</div><div class="d">Son Pacamara, Robusta Đắk Lắk, blend lạ…</div></div>
+        </div>
+      </div>
+    </section>
 
-							</article>
-						-->
+    <!-- SIZES -->
+    <section class="card card-glass">
+      <h2>Hai dung tích cho bạn chọn</h2>
+      <div class="sizes">
+        <div class="size">
+          <img class="ph" src="images/coolbrew/bottle-330-b.jpg" alt="Chai Cold Brew 330ml nắp vuông" />
+          <div class="body">
+            <div class="vol">330ml</div>
+            <div class="shape">Chai nắp vuông</div>
+            <div class="prices">
+              <div><div class="lab">Chai mới</div><div class="val">55k</div></div>
+              <div><div class="lab">Đổi vỏ</div><div class="val">45k</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="size">
+          <img class="ph" src="images/coolbrew/bottle-250-a.jpg" alt="Chai Cold Brew 250ml dáng dẹp" />
+          <div class="body">
+            <div class="vol">250ml</div>
+            <div class="shape">Chai dẹp</div>
+            <div class="prices">
+              <div><div class="lab">Chai mới</div><div class="val">40k</div></div>
+              <div><div class="lab">Đổi vỏ</div><div class="val">35k</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recirc-note">♻️ Vỏ chai tuần hoàn — mang vỏ cũ quay lại nạp đầy chai mới, rẻ hơn & bảo vệ môi trường.</div>
+    </section>
 
-						<!-- Pagination -->
-							<ul class="actions pagination">
-								<li><a href="" class="disabled button big previous">Previous Page</a></li>
-								<li><a href="#" class="button big next">Next Page</a></li>
-							</ul>
+    <!-- ORDER FORM -->
+    <section class="card card-cream">
+      <h2>📝 Đặt cold brew ngay</h2>
+      <form id="order-form" novalidate>
+        <div class="field">
+          <label for="bottle-type">Loại chai</label>
+          <select id="bottle-type">
+            <option value="330-new" data-price="55000" data-label="330ml · chai mới">330ml (nắp vuông) — chai mới, kèm chai thủy tinh · 55k</option>
+            <option value="330-refill" data-price="45000" data-label="330ml · đổi vỏ">330ml (nắp vuông) — đổi vỏ cũ · 45k</option>
+            <option value="250-new" data-price="40000" data-label="250ml · chai mới">250ml (dẹp) — chai mới · 40k</option>
+            <option value="250-refill" data-price="35000" data-label="250ml · đổi vỏ">250ml (dẹp) — đổi vỏ cũ · 35k</option>
+          </select>
+        </div>
 
-					</div>
+        <div class="field">
+          <label>Số lượng chai <span class="req">*</span></label>
+          <div class="stepper">
+            <button type="button" id="qty-minus" aria-label="Giảm">−</button>
+            <input type="number" id="qty" value="1" min="1" max="50" inputmode="numeric" />
+            <button type="button" id="qty-plus" aria-label="Tăng">+</button>
+          </div>
+        </div>
 
-				<!-- Sidebar -->
-					<section id="sidebar">
+        <div class="field">
+          <label for="date">Ngày muốn nhận <span class="req">*</span></label>
+          <input type="date" id="date" required />
+          <div class="hint">Mình ủ theo mẻ nên nhận đơn trước tối thiểu <b>1 ngày</b> (sớm nhất là ngày mai) nhé!</div>
+        </div>
 
-						<!-- Intro -->
-							<section id="intro">
-								<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
-								<header>
-									<h2>Future Imperfect</h2>
-									<p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
-								</header>
-							</section>
+        <div class="field">
+          <label for="timeslot">Khung giờ giao <span class="req">*</span></label>
+          <select id="timeslot">
+            <option value="Sáng (8:00 – 11:00)">Sáng (8:00 – 11:00)</option>
+            <option value="Trưa (11:00 – 14:00)">Trưa (11:00 – 14:00)</option>
+            <option value="Chiều (14:00 – 17:00)">Chiều (14:00 – 17:00)</option>
+            <option value="Tối (17:00 – 20:00)">Tối (17:00 – 20:00)</option>
+          </select>
+        </div>
 
-						<!-- Mini Posts -->
-							<section>
-								<div class="mini-posts">
+        <div class="field">
+          <label for="phone">Số điện thoại <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="0948849754" required pattern="[0-9]{9,11}" inputmode="numeric" />
+        </div>
 
-									<!-- Mini Post -->
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Vitae sed condimentum</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-										</article>
+        <div class="field">
+          <label for="address">Địa chỉ nhận hàng <span class="req">*</span></label>
+          <textarea id="address" placeholder="Số nhà, đường, phường/xã — khu vực Đà Lạt" required></textarea>
+          <div class="hint">Hiện mình chỉ nhận đơn tại khu vực <b>Đà Lạt</b> thôi nha.</div>
+        </div>
 
-									<!-- Mini Post -->
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Rutrum neque accumsan</a></h3>
-												<time class="published" datetime="2015-10-19">October 19, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-										</article>
+        <div class="field">
+          <label for="note">Ghi chú (không bắt buộc)</label>
+          <textarea id="note" placeholder="Muốn thử mẻ mới nhất, giao giờ chiều..."></textarea>
+        </div>
 
-									<!-- Mini Post -->
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Odio congue mattis</a></h3>
-												<time class="published" datetime="2015-10-18">October 18, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-										</article>
+        <div class="summary">
+          <div class="row"><span id="s-desc">1 chai (330ml · chai mới)</span><span id="s-unit">55.000đ x 1</span></div>
+          <div class="row grand"><span>Tổng cộng</span><span id="s-total">55.000đ</span></div>
+        </div>
 
-									<!-- Mini Post -->
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Enim nisl veroeros</a></h3>
-												<time class="published" datetime="2015-10-17">October 17, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-										</article>
+        <button type="submit" class="btn-submit">Xác nhận đơn hàng</button>
+      </form>
+    </section>
 
-								</div>
-							</section>
+    <!-- BEANS -->
+    <section class="card card-glass">
+      <div class="beans">
+        <img src="images/coolbrew/beans.jpg" alt="Các loại hạt cà phê specialty dùng để ủ cold brew" />
+        <div>
+          <div class="t">Hàng thật, làm thật 🌱</div>
+          <div class="d">Mỗi mẻ ủ từ hạt specialty chọn lọc, đổi liên tục để bạn không bao giờ chán vị.</div>
+          <div class="tags"><span>Son Pacamara</span><span>Robusta Đắk Lắk</span><span>Blend lạ</span></div>
+        </div>
+      </div>
+    </section>
 
-						<!-- Posts List -->
-							<section>
-								<ul class="posts">
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Lorem ipsum fermentum ut nisl vitae</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Convallis maximus nisl mattis nunc id lorem</a></h3>
-												<time class="published" datetime="2015-10-15">October 15, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Euismod amet placerat vivamus porttitor</a></h3>
-												<time class="published" datetime="2015-10-10">October 10, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="images/pic10.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Magna enim accumsan tortor cursus ultricies</a></h3>
-												<time class="published" datetime="2015-10-08">October 8, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="images/pic11.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Congue ullam corper lorem ipsum dolor</a></h3>
-												<time class="published" datetime="2015-10-06">October 7, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="images/pic12.jpg" alt="" /></a>
-										</article>
-									</li>
-								</ul>
-							</section>
+    <!-- CTA -->
+    <section class="cta">
+      <p>Cần tư vấn vị cà phê mẻ mới nhất? Nhắn mình để <b style="color:var(--pink)">"kết nạp hội"</b> ☕</p>
+      <a class="btn-zalo" id="cta-zalo" href="https://zalo.me/0948849754" target="_blank" rel="noopener">💬 Kết nối Zalo</a>
+      <div class="phone"><small>Đặt ngay · Zalo/SĐT</small>0948 849 754</div>
+    </section>
+  </main>
 
-						<!-- About -->
-							<section class="blurb">
-								<h2>About</h2>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Learn More</a></li>
-								</ul>
-							</section>
+  <footer class="site">© 2026 <b>COOL BREW</b> · Cold Brew ủ lạnh thủ công · TP. Đà Lạt 🌲</footer>
 
-						<!-- Footer -->
-							<section id="footer">
-								<ul class="icons">
-									<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
-									<li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
-								</ul>
-								<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
-							</section>
+  <!-- MODAL -->
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <h3>✅ Đơn của bạn đã sẵn sàng!</h3>
+      <p class="lead">Bấm <b>Gửi qua Zalo</b> rồi <b>dán</b> nội dung bên dưới cho mình để chốt đơn nha.</p>
+      <pre id="receipt"></pre>
+      <div class="actions">
+        <button class="b-copy" id="btn-copy">📋 Sao chép đơn</button>
+        <a class="mbtn b-zalo" id="btn-zalo" href="https://zalo.me/0948849754" target="_blank" rel="noopener">💬 Gửi qua Zalo</a>
+        <button class="b-close full" id="btn-close">Đóng</button>
+      </div>
+    </div>
+  </div>
 
-					</section>
+<script>
+  const ZALO_PHONE = "0948849754";
+  // Dán URL Web App Google Apps Script vào đây để đơn tự lưu vào Google Sheet.
+  const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxyt5D0mxNwSJBJXzUbs9YZz4NCkwXO9MESuxbBEy5DJr9KNlFOk5RHSINedL9P5FKOXQ/exec";
+  const fmt = (n) => n.toLocaleString("vi-VN") + "đ";
 
-			</div>
+  const typeEl  = document.getElementById("bottle-type");
+  const qtyEl   = document.getElementById("qty");
+  const dateEl  = document.getElementById("date");
+  const slotEl  = document.getElementById("timeslot");
+  const phoneEl = document.getElementById("phone");
+  const addrEl  = document.getElementById("address");
+  const noteEl  = document.getElementById("note");
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+  // date min = tomorrow (đặt trước tối thiểu 1 ngày)
+  const pad = (n) => String(n).padStart(2, "0");
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const minStr = tomorrow.getFullYear() + "-" + pad(tomorrow.getMonth() + 1) + "-" + pad(tomorrow.getDate());
+  dateEl.min = minStr;
+  dateEl.value = minStr;
 
-	</body>
+  function clampQty() {
+    let v = parseInt(qtyEl.value, 10);
+    if (isNaN(v) || v < 1) v = 1;
+    if (v > 50) v = 50;
+    qtyEl.value = v;
+    return v;
+  }
+  document.getElementById("qty-minus").addEventListener("click", () => { qtyEl.value = clampQty() - 1; updateSummary(); });
+  document.getElementById("qty-plus").addEventListener("click",  () => { qtyEl.value = clampQty() + 1; updateSummary(); });
+  qtyEl.addEventListener("input", updateSummary);
+  typeEl.addEventListener("change", updateSummary);
+
+  function currentUnitPrice() { return parseInt(typeEl.selectedOptions[0].dataset.price, 10); }
+  function typeLabel() { return typeEl.selectedOptions[0].dataset.label; }
+
+  const sDesc = document.getElementById("s-desc");
+  const sUnit = document.getElementById("s-unit");
+  const sTotal = document.getElementById("s-total");
+
+  function updateSummary() {
+    const qty = clampQty();
+    const unit = currentUnitPrice();
+    sDesc.textContent = qty + " chai (" + typeLabel() + ")";
+    sUnit.textContent = fmt(unit) + " x " + qty;
+    sTotal.textContent = fmt(unit * qty);
+  }
+  updateSummary();
+
+  document.getElementById("order-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const qty = clampQty();
+    const date = dateEl.value;
+    const slot = slotEl.value;
+    const phone = phoneEl.value.trim();
+    const addr = addrEl.value.trim();
+    const note = noteEl.value.trim();
+
+    if (!date) { alert("Bạn chọn ngày muốn nhận giúp mình nhé!"); dateEl.focus(); return; }
+    if (date < dateEl.min) { alert("Mình cần đặt trước tối thiểu 1 ngày, bạn chọn từ ngày mai trở đi nhé!"); dateEl.focus(); return; }
+    if (!/^[0-9]{9,11}$/.test(phone)) { alert("Số điện thoại chưa hợp lệ (9–11 chữ số)."); phoneEl.focus(); return; }
+    if (!addr) { alert("Bạn nhập địa chỉ nhận hàng nhé!"); addrEl.focus(); return; }
+
+    const unit = currentUnitPrice();
+    const total = unit * qty;
+    const [y, m, d] = date.split("-");
+    const dateVN = d + "/" + m + "/" + y;
+
+    const text =
+`===== ĐƠN COOL BREW =====
+Loại: ${qty} chai (${typeLabel()})
+Đơn giá: ${fmt(unit)}/chai
+Ngày muốn nhận: ${dateVN}
+Khung giờ giao: ${slot}
+SĐT: ${phone}
+Địa chỉ: ${addr}
+${note ? "Ghi chú: " + note + "\n" : ""}-------------------------
+TỔNG CỘNG: ${fmt(total)}
+=========================`;
+
+    document.getElementById("receipt").textContent = text;
+    document.getElementById("btn-zalo").href = "https://zalo.me/" + ZALO_PHONE;
+    document.getElementById("overlay").classList.add("show");
+
+    if (SHEET_ENDPOINT) {
+      const payload = {
+        loai_chai: typeLabel(), so_luong: qty, don_gia: unit, tong_tien: total,
+        ngay_nhan: dateVN, khung_gio: slot, sdt: phone, dia_chi: addr, ghi_chu: note
+      };
+      fetch(SHEET_ENDPOINT, {
+        method: "POST", mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    }
+  });
+
+  document.getElementById("btn-close").addEventListener("click", () => document.getElementById("overlay").classList.remove("show"));
+  document.getElementById("overlay").addEventListener("click", (e) => { if (e.target.id === "overlay") e.currentTarget.classList.remove("show"); });
+  document.getElementById("btn-copy").addEventListener("click", async () => {
+    const text = document.getElementById("receipt").textContent;
+    const btn = document.getElementById("btn-copy");
+    try { await navigator.clipboard.writeText(text); }
+    catch { const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+    btn.textContent = "✅ Đã sao chép!";
+    setTimeout(() => (btn.textContent = "📋 Sao chép đơn"), 1600);
+  });
+</script>
+</body>
 </html>
