@@ -65,7 +65,7 @@
     position: relative; margin: 20px 0 8px; border-radius: 26px; overflow: hidden;
     box-shadow: var(--shadow); border: 1px solid rgba(240,160,198,0.25);
   }
-  .hero img { display: block; width: 100%; height: auto; }
+  .hero .hero-media { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; background: var(--green-900); }
   .hero .badge {
     position: absolute; top: 16px; right: 16px;
     background: var(--pink); color: var(--green-900);
@@ -199,7 +199,11 @@
   <main>
     <!-- HERO -->
     <div class="hero">
-      <img src="images/coolbrew/bottle-330-a.jpg" alt="Chai Cold Brew COOL BREW ủ lạnh, cầm trên tay giữa đồi thông Đà Lạt" />
+      <video class="hero-media" autoplay muted loop playsinline preload="metadata"
+             poster="images/coolbrew/hero-poster.jpg">
+        <source src="videos/coolbrew-hero.mp4" type="video/mp4" />
+        <img class="hero-media" src="images/coolbrew/bottle-330-a.jpg" alt="Ly Cold Brew COOL BREW ủ lạnh giữa vườn Đà Lạt" />
+      </video>
       <div class="badge"><b>330</b><span>ml / chai</span></div>
     </div>
 
