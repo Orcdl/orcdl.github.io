@@ -134,6 +134,8 @@
   }
   .field textarea { resize: vertical; min-height: 58px; }
   .field .hint { font-size: 0.78rem; color: #8a7c62; margin-top: 5px; }
+  .fixed-slot { background: #fbf5e7; border: 1.5px solid #ece0c8; border-radius: 12px; padding: 12px 13px; color: var(--ink); font-size: 0.95rem; }
+  .fixed-slot b { color: var(--amber); }
 
   .stepper { display: inline-flex; align-items: center; border: 1.5px solid #e0d6bf; border-radius: 12px; overflow: hidden; }
   .stepper button { width: 46px; height: 46px; border: none; background: var(--cream); font-size: 1.4rem; color: var(--green-800); cursor: pointer; line-height: 1; }
@@ -299,13 +301,8 @@
         </div>
 
         <div class="field">
-          <label for="timeslot">Khung giờ giao <span class="req">*</span></label>
-          <select id="timeslot">
-            <option value="Sáng (8:00 – 11:00)">Sáng (8:00 – 11:00)</option>
-            <option value="Trưa (11:00 – 14:00)">Trưa (11:00 – 14:00)</option>
-            <option value="Chiều (14:00 – 17:00)">Chiều (14:00 – 17:00)</option>
-            <option value="Tối (17:00 – 20:00)">Tối (17:00 – 20:00)</option>
-          </select>
+          <label>Khung giờ giao</label>
+          <div class="fixed-slot">🕑 Giao <b>buổi chiều 14:00 – 17:00</b>, tất cả các ngày trong tuần.</div>
         </div>
 
         <div class="field">
@@ -378,7 +375,7 @@
   const typeEl  = document.getElementById("bottle-type");
   const qtyEl   = document.getElementById("qty");
   const dateEl  = document.getElementById("date");
-  const slotEl  = document.getElementById("timeslot");
+  const SLOT    = "Chiều (14:00 – 17:00)";
   const phoneEl = document.getElementById("phone");
   const addrEl  = document.getElementById("address");
   const noteEl  = document.getElementById("note");
@@ -423,7 +420,7 @@
     e.preventDefault();
     const qty = clampQty();
     const date = dateEl.value;
-    const slot = slotEl.value;
+    const slot = SLOT;
     const phone = phoneEl.value.trim();
     const addr = addrEl.value.trim();
     const note = noteEl.value.trim();
