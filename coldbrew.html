@@ -144,6 +144,10 @@
   .small-item .v { grid-area: v; font-weight: 800; color: var(--cream); }
   .small-item .n { grid-area: n; font-size: 0.78rem; color: var(--muted-cream); }
   .small-item .p { grid-area: p; font-weight: 800; font-size: 1.2rem; color: var(--pink); font-variant-numeric: tabular-nums; }
+  .combo { margin-top: 14px; background: var(--pink-soft); color: var(--green-900); border-radius: 16px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "t p" "d p"; column-gap: 10px; align-items: center; }
+  .combo-t { grid-area: t; font-weight: 800; }
+  .combo-d { grid-area: d; font-size: 0.82rem; }
+  .combo-p { grid-area: p; font-weight: 800; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
   .smalls.one { grid-template-columns: 1fr; margin-top: 0; }
   .size-row { flex-direction: row; }
   .size-row .ph { width: 38%; aspect-ratio: 4/5; flex: none; }
@@ -313,8 +317,15 @@
       </div>
 
       <h3 class="menu-group">Cold brew ủ lạnh</h3>
-      <div class="smalls one">
-        <div class="small-item"><span class="v">Cold brew 330ml</span><span class="n">Mỗi mẻ một loại hạt</span><span class="p">55k</span></div>
+      <div class="smalls">
+        <div class="small-item"><span class="v">1 lít</span><span class="n">~8 ly</span><span class="p">149k</span></div>
+        <div class="small-item"><span class="v">330ml</span><span class="n">~2–3 ly</span><span class="p">55k</span></div>
+      </div>
+
+      <div class="combo">
+        <div class="combo-t">Bộ cold brew dâu tại nhà</div>
+        <div class="combo-d">1 lít cold brew + nước cốt dâu 330ml · rẻ hơn mua lẻ 15k</div>
+        <div class="combo-p">199k</div>
       </div>
     </section>
 
@@ -340,6 +351,14 @@
             <div class="item" data-price="65000" data-label="Sữa hạt 500ml">
               <div class="item-info"><b>Sữa hạt · 500ml</b><span>65k · hạnh nhân, hạt sen, yến mạch</span></div>
               <div class="stepper"><button type="button" class="minus" aria-label="Giảm sữa hạt">−</button><input type="number" id="q-suahat-500" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai sữa hạt 500ml" /><button type="button" class="plus" aria-label="Tăng sữa hạt">+</button></div>
+            </div>
+            <div class="item" data-price="199000" data-label="Combo 1 lít cold brew + nước cốt dâu 330ml">
+              <div class="item-info"><b>Combo cold brew dâu</b><span>199k · 1 lít cold brew + nước cốt dâu 330ml</span></div>
+              <div class="stepper"><button type="button" class="minus" aria-label="Giảm combo">−</button><input type="number" id="q-combo" value="0" min="0" max="50" inputmode="numeric" aria-label="Số combo cold brew dâu" /><button type="button" class="plus" aria-label="Tăng combo">+</button></div>
+            </div>
+            <div class="item" data-price="149000" data-label="Cold brew 1 lít">
+              <div class="item-info"><b>Cold brew · 1 lít</b><span>149k · ~8 ly</span></div>
+              <div class="stepper"><button type="button" class="minus" aria-label="Giảm cold brew 1 lít">−</button><input type="number" id="q-cb-1000" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai cold brew 1 lít" /><button type="button" class="plus" aria-label="Tăng cold brew 1 lít">+</button></div>
             </div>
             <div class="item" data-price="55000" data-label="Cold brew 330ml">
               <div class="item-info"><b>Cold brew · 330ml</b><span>55k</span></div>
