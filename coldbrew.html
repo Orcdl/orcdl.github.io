@@ -144,6 +144,7 @@
   .small-item .v { grid-area: v; font-weight: 800; color: var(--cream); }
   .small-item .n { grid-area: n; font-size: 0.78rem; color: var(--muted-cream); }
   .small-item .p { grid-area: p; font-weight: 800; font-size: 1.2rem; color: var(--pink); font-variant-numeric: tabular-nums; }
+  .smalls.one { grid-template-columns: 1fr; margin-top: 0; }
   .size-row { flex-direction: row; }
   .size-row .ph { width: 38%; aspect-ratio: 4/5; flex: none; }
   .size-row .body { flex: 1; min-width: 0; align-self: center; }
@@ -159,10 +160,6 @@
   .item .stepper { flex: none; }
   .item .stepper input { width: 44px; height: 38px; font-size: 1rem; padding: 0; border-radius: 0; }
 
-  .recirc-note {
-    display: flex; gap: 10px; align-items: center; margin-top: 14px;
-    background: var(--pink-soft); color: var(--green-900); border-radius: 14px; padding: 12px 14px; font-size: 0.9rem; font-weight: 600;
-  }
 
   /* FORM */
   .field { margin-bottom: 15px; }
@@ -310,19 +307,15 @@
       </div>
       <p class="menu-note">Bảo quản ngăn mát, dùng trong khoảng 2 tuần. Quán cà phê, homestay đặt từ 2 lít: nhắn Zalo để nhận giá sỉ.</p>
 
-      <h3 class="menu-group">Cold brew ủ lạnh</h3>
-      <div class="size size-row">
-        <img class="ph" src="images/coolbrew/bottle-330-b.jpg" alt="Chai Cold Brew 330ml nắp vuông" />
-        <div class="body">
-          <div class="vol">330ml</div>
-          <div class="shape">Chai nắp vuông · mỗi mẻ một loại hạt</div>
-          <div class="prices">
-            <div><div class="lab">Chai mới</div><div class="val">55k</div></div>
-            <div><div class="lab">Đổi vỏ</div><div class="val">45k</div></div>
-          </div>
-        </div>
+      <h3 class="menu-group">Sữa hạt nhà làm</h3>
+      <div class="smalls one">
+        <div class="small-item"><span class="v">Hạnh nhân · hạt sen · yến mạch</span><span class="n">Chai 500ml</span><span class="p">65k</span></div>
       </div>
-      <div class="recirc-note">♻️ Vỏ chai tuần hoàn — mang vỏ cũ quay lại nạp đầy chai mới, rẻ hơn & bảo vệ môi trường.</div>
+
+      <h3 class="menu-group">Cold brew ủ lạnh</h3>
+      <div class="smalls one">
+        <div class="small-item"><span class="v">Cold brew 330ml</span><span class="n">Mỗi mẻ một loại hạt</span><span class="p">55k</span></div>
+      </div>
     </section>
 
     <!-- ORDER FORM -->
@@ -344,13 +337,13 @@
               <div class="item-info"><b>Nước cốt dâu · 330ml</b><span>65k · ~16 ly</span></div>
               <div class="stepper"><button type="button" class="minus" aria-label="Giảm nước cốt dâu 330ml">−</button><input type="number" id="q-dau-330" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai nước cốt dâu 330ml" /><button type="button" class="plus" aria-label="Tăng nước cốt dâu 330ml">+</button></div>
             </div>
-            <div class="item" data-price="55000" data-label="Cold brew 330ml · chai mới">
-              <div class="item-info"><b>Cold brew 330ml · chai mới</b><span>55k</span></div>
-              <div class="stepper"><button type="button" class="minus" aria-label="Giảm cold brew chai mới">−</button><input type="number" id="q-cb-new" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai cold brew chai mới" /><button type="button" class="plus" aria-label="Tăng cold brew chai mới">+</button></div>
+            <div class="item" data-price="65000" data-label="Sữa hạt 500ml">
+              <div class="item-info"><b>Sữa hạt · 500ml</b><span>65k · hạnh nhân, hạt sen, yến mạch</span></div>
+              <div class="stepper"><button type="button" class="minus" aria-label="Giảm sữa hạt">−</button><input type="number" id="q-suahat-500" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai sữa hạt 500ml" /><button type="button" class="plus" aria-label="Tăng sữa hạt">+</button></div>
             </div>
-            <div class="item" data-price="45000" data-label="Cold brew 330ml · đổi vỏ">
-              <div class="item-info"><b>Cold brew 330ml · đổi vỏ cũ</b><span>45k</span></div>
-              <div class="stepper"><button type="button" class="minus" aria-label="Giảm cold brew đổi vỏ">−</button><input type="number" id="q-cb-refill" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai cold brew đổi vỏ" /><button type="button" class="plus" aria-label="Tăng cold brew đổi vỏ">+</button></div>
+            <div class="item" data-price="55000" data-label="Cold brew 330ml">
+              <div class="item-info"><b>Cold brew · 330ml</b><span>55k</span></div>
+              <div class="stepper"><button type="button" class="minus" aria-label="Giảm cold brew">−</button><input type="number" id="q-cb-330" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai cold brew 330ml" /><button type="button" class="plus" aria-label="Tăng cold brew">+</button></div>
             </div>
           </div>
         </div>
