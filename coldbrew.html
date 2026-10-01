@@ -116,6 +116,49 @@
   .size .prices .lab { font-size: 0.68rem; color: var(--muted-cream); text-transform: uppercase; letter-spacing: 0.5px; }
   .size .prices .val { font-weight: 800; font-size: 1.05rem; color: var(--cream); }
 
+  /* MENU */
+  .menu-group { font-size: 1.05rem; color: var(--pink); margin: 18px 0 6px; letter-spacing: 0.5px; }
+  .menu-group:first-of-type { margin-top: 4px; }
+  .menu-desc { margin: 0 0 12px; color: var(--muted-cream); font-size: 0.9rem; }
+  .menu-note { margin: 10px 0 4px; color: var(--muted-cream); font-size: 0.82rem; }
+  .liter {
+    position: relative; background: var(--pink); color: var(--green-900);
+    border-radius: 20px; padding: 18px 18px 16px; box-shadow: var(--shadow);
+  }
+  .liter-tag {
+    display: inline-block; background: var(--green-900); color: var(--pink-soft);
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 999px; margin-bottom: 8px;
+  }
+  .liter-main { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .liter-vol, .liter-price { font-family: "Arial Rounded MT Bold","SF Pro Rounded",system-ui,sans-serif; line-height: 1; }
+  .liter-vol { font-size: 2.2rem; }
+  .liter-price { font-size: 2.6rem; }
+  .liter-facts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .liter-facts span { background: rgba(22,48,31,0.12); font-size: 0.8rem; font-weight: 700; padding: 5px 10px; border-radius: 999px; }
+  .smalls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .small-item {
+    display: grid; grid-template-columns: 1fr auto; grid-template-areas: "v p" "n p"; align-items: center;
+    background: var(--green-700); border-radius: 14px; padding: 10px 14px; column-gap: 8px;
+  }
+  .small-item .v { grid-area: v; font-weight: 800; color: var(--cream); }
+  .small-item .n { grid-area: n; font-size: 0.78rem; color: var(--muted-cream); }
+  .small-item .p { grid-area: p; font-weight: 800; font-size: 1.2rem; color: var(--pink); font-variant-numeric: tabular-nums; }
+  .size-row { flex-direction: row; }
+  .size-row .ph { width: 38%; aspect-ratio: 4/5; flex: none; }
+  .size-row .body { flex: 1; min-width: 0; align-self: center; }
+
+  /* ORDER ITEMS */
+  .items { display: grid; gap: 8px; }
+  .item { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: #fffdf8; border: 1.5px solid #e0d6bf; border-radius: 14px; padding: 8px 8px 8px 12px; }
+  .item.on { border-color: var(--pink-bright); background: #fff6fa; }
+  .item-info { min-width: 0; display: flex; flex-direction: column; }
+  .item-info b { font-size: 0.92rem; color: var(--green-800); }
+  .item-info span { font-size: 0.78rem; color: #8a7c62; }
+  .item .stepper button { width: 38px; height: 38px; font-size: 1.2rem; }
+  .item .stepper { flex: none; }
+  .item .stepper input { width: 44px; height: 38px; font-size: 1rem; padding: 0; border-radius: 0; }
+
   .recirc-note {
     display: flex; gap: 10px; align-items: center; margin-top: 14px;
     background: var(--pink-soft); color: var(--green-900); border-radius: 14px; padding: 12px 14px; font-size: 0.9rem; font-weight: 600;
@@ -241,30 +284,41 @@
       </div>
     </section>
 
-    <!-- SIZES -->
-    <section class="card card-glass">
-      <h2>Hai dung tích cho bạn chọn</h2>
-      <div class="sizes">
-        <div class="size">
-          <img class="ph" src="images/coolbrew/bottle-330-b.jpg" alt="Chai Cold Brew 330ml nắp vuông" />
-          <div class="body">
-            <div class="vol">330ml</div>
-            <div class="shape">Chai nắp vuông</div>
-            <div class="prices">
-              <div><div class="lab">Chai mới</div><div class="val">55k</div></div>
-              <div><div class="lab">Đổi vỏ</div><div class="val">45k</div></div>
-            </div>
-          </div>
+    <!-- MENU -->
+    <section class="card card-glass" id="menu">
+      <h2>Menu</h2>
+
+      <h3 class="menu-group">Nước cốt dâu tây Đà Lạt</h3>
+      <p class="menu-desc">Dâu Đà Lạt nấu lửa nhỏ với đường phèn, đường vàng và chút chanh vàng. Không phẩm màu, không hương liệu. Mỗi ly dùng khoảng 20ml.</p>
+
+      <div class="liter">
+        <div class="liter-tag">Lời nhất</div>
+        <div class="liter-main">
+          <div class="liter-vol">1 lít</div>
+          <div class="liter-price">169k</div>
         </div>
-        <div class="size">
-          <img class="ph" src="images/coolbrew/bottle-250-a.jpg" alt="Chai Cold Brew 250ml dáng dẹp" />
-          <div class="body">
-            <div class="vol">250ml</div>
-            <div class="shape">Chai dẹp</div>
-            <div class="prices">
-              <div><div class="lab">Chai mới</div><div class="val">40k</div></div>
-              <div><div class="lab">Đổi vỏ</div><div class="val">35k</div></div>
-            </div>
+        <div class="liter-facts">
+          <span>Pha được ~50 ly</span>
+          <span>Chỉ ~3.400đ / ly</span>
+          <span>Rẻ hơn 14% so với chai 330ml</span>
+        </div>
+      </div>
+
+      <div class="smalls">
+        <div class="small-item"><span class="v">500ml</span><span class="n">~25 ly</span><span class="p">89k</span></div>
+        <div class="small-item"><span class="v">330ml</span><span class="n">~16 ly</span><span class="p">65k</span></div>
+      </div>
+      <p class="menu-note">Bảo quản ngăn mát, dùng trong khoảng 2 tuần. Quán cà phê, homestay đặt từ 2 lít: nhắn Zalo để nhận giá sỉ.</p>
+
+      <h3 class="menu-group">Cold brew ủ lạnh</h3>
+      <div class="size size-row">
+        <img class="ph" src="images/coolbrew/bottle-330-b.jpg" alt="Chai Cold Brew 330ml nắp vuông" />
+        <div class="body">
+          <div class="vol">330ml</div>
+          <div class="shape">Chai nắp vuông · mỗi mẻ một loại hạt</div>
+          <div class="prices">
+            <div><div class="lab">Chai mới</div><div class="val">55k</div></div>
+            <div><div class="lab">Đổi vỏ</div><div class="val">45k</div></div>
           </div>
         </div>
       </div>
@@ -273,24 +327,31 @@
 
     <!-- ORDER FORM -->
     <section class="card card-cream">
-      <h2>📝 Đặt cold brew ngay</h2>
+      <h2>📝 Đặt hàng ngay</h2>
       <form id="order-form" novalidate>
         <div class="field">
-          <label for="bottle-type">Loại chai</label>
-          <select id="bottle-type">
-            <option value="330-new" data-price="55000" data-label="330ml · chai mới">330ml (nắp vuông) — chai mới, kèm chai thủy tinh · 55k</option>
-            <option value="330-refill" data-price="45000" data-label="330ml · đổi vỏ">330ml (nắp vuông) — đổi vỏ cũ · 45k</option>
-            <option value="250-new" data-price="40000" data-label="250ml · chai mới">250ml (dẹp) — chai mới · 40k</option>
-            <option value="250-refill" data-price="35000" data-label="250ml · đổi vỏ">250ml (dẹp) — đổi vỏ cũ · 35k</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Số lượng chai <span class="req">*</span></label>
-          <div class="stepper">
-            <button type="button" id="qty-minus" aria-label="Giảm">−</button>
-            <input type="number" id="qty" value="1" min="1" max="50" inputmode="numeric" />
-            <button type="button" id="qty-plus" aria-label="Tăng">+</button>
+          <label>Chọn món & số lượng <span class="req">*</span></label>
+          <div class="items" id="items">
+            <div class="item" data-price="169000" data-label="Nước cốt dâu 1 lít">
+              <div class="item-info"><b>Nước cốt dâu · 1 lít</b><span>169k · ~50 ly</span></div>
+              <div class="stepper"><button type="button" class="minus" aria-label="Giảm nước cốt dâu 1 lít">−</button><input type="number" id="q-dau-1000" value="1" min="0" max="50" inputmode="numeric" aria-label="Số chai nước cốt dâu 1 lít" /><button type="button" class="plus" aria-label="Tăng nước cốt dâu 1 lít">+</button></div>
+            </div>
+            <div class="item" data-price="89000" data-label="Nước cốt dâu 500ml">
+              <div class="item-info"><b>Nước cốt dâu · 500ml</b><span>89k · ~25 ly</span></div>
+              <div class="stepper"><button type="button" class="minus" aria-label="Giảm nước cốt dâu 500ml">−</button><input type="number" id="q-dau-500" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai nước cốt dâu 500ml" /><button type="button" class="plus" aria-label="Tăng nước cốt dâu 500ml">+</button></div>
+            </div>
+            <div class="item" data-price="65000" data-label="Nước cốt dâu 330ml">
+              <div class="item-info"><b>Nước cốt dâu · 330ml</b><span>65k · ~16 ly</span></div>
+              <div class="stepper"><button type="button" class="minus" aria-label="Giảm nước cốt dâu 330ml">−</button><input type="number" id="q-dau-330" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai nước cốt dâu 330ml" /><button type="button" class="plus" aria-label="Tăng nước cốt dâu 330ml">+</button></div>
+            </div>
+            <div class="item" data-price="55000" data-label="Cold brew 330ml · chai mới">
+              <div class="item-info"><b>Cold brew 330ml · chai mới</b><span>55k</span></div>
+              <div class="stepper"><button type="button" class="minus" aria-label="Giảm cold brew chai mới">−</button><input type="number" id="q-cb-new" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai cold brew chai mới" /><button type="button" class="plus" aria-label="Tăng cold brew chai mới">+</button></div>
+            </div>
+            <div class="item" data-price="45000" data-label="Cold brew 330ml · đổi vỏ">
+              <div class="item-info"><b>Cold brew 330ml · đổi vỏ cũ</b><span>45k</span></div>
+              <div class="stepper"><button type="button" class="minus" aria-label="Giảm cold brew đổi vỏ">−</button><input type="number" id="q-cb-refill" value="0" min="0" max="50" inputmode="numeric" aria-label="Số chai cold brew đổi vỏ" /><button type="button" class="plus" aria-label="Tăng cold brew đổi vỏ">+</button></div>
+            </div>
           </div>
         </div>
 
@@ -322,8 +383,8 @@
         </div>
 
         <div class="summary">
-          <div class="row"><span id="s-desc">1 chai (330ml · chai mới)</span><span id="s-unit">55.000đ x 1</span></div>
-          <div class="row grand"><span>Tổng cộng</span><span id="s-total">55.000đ</span></div>
+          <div id="s-lines"></div>
+          <div class="row grand"><span>Tổng cộng</span><span id="s-total">0đ</span></div>
         </div>
 
         <button type="submit" class="btn-submit">Xác nhận đơn hàng</button>
@@ -372,8 +433,7 @@
   const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxyt5D0mxNwSJBJXzUbs9YZz4NCkwXO9MESuxbBEy5DJr9KNlFOk5RHSINedL9P5FKOXQ/exec";
   const fmt = (n) => n.toLocaleString("vi-VN") + "đ";
 
-  const typeEl  = document.getElementById("bottle-type");
-  const qtyEl   = document.getElementById("qty");
+  const itemEls = Array.from(document.querySelectorAll("#items .item"));
   const dateEl  = document.getElementById("date");
   const SLOT    = "Chiều (14:00 – 17:00)";
   const phoneEl = document.getElementById("phone");
@@ -388,57 +448,79 @@
   dateEl.min = minStr;
   dateEl.value = minStr;
 
-  function clampQty() {
-    let v = parseInt(qtyEl.value, 10);
-    if (isNaN(v) || v < 1) v = 1;
+  function clampQty(input) {
+    let v = parseInt(input.value, 10);
+    if (isNaN(v) || v < 0) v = 0;
     if (v > 50) v = 50;
-    qtyEl.value = v;
+    input.value = v;
     return v;
   }
-  document.getElementById("qty-minus").addEventListener("click", () => { qtyEl.value = clampQty() - 1; updateSummary(); });
-  document.getElementById("qty-plus").addEventListener("click",  () => { qtyEl.value = clampQty() + 1; updateSummary(); });
-  qtyEl.addEventListener("input", updateSummary);
-  typeEl.addEventListener("change", updateSummary);
 
-  function currentUnitPrice() { return parseInt(typeEl.selectedOptions[0].dataset.price, 10); }
-  function typeLabel() { return typeEl.selectedOptions[0].dataset.label; }
+  itemEls.forEach((el) => {
+    const input = el.querySelector("input");
+    el.querySelector(".minus").addEventListener("click", () => { input.value = clampQty(input) - 1; updateSummary(); });
+    el.querySelector(".plus").addEventListener("click",  () => { input.value = clampQty(input) + 1; updateSummary(); });
+    input.addEventListener("input", updateSummary);
+  });
 
-  const sDesc = document.getElementById("s-desc");
-  const sUnit = document.getElementById("s-unit");
+  // Các món khách đã chọn (số lượng > 0)
+  function selectedLines() {
+    return itemEls.map((el) => {
+      const qty = clampQty(el.querySelector("input"));
+      const unit = parseInt(el.dataset.price, 10);
+      return { label: el.dataset.label, qty, unit, total: qty * unit };
+    }).filter((l) => l.qty > 0);
+  }
+
+  const sLines = document.getElementById("s-lines");
   const sTotal = document.getElementById("s-total");
 
   function updateSummary() {
-    const qty = clampQty();
-    const unit = currentUnitPrice();
-    sDesc.textContent = qty + " chai (" + typeLabel() + ")";
-    sUnit.textContent = fmt(unit) + " x " + qty;
-    sTotal.textContent = fmt(unit * qty);
+    const lines = selectedLines();
+    itemEls.forEach((el) => el.classList.toggle("on", parseInt(el.querySelector("input").value, 10) > 0));
+    sLines.innerHTML = "";
+    if (!lines.length) {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.textContent = "Chưa chọn món nào";
+      sLines.appendChild(row);
+    }
+    lines.forEach((l) => {
+      const row = document.createElement("div");
+      row.className = "row";
+      const a = document.createElement("span"); a.textContent = l.qty + " × " + l.label;
+      const b = document.createElement("span"); b.textContent = fmt(l.total);
+      row.append(a, b);
+      sLines.appendChild(row);
+    });
+    sTotal.textContent = fmt(lines.reduce((s, l) => s + l.total, 0));
   }
   updateSummary();
 
   document.getElementById("order-form").addEventListener("submit", (e) => {
     e.preventDefault();
-    const qty = clampQty();
+    const lines = selectedLines();
     const date = dateEl.value;
     const slot = SLOT;
     const phone = phoneEl.value.trim();
     const addr = addrEl.value.trim();
     const note = noteEl.value.trim();
 
+    if (!lines.length) { alert("Bạn chọn ít nhất 1 món giúp mình nhé!"); return; }
     if (!date) { alert("Bạn chọn ngày muốn nhận giúp mình nhé!"); dateEl.focus(); return; }
     if (date < dateEl.min) { alert("Mình cần đặt trước tối thiểu 1 ngày, bạn chọn từ ngày mai trở đi nhé!"); dateEl.focus(); return; }
     if (!/^[0-9]{9,11}$/.test(phone)) { alert("Số điện thoại chưa hợp lệ (9–11 chữ số)."); phoneEl.focus(); return; }
     if (!addr) { alert("Bạn nhập địa chỉ nhận hàng nhé!"); addrEl.focus(); return; }
 
-    const unit = currentUnitPrice();
-    const total = unit * qty;
+    const total = lines.reduce((s, l) => s + l.total, 0);
+    const qty = lines.reduce((s, l) => s + l.qty, 0);
+    const itemsText = lines.map((l) => `- ${l.qty} × ${l.label} (${fmt(l.unit)}) = ${fmt(l.total)}`).join("\n");
     const [y, m, d] = date.split("-");
     const dateVN = d + "/" + m + "/" + y;
 
     const text =
 `===== ĐƠN COOL BREW =====
-Loại: ${qty} chai (${typeLabel()})
-Đơn giá: ${fmt(unit)}/chai
+${itemsText}
 Ngày muốn nhận: ${dateVN}
 Khung giờ giao: ${slot}
 SĐT: ${phone}
@@ -453,7 +535,10 @@ TỔNG CỘNG: ${fmt(total)}
 
     if (SHEET_ENDPOINT) {
       const payload = {
-        loai_chai: typeLabel(), so_luong: qty, don_gia: unit, tong_tien: total,
+        loai_chai: lines.map((l) => `${l.qty} × ${l.label}`).join("; "),
+        so_luong: qty,
+        don_gia: lines.length === 1 ? lines[0].unit : "nhiều món",
+        tong_tien: total,
         ngay_nhan: dateVN, khung_gio: slot, sdt: phone, dia_chi: addr, ghi_chu: note
       };
       fetch(SHEET_ENDPOINT, {
