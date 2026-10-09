@@ -1,479 +1,1810 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>COOL BREW · Cold Brew ủ lạnh thủ công · Đà Lạt</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tạp hóa thiên nhiên · Đồ uống nhà làm, giao chiều nội thành Đà Lạt</title>
+<meta name="description" content="Sữa hạt nấu tươi, sữa yến mạch lắc dâu, cold brew và cốt dâu nhà làm tại Đà Lạt. Nấu theo đơn, giao chiều 14h–17h nội thành. Freeship khi đặt trên 6 chai cùng ngày giao.">
+<meta name="theme-color" content="#1E2F3A">
+<meta name="format-detection" content="telephone=no">
+
+<!-- Open Graph: đổi 2 đường dẫn bên dưới nếu trang không chạy ở orcdl.github.io -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Tạp hóa thiên nhiên">
+<meta property="og:title" content="Tạp hóa thiên nhiên · Đồ uống nhà làm Đà Lạt">
+<meta property="og:description" content="Sữa hạt nấu tươi, sữa yến mạch lắc dâu, cold brew và cốt dâu. Nấu theo đơn, giao chiều nội thành Đà Lạt.">
+<meta property="og:url" content="https://orcdl.github.io/">
+<meta property="og:image" content="https://orcdl.github.io/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Chai sữa hạt nấu tươi của Tạp hóa thiên nhiên">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --green-900: #16301f;
-    --green-800: #1e3b2b;
-    --green-700: #274a37;
-    --green-600: #305a43;
-    --green-card: #244535;
-    --pink: #f0a0c6;
-    --pink-bright: #ec7fb0;
-    --pink-soft: #f7c6dc;
-    --cream: #f4ecda;
-    --cream-2: #faf4e6;
-    --ink: #21402f;
-    --muted-cream: #cbd9cd;
-    --amber: #b4571f;
-    --ok: #2e7d5b;
-    --shadow: 0 10px 30px rgba(0,0,0,0.22);
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: var(--green-800);
-    color: var(--cream);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  .rounded-face { font-family: "Arial Rounded MT Bold", "SF Pro Rounded", system-ui, "Segoe UI", sans-serif; }
-  h1, h2, h3 { font-family: "Arial Rounded MT Bold", "SF Pro Rounded", system-ui, "Segoe UI", sans-serif; }
+/* ===== Token thiết kế ===== */
+:root{
+  /* Nền và mực */
+  --color-paper:#EFE6D2;
+  --color-surface:#F7F1E3;
+  --color-line:#D9CBB0;
+  --color-ink:#1E2F3A;
+  --color-ink-hover:#2C4250;
+  --color-ink-2:#4A5358;
+  --color-ink-3:#625E54;
+  --color-mute:#9C9584;
+  --color-white:#FFFFFF;
+  /* Dòng sản phẩm */
+  --color-sua:#3D5A3E;
+  --color-sua-deep:#2F4730;
+  --color-sua-tint:#DCE3D3;
+  --color-dau:#A8322A;
+  --color-dau-deep:#86251F;
+  --color-dau-tint:#F1D9D2;
+  --overlay:rgba(30,47,58,.5);
 
-  main, header.site, footer.site { max-width: 720px; margin: 0 auto; }
-  main { padding: 8px 16px 48px; }
+  /* Chữ */
+  --font-heading:'Bitter',Georgia,serif;
+  --font-body:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-hand:'Dancing Script',cursive;
+  --tracking-sign:.14em;
+  --tracking-kicker:.12em;
+  --fs-h1:30px;
+  --fs-h2:28px;
+  --fs-h2-sm:26px;
+  --fs-h3:20px;
+  --fs-body:15px;
+  --fs-body-sm:14px;
+  --fs-small:13px;
+  --fs-meta:12px;
+  --fs-kicker:11px;
+  --fs-input:16px;
 
-  /* dotted texture */
-  body::before {
-    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: radial-gradient(rgba(240,160,198,0.10) 1px, transparent 1px);
-    background-size: 22px 22px;
-  }
-  header.site, main, footer.site { position: relative; z-index: 1; }
+  /* Khoảng cách */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-7:32px; --space-8:48px; --space-9:64px;
+  --page-x:20px;
+  --page-max:520px;
 
-  /* HEADER */
-  header.site { padding: 26px 16px 6px; text-align: center; }
-  .eyebrow {
-    display: inline-block; border: 1.5px solid rgba(240,160,198,0.5);
-    color: var(--pink); font-weight: 700; font-size: 0.72rem; letter-spacing: 2px;
-    padding: 6px 16px; border-radius: 999px; text-transform: uppercase;
-  }
-  .loc { color: var(--pink); font-size: 0.8rem; font-weight: 600; margin-top: 10px; letter-spacing: 1px; }
-  .wordmark { font-size: clamp(3rem, 16vw, 5rem); line-height: 0.92; margin: 12px 0 4px; letter-spacing: 1px; text-wrap: balance; }
-  .wordmark .cool { color: var(--pink); }
-  .wordmark .brew { color: var(--cream); }
-  .subtag { color: var(--cream); font-weight: 600; font-size: 1.05rem; }
-  .subtag2 { color: var(--muted-cream); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  /* Bo góc, viền, bóng, chuyển động */
+  --radius-xs:2px;
+  --radius-sm:4px;
+  --radius-md:8px;
+  --radius-round:999px;
+  --frame-double:3px double var(--color-ink);
+  --shadow-float:0 8px 24px rgba(30,47,58,.24);
+  --tap-min:44px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --dur:180ms;
+}
 
-  /* HERO */
-  .hero {
-    position: relative; margin: 20px 0 8px; border-radius: 26px; overflow: hidden;
-    box-shadow: var(--shadow); border: 1px solid rgba(240,160,198,0.25);
-  }
-  .hero .hero-media { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; background: var(--green-900); }
-  .hero .badge {
-    position: absolute; top: 16px; right: 16px;
-    background: var(--pink); color: var(--green-900);
-    width: 92px; height: 92px; border-radius: 50%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.28); text-align: center;
-  }
-  .hero .badge b { font-size: 1.7rem; line-height: 1; }
-  .hero .badge span { font-size: 0.7rem; font-weight: 700; }
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--color-paper);color:var(--color-ink);font:400 var(--fs-body)/1.6 var(--font-body);-webkit-font-smoothing:antialiased}
+body.is-locked{overflow:hidden}
+h1,h2,h3,p{margin:0}
+img{max-width:100%}
+button{font-family:inherit;cursor:pointer;color:inherit;-webkit-tap-highlight-color:transparent}
+button:active:not([disabled]){transform:scale(.98)}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--color-sua);outline-offset:2px}
+button[disabled]{cursor:not-allowed}
+.page{max-width:var(--page-max);margin:0 auto;position:relative}
 
-  /* CARDS */
-  .card { border-radius: 24px; padding: 22px; margin: 16px 0; }
-  .card h2 { font-size: 1.35rem; margin: 0 0 12px; }
-  .card-glass { background: var(--green-card); border: 1px solid rgba(240,160,198,0.18); }
-  .card-cream { background: var(--cream); color: var(--ink); box-shadow: var(--shadow); }
-  .card-cream h2 { color: var(--green-800); }
+/* ===== Mảnh dùng chung ===== */
+.kicker{font:700 var(--fs-meta)/1.3 var(--font-body);letter-spacing:var(--tracking-sign);text-transform:uppercase;color:var(--color-sua)}
+.kicker--sm{font-weight:600;font-size:var(--fs-kicker);line-height:1.25}
+.kicker--dau{color:var(--color-dau)}
+.label{font:600 var(--fs-kicker)/1.25 var(--font-body);letter-spacing:var(--tracking-kicker);text-transform:uppercase;color:var(--color-ink-3)}
+.tag{display:inline-block;align-self:flex-start;font:600 var(--fs-kicker)/1.25 var(--font-body);padding:6px 10px;border-radius:var(--radius-xs)}
+.tag--sua{background:var(--color-sua-tint);color:var(--color-sua)}
+.tag--dau{background:var(--color-dau-tint);color:var(--color-dau)}
+.tag--caps{font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:var(--radius-sm);border:0;font:600 15px/1.25 var(--font-body);text-decoration:none;transition:background var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.btn--ink{background:var(--color-ink);color:var(--color-surface)}
+.btn--ink:hover{background:var(--color-ink-hover)}
+.btn--sua{background:var(--color-sua);color:var(--color-surface)}
+.btn--sua:hover{background:var(--color-sua-deep)}
+.btn--dau{background:var(--color-dau);color:var(--color-surface)}
+.btn--dau:hover{background:var(--color-dau-deep)}
+.btn--paper{background:var(--color-paper);color:var(--color-ink)}
+.btn--paper:hover{background:var(--color-surface)}
+.btn--light{background:var(--color-surface);color:var(--color-dau)}
+.btn--outline{background:transparent;border:1.5px solid var(--color-ink);color:var(--color-ink)}
+.btn--outline:hover{background:var(--color-surface)}
+.btn--outline-sua{background:transparent;border:1.5px solid var(--color-sua);color:var(--color-sua)}
+.btn--outline-sua:hover{background:var(--color-sua-tint)}
+.btn--outline-dau{background:transparent;border:1.5px solid var(--color-dau);color:var(--color-dau)}
+.btn--outline-dau:hover{background:var(--color-dau-tint)}
+.btn--sm{min-height:var(--tap-min);padding:0 16px;font-size:14px}
+.btn--block{width:100%;min-height:52px;font-size:16px}
+.btn[disabled]{opacity:.45}
+.wordmark{display:inline-flex;flex-direction:column;align-items:center;gap:4px;color:var(--color-ink);text-decoration:none}
+.wordmark__name{font:800 14px/1 var(--font-heading);letter-spacing:var(--tracking-sign);text-transform:uppercase;white-space:nowrap;border-top:3px double currentColor;border-bottom:3px double currentColor;padding:5px 2px}
+.wordmark__sub{font:600 8px/1 var(--font-body);letter-spacing:.3em;text-transform:uppercase;white-space:nowrap}
+.stepper{display:inline-flex;align-items:center;border:1px solid var(--color-line);border-radius:var(--radius-sm);background:var(--color-paper)}
+.stepper button{width:44px;height:44px;border:0;background:transparent;font:500 20px/1.25 var(--font-body);color:var(--color-ink)}
+.stepper button[disabled]{color:var(--color-mute)}
+.stepper span{width:36px;text-align:center;font:700 16px/1.25 var(--font-body)}
+.stepper--sm button{height:40px;font-size:18px}
+.stepper--sm span{width:28px;font-size:14px}
 
-  .story p { margin: 0 0 12px; color: #e7ecdf; }
-  .story .quote {
-    border-left: 4px solid var(--pink); padding: 4px 0 4px 16px; font-style: italic; margin: 0;
-    color: #f3ead8;
-  }
+/* ===== Đầu trang ===== */
+.announce{background:var(--color-ink);color:var(--color-paper);font:500 var(--fs-meta)/1.3 var(--font-body);text-align:center;padding:10px 16px}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px var(--page-x)}
+.topbar__nav{display:none}
+.cartbtn{min-width:44px;height:44px;border-radius:var(--radius-sm);border:1px solid var(--color-line);background:var(--color-surface);display:flex;align-items:center;justify-content:center;gap:8px;position:relative;color:var(--color-ink)}
+.cartbtn__label{display:none}
+.cartbtn__badge{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 4px;border-radius:var(--radius-round);background:var(--color-dau);color:#fff;font:700 11px/20px var(--font-body);text-align:center}
+.hero{padding:8px var(--page-x) 24px;display:flex;flex-direction:column;gap:16px}
+.hero__text{display:flex;flex-direction:column;gap:16px}
+.hero h1{font:700 var(--fs-h1)/1.15 var(--font-heading);text-wrap:pretty}
+.hero__cta{display:flex;gap:12px;align-items:center}
+.hero__cta .btn{padding:0 28px}
+.hero__phone{display:none}
+.hero__figure{position:relative;align-self:center;width:240px}
+.hero__figure img{width:240px;height:auto;aspect-ratio:672/900;object-fit:cover;display:block;border:1px solid var(--color-ink);filter:sepia(.12)}
+.stamp{position:absolute;right:-28px;bottom:28px;width:84px;height:84px;border-radius:var(--radius-round);background:var(--color-dau);color:var(--color-surface);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transform:rotate(-10deg);box-shadow:0 0 0 3px var(--color-paper),0 0 0 4px var(--color-dau)}
+.stamp__hand{font:700 18px/1 var(--font-hand)}
+.stamp__text{font:700 8px/1.2 var(--font-body);letter-spacing:.12em;text-align:center}
+.tabs{padding:0 var(--page-x);display:grid;grid-template-columns:1fr 1fr;gap:8px;scroll-margin-top:12px}
+.tabs.is-top{padding-top:8px}
+.tab{min-height:56px;padding:0 4px;border-radius:var(--radius-sm);border:1px solid var(--color-line);background:var(--color-surface);color:var(--color-ink);font:600 15px/1.2 var(--font-body);transition:background var(--dur) var(--ease)}
+.tab[aria-selected="true"]{border-color:transparent;color:var(--color-surface)}
+.tab--sua[aria-selected="true"]{background:var(--color-sua)}
+.tab--dau[aria-selected="true"]{background:var(--color-dau)}
 
-  /* WHY (feature chips) */
-  .why { display: grid; gap: 12px; }
-  .feat { display: flex; gap: 14px; align-items: center; background: var(--green-700); border-radius: 16px; padding: 14px 16px; }
-  .feat .chip {
-    flex: none; width: 44px; height: 44px; border-radius: 12px; background: var(--pink);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .feat .chip svg { width: 24px; height: 24px; }
-  .feat .t { font-weight: 800; color: var(--cream); }
-  .feat .d { font-size: 0.86rem; color: var(--muted-cream); }
+/* ===== Tab Sữa nấu tươi ===== */
+.sec{padding:48px var(--page-x) 0;display:flex;flex-direction:column;gap:16px}
+.sec h2{font:800 var(--fs-h2)/1.2 var(--font-heading)}
+.schedule{padding-top:40px}
+.schedule__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.schedule__head h2{font-size:24px}
+.schedule__lead{display:none}
+.cutoff{display:flex;align-items:center;gap:6px;font:500 var(--fs-small)/1.25 var(--font-body);color:var(--color-sua)}
+.cutoff svg{flex:none;align-self:center}
+.schedule__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cook{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:12px;display:flex;flex-direction:column;gap:6px;min-height:132px}
+.cook__tag{height:20px;align-self:flex-start}
+.cook__day{font:800 18px/1.1 var(--font-heading)}
+.cook__date{font:500 var(--fs-meta)/1.25 var(--font-body);color:var(--color-ink-3)}
+.cook__flavor{font:400 var(--fs-meta)/1.35 var(--font-body)}
+.cook.is-soon{background:var(--color-sua);color:var(--color-surface);border:3px double var(--color-surface);outline:1px solid var(--color-sua);border-radius:0;padding:10px}
+.cook.is-soon .cook__tag{height:auto;background:var(--color-sua-tint);color:var(--color-sua);font:700 10px/1.25 var(--font-body);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:var(--radius-xs)}
+.cook.is-soon .cook__date{color:inherit;opacity:.85}
+.nuts__head{gap:8px}
+.nuts__head>div{display:flex;flex-direction:column;gap:8px}
+.nuts__sub{font:400 var(--fs-body-sm)/1.5 var(--font-body);color:var(--color-ink-2)}
+.nuts{padding:20px var(--page-x) 0;display:flex;flex-direction:column}
+.nut__row{display:flex;gap:16px;align-items:center}
+.nut:nth-child(even) .nut__row{flex-direction:row-reverse}
+.nut__img{width:140px;height:168px;flex:none;background:var(--color-white);border:1px solid var(--color-ink);overflow:hidden}
+.nut__img img{width:100%;height:100%;object-fit:cover;display:block}
+.nut__body{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.nut__name{font:800 16px/1.25 var(--font-heading);text-transform:uppercase;letter-spacing:.02em;text-wrap:pretty}
+.nut__desc{font:400 var(--fs-small)/1.5 var(--font-body);color:var(--color-ink-2)}
+.nut__buy{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:4px}
+.nut__price{font:800 18px/1 var(--font-heading);color:var(--color-dau)}
+.nut__arrow{display:flex;justify-content:center;padding:4px 0}
+.nut:nth-child(even) .nut__arrow svg{transform:scaleX(-1)}
+.duo{display:flex;flex-direction:column}
+.pack-wrap{padding:40px var(--page-x) 0}
+.pack{background:var(--color-ink);color:var(--color-surface);border:3px double var(--color-surface);outline:1px solid var(--color-ink);padding:22px;display:flex;flex-direction:column;gap:16px}
+.pack__top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pack__kicker{font:700 var(--fs-meta)/1.3 var(--font-body);letter-spacing:var(--tracking-sign);text-transform:uppercase;color:var(--color-sua-tint)}
+.pack__save{background:var(--color-paper);color:var(--color-dau);font:700 var(--fs-kicker)/1.25 var(--font-body);letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:var(--radius-xs)}
+.pack__title{display:flex;flex-direction:column;gap:6px}
+.pack__name{font:800 28px/1.15 var(--font-heading)}
+.pack__lead{font:400 var(--fs-body-sm)/1.5 var(--font-body);color:var(--color-sua-tint)}
+.pack__list{display:flex;flex-direction:column;gap:8px;font:400 var(--fs-small)/1.4 var(--font-body)}
+.pack__list div{display:flex;gap:12px}
+.pack__list b{width:36px;flex:none;font-weight:600}
+.pack__buy{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:4px}
+.pack__prices{display:flex;flex-direction:column;gap:4px}
+.pack__old{font:400 var(--fs-small)/1.25 var(--font-body);color:var(--color-line);text-decoration:line-through}
+.pack__price{font:800 32px/1 var(--font-heading)}
+.daily{padding:48px var(--page-x) 0;display:flex;flex-direction:column;gap:16px}
+.daily__card{background:var(--color-surface);border:var(--frame-double);overflow:hidden}
+.daily__img img{width:100%;height:auto;aspect-ratio:275/183;object-fit:cover;display:block}
+.daily__body{padding:20px;display:flex;flex-direction:column;gap:10px}
+.daily__kicker{display:none}
+.daily__name{font:800 24px/1.2 var(--font-heading)}
+.daily__unit{font:500 var(--fs-small)/1.25 var(--font-body);color:var(--color-ink-3)}
+.daily__desc{font:400 var(--fs-body-sm)/1.6 var(--font-body);color:var(--color-ink-2)}
+.daily__buy{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:6px}
+.daily__prices{display:flex;flex-direction:column;gap:6px}
+.daily__price{font:800 26px/1 var(--font-heading);color:var(--color-dau)}
+.daily__tier{font:500 var(--fs-meta)/1.3 var(--font-body);color:var(--color-dau)}
+.why{padding-top:56px;gap:20px}
+.why h2,.faq h2{font-size:var(--fs-h2-sm)}
+.why__list{display:flex;flex-direction:column;gap:16px}
+.why__item{display:flex;gap:16px;align-items:baseline}
+.why__n{font:800 22px/1 var(--font-heading);color:var(--color-sua);width:24px;flex:none}
+.why__t{font:600 16px/1.35 var(--font-body)}
 
-  /* SIZES */
-  .sizes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  @media (max-width: 520px) { .sizes { grid-template-columns: 1fr; } }
-  .size {
-    background: var(--green-card); border: 1px solid rgba(240,160,198,0.18);
-    border-radius: 20px; overflow: hidden; display: flex; flex-direction: column;
-  }
-  .size .ph { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
-  .size .body { padding: 14px 16px 16px; }
-  .size .vol { font-family: "Arial Rounded MT Bold","SF Pro Rounded",system-ui,sans-serif; font-size: 1.5rem; color: var(--pink); }
-  .size .shape { font-size: 0.82rem; color: var(--muted-cream); margin-bottom: 8px; }
-  .size .prices { display: flex; gap: 10px; }
-  .size .prices div { flex: 1; background: var(--green-700); border-radius: 12px; padding: 8px 10px; text-align: center; }
-  .size .prices .lab { font-size: 0.68rem; color: var(--muted-cream); text-transform: uppercase; letter-spacing: 0.5px; }
-  .size .prices .val { font-weight: 800; font-size: 1.05rem; color: var(--cream); }
+/* ===== Tab Cold brew & cốt dâu ===== */
+.cb-intro{padding-top:24px}
+.cb-intro__head{display:flex;gap:16px;align-items:flex-start}
+.cb-intro__title{flex:1;display:flex;flex-direction:column;gap:8px}
+.cb-intro h2{line-height:1.15}
+.cb-intro__img{width:96px;height:96px;border-radius:var(--radius-round);object-fit:cover;flex:none;background:var(--color-white)}
+.cb-intro p{font:400 var(--fs-body-sm)/1.65 var(--font-body);color:var(--color-ink-2)}
+.notice{display:flex;align-items:center;gap:8px;background:var(--color-dau-tint);color:var(--color-dau);border-radius:var(--radius-sm);padding:12px 14px;font:600 var(--fs-small)/1.4 var(--font-body)}
+.notice svg{flex:none}
+.menu{padding:32px 0 0;display:flex;flex-direction:column}
+.menu__row{display:flex;gap:12px;align-items:flex-start;padding:14px var(--page-x)}
+.menu__n{font:800 17px/1.4 var(--font-heading);color:var(--color-dau);width:16px;flex:none}
+.menu__body{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.menu__line{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.menu__name{font:800 17px/1.3 var(--font-heading)}
+.menu__price{font:800 20px/1 var(--font-heading);flex:none}
+.menu__desc{font:400 var(--fs-small)/1.45 var(--font-body);color:var(--color-ink-2)}
+.menu__sub{font:500 var(--fs-kicker)/1.4 var(--font-body);color:var(--color-ink-2);flex:none}
+.menu__add{width:44px;height:44px;flex:none;border-radius:var(--radius-sm);border:1.5px solid var(--color-dau);background:transparent;color:var(--color-dau);font:500 22px/1.25 var(--font-body)}
+.menu__add:hover{background:var(--color-dau-tint)}
+.menu__row.is-hot{padding:18px var(--page-x);background:var(--color-dau);color:var(--color-surface);margin:6px 0}
+.menu__row.is-hot .menu__n{color:inherit}
+.menu__row.is-hot .menu__body{gap:6px}
+.menu__row.is-hot .menu__line{align-items:center}
+.menu__row.is-hot .menu__titlewrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.menu__row.is-hot .menu__name{font-size:19px}
+.menu__row.is-hot .menu__price{font-size:24px}
+.menu__row.is-hot .menu__desc,.menu__row.is-hot .menu__sub{color:var(--color-dau-tint)}
+.menu__row.is-hot .menu__add{border:0;background:var(--color-surface)}
+.hot-tag{background:var(--color-surface);color:var(--color-dau);font:700 10px/1.25 var(--font-body);letter-spacing:.12em;text-transform:uppercase;padding:5px 7px;border-radius:var(--radius-xs)}
+.hot-tag--solid{background:var(--color-dau);color:var(--color-surface)}
+.syrup{gap:12px}
+.syrup h2{line-height:1.15}
+.syrup__big{background:var(--color-dau);color:var(--color-surface);border-radius:var(--radius-sm);padding:20px;display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.syrup__bigtop{display:flex;justify-content:space-between;align-items:flex-start}
+.syrup__best{background:var(--color-ink);color:var(--color-surface);font:700 var(--fs-kicker)/1.25 var(--font-body);letter-spacing:.12em;text-transform:uppercase;padding:7px 11px;border-radius:var(--radius-xs)}
+.syrup__bigtop .btn{padding:0 18px}
+.syrup__bigrow{display:flex;justify-content:space-between;align-items:flex-end}
+.syrup__bigsize{font:700 44px/1.25 var(--font-body);letter-spacing:-.02em}
+.syrup__bigprice{font:700 56px/.9 var(--font-body);letter-spacing:-.03em}
+.syrup__yield{align-self:flex-start;background:rgba(247,241,227,.18);font:600 var(--fs-small)/1.25 var(--font-body);padding:8px 12px;border-radius:var(--radius-xs)}
+.syrup__grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.syrup__card{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:16px;display:flex;flex-direction:column;gap:10px}
+.syrup__cardtop{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.syrup__size{font:700 20px/1.25 var(--font-body)}
+.syrup__price{font:700 24px/1.25 var(--font-body);color:var(--color-dau)}
+.syrup__cardyield{font:400 var(--fs-small)/1.25 var(--font-body);color:var(--color-ink-2)}
+.syrup__info{display:flex;gap:14px;align-items:flex-start;padding-top:8px}
+.syrup__info img{width:96px;height:112px;border-radius:var(--radius-sm);object-fit:cover;flex:none}
+.syrup__info div{display:flex;flex-direction:column;gap:8px;font:400 var(--fs-small)/1.55 var(--font-body);color:var(--color-ink-2)}
+.syrup__info b{font-weight:600;color:var(--color-ink)}
+.beans__lead{font:italic 400 var(--fs-body-sm)/1.4 var(--font-body);color:var(--color-ink-2);margin-top:-8px}
+.bean{display:flex;flex-direction:column;gap:4px}
+.bean__top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bean__name{font:800 18px/1.3 var(--font-heading)}
+.bean__top .tag{padding:5px 9px}
+.bean__desc{font:400 var(--fs-small)/1.5 var(--font-body);color:var(--color-ink-2)}
+.steps{gap:20px}
+.steps__head{display:flex;flex-direction:column;gap:8px}
+.steps h2{font-size:var(--fs-h2-sm)}
+.steps__wrap{display:flex;gap:16px}
+.steps__list{flex:1;display:flex;flex-direction:column;gap:22px}
+.steps__wrap>img{width:96px;height:260px;object-fit:cover;border-radius:var(--radius-sm);flex:none;background:var(--color-white)}
+.step{display:flex;gap:12px}
+.step__n{font:800 40px/1 var(--font-heading);color:var(--color-dau);width:26px;flex:none}
+.step__body{display:flex;flex-direction:column;gap:4px}
+.step__tag{display:flex;align-items:center;gap:6px;font:700 var(--fs-kicker)/1.25 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--color-dau)}
+.step__icon{width:24px;height:24px;border-radius:var(--radius-round);background:var(--color-dau-tint);display:flex;align-items:center;justify-content:center;font:400 13px/1.25 var(--font-body);letter-spacing:0}
+.step__t{font:800 16px/1.3 var(--font-heading)}
+.step__d{font:400 var(--fs-small)/1.5 var(--font-body);color:var(--color-ink-2)}
 
-  .recirc-note {
-    display: flex; gap: 10px; align-items: center; margin-top: 14px;
-    background: var(--pink-soft); color: var(--green-900); border-radius: 14px; padding: 12px 14px; font-size: 0.9rem; font-weight: 600;
-  }
+/* ===== Phần dùng chung cuối trang ===== */
+.ticker{margin-top:48px;display:flex;gap:18px;white-space:nowrap;overflow:hidden;background:var(--color-ink);color:var(--color-surface);padding:10px 0;font:800 var(--fs-meta)/1 var(--font-heading);letter-spacing:var(--tracking-sign);text-transform:uppercase}
+.ticker span{flex:none}
+.faq__list{display:flex;flex-direction:column}
+.faq__item{border-bottom:1px solid var(--color-line)}
+.faq__q{width:100%;min-height:56px;padding:12px 0;border:0;background:transparent;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;color:var(--color-ink);font:600 15px/1.4 var(--font-body)}
+.faq__q:active{transform:none!important}
+.faq__icon{width:28px;height:28px;flex:none;border-radius:var(--radius-round);background:var(--color-surface);border:1px solid var(--color-line);display:flex;align-items:center;justify-content:center;font:500 16px/1.25 var(--font-body)}
+.faq__a{padding:0 40px 16px 0;font:400 var(--fs-body-sm)/1.6 var(--font-body);color:var(--color-ink-2)}
+.footer{margin-top:56px;background:var(--color-ink);color:var(--color-paper);padding:32px var(--page-x) 112px;display:flex;flex-direction:column;gap:20px}
+.footer .wordmark{color:var(--color-surface);align-self:flex-start}
+.footer .wordmark__name{font-size:16px}
+.footer__cols{display:flex;flex-direction:column;gap:14px;font:400 var(--fs-body-sm)/1.5 var(--font-body)}
+.footer__col{display:flex;flex-direction:column;gap:2px}
+.footer__label{font:600 var(--fs-kicker)/1.4 var(--font-body);letter-spacing:var(--tracking-kicker);text-transform:uppercase;color:var(--color-line)}
+.footer__phone{font:800 24px/1.2 var(--font-heading);color:inherit;text-decoration:none}
+.footer a{color:var(--color-paper)}
+.cartbar{position:fixed;left:12px;right:12px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:calc(var(--page-max) - 24px);margin:0 auto;z-index:20;background:var(--color-ink);color:var(--color-surface);border-radius:var(--radius-sm);padding:8px 8px 8px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:var(--shadow-float)}
+.cartbar__info{display:flex;flex-direction:column;gap:3px}
+.cartbar__count{font:500 var(--fs-meta)/1.25 var(--font-body);color:var(--color-line)}
+.cartbar__total{font:700 17px/1.25 var(--font-body)}
 
-  /* FORM */
-  .field { margin-bottom: 15px; }
-  .field label { display: block; font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; color: var(--green-800); }
-  .field label .req { color: #c0392b; }
-  .field input, .field select, .field textarea {
-    width: 100%; padding: 12px 13px; border: 1.5px solid #e0d6bf; border-radius: 12px;
-    font-size: 1rem; font-family: inherit; background: #fffdf8; color: var(--ink);
-  }
-  .field input:focus, .field select:focus, .field textarea:focus {
-    outline: none; border-color: var(--pink-bright); box-shadow: 0 0 0 3px rgba(236,127,176,0.22);
-  }
-  .field textarea { resize: vertical; min-height: 58px; }
-  .field .hint { font-size: 0.78rem; color: #8a7c62; margin-top: 5px; }
-  .fixed-slot { background: #fbf5e7; border: 1.5px solid #ece0c8; border-radius: 12px; padding: 12px 13px; color: var(--ink); font-size: 0.95rem; }
-  .fixed-slot b { color: var(--amber); }
+/* ===== Bottom sheet ===== */
+.overlay{position:fixed;inset:0;z-index:40;background:var(--overlay);opacity:0;transition:opacity var(--dur) var(--ease)}
+.overlay.is-open{opacity:1}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-width:var(--page-max);margin:0 auto;max-height:92vh;max-height:92dvh;overflow-y:auto;overscroll-behavior:contain;background:var(--color-surface);border-radius:var(--radius-md) var(--radius-md) 0 0;display:flex;flex-direction:column;transform:translateY(100%);transition:transform var(--dur) var(--ease);padding-bottom:env(safe-area-inset-bottom,0px);--accent:var(--color-sua);--accent-deep:var(--color-sua-deep);--accent-tint:var(--color-sua-tint)}
+.sheet.is-open{transform:translateY(0)}
+.sheet.is-dragging{transition:none}
+.sheet[data-accent="dau"]{--accent:var(--color-dau);--accent-deep:var(--color-dau-deep);--accent-tint:var(--color-dau-tint)}
+.sheet__grab{display:flex;justify-content:center;padding:10px 0 2px;touch-action:none}
+.sheet__grab span{width:40px;height:4px;border-radius:var(--radius-round);background:var(--color-line)}
+.sheet__head{display:flex;gap:14px;align-items:flex-start;padding:8px var(--page-x) 0}
+.sheet__img{width:72px;height:72px;border-radius:var(--radius-sm);object-fit:cover;background:var(--color-white);flex:none}
+.sheet__title{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.sheet__nameline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sheet__name{font:800 19px/1.25 var(--font-heading)}
+.sheet__name--lg{font-size:22px;line-height:1.2}
+.sheet__sub{font:400 var(--fs-small)/1.4 var(--font-body);color:var(--color-ink-2)}
+.sheet__close{width:44px;height:44px;flex:none;border-radius:var(--radius-round);border:1px solid var(--color-line);background:var(--color-paper);font:400 20px/1.25 var(--font-body);color:var(--color-ink)}
+.sheet__block{padding:24px var(--page-x) 0;display:flex;flex-direction:column;gap:10px}
+.sheet__block--flush{padding-left:0;padding-right:0}
+.sheet__block--flush .sheet__blockhead{padding:0 var(--page-x)}
+.sheet__blockhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.sheet__hint{font:400 var(--fs-meta)/1.25 var(--font-body);color:var(--color-ink-2);text-align:right}
+.opt{width:100%;min-height:56px;border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:12px 14px;display:flex;align-items:center;gap:12px;background:transparent;text-align:left;color:var(--color-ink)}
+.opt:active{transform:none!important}
+.opt__dot{width:20px;height:20px;border-radius:var(--radius-round);border:1.5px solid var(--color-mute);flex:none}
+.opt__text{flex:1;display:flex;flex-direction:column;gap:2px}
+.opt__name{font:600 15px/1.2 var(--font-body)}
+.opt__name i{font-style:normal;font-weight:400;color:var(--color-ink-2)}
+.opt__desc{font:400 var(--fs-meta)/1.4 var(--font-body);color:var(--color-ink-2)}
+.opt__out{background:var(--color-ink);color:var(--color-surface);font:600 var(--fs-kicker)/1.25 var(--font-body);padding:6px 9px;border-radius:var(--radius-xs);flex:none}
+.opt.is-on{border:2px solid var(--accent);background:var(--accent-tint);padding:11px 13px}
+.opt.is-on .opt__dot{border:6px solid var(--accent);background:var(--color-surface)}
+.opt[disabled]{opacity:.45}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:0 var(--page-x) 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chips--grid{display:grid;grid-template-columns:repeat(3,1fr);padding:0;overflow:visible}
+.chip{flex:none;min-width:64px;min-height:56px;padding:0 6px;border-radius:var(--radius-sm);border:1px solid var(--color-line);background:var(--color-paper);color:var(--color-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.chip small{font:500 var(--fs-kicker)/1.25 var(--font-body);color:var(--color-ink-3)}
+.chip b{font:700 15px/1.25 var(--font-body)}
+.chips--grid .chip{min-height:64px;gap:4px}
+.chip.is-on{background:var(--accent);border-color:var(--accent);color:var(--color-surface)}
+.chip.is-on small{color:inherit}
+.chip.is-closed{border-style:dashed;background:transparent;opacity:.45}
+.chip.is-closed small{color:inherit}
+.chip.is-closed b{text-decoration:line-through}
+.sheet__note{display:flex;align-items:center;gap:6px;font:500 var(--fs-meta)/1.4 var(--font-body);color:var(--color-sua)}
+.sheet__note svg{flex:none}
+.packdates{display:flex;flex-direction:column;gap:6px;font:400 var(--fs-small)/1.4 var(--font-body);color:var(--color-ink-2)}
+.packdates div{display:flex;gap:10px}
+.packdates b{width:64px;flex:none;font-weight:600;color:var(--color-ink)}
+.sheet__qty{padding:24px var(--page-x) 0;display:flex;justify-content:space-between;align-items:center}
+.tierbox{margin:16px var(--page-x) 0;background:var(--color-sua-tint);border-radius:var(--radius-sm);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.tierbox div{display:flex;flex-direction:column;gap:3px;color:var(--color-sua)}
+.tierbox b{font:600 var(--fs-small)/1.3 var(--font-body)}
+.tierbox span{font:400 var(--fs-meta)/1.3 var(--font-body)}
+.tierbox s{font:400 var(--fs-small)/1.25 var(--font-body);color:var(--color-ink-2);flex:none}
+.sheet__foot{padding:24px var(--page-x) 28px}
+.tierbox+.sheet__foot{padding-top:20px}
+.sheet__add{background:var(--accent);color:var(--color-surface)}
+.sheet__add:hover:not([disabled]){background:var(--accent-deep)}
 
-  .stepper { display: inline-flex; align-items: center; border: 1.5px solid #e0d6bf; border-radius: 12px; overflow: hidden; }
-  .stepper button { width: 46px; height: 46px; border: none; background: var(--cream); font-size: 1.4rem; color: var(--green-800); cursor: pointer; line-height: 1; }
-  .stepper button:hover { background: var(--pink-soft); }
-  .stepper input { width: 64px; height: 46px; text-align: center; border: none; border-left: 1.5px solid #e0d6bf; border-right: 1.5px solid #e0d6bf; font-size: 1.1rem; font-weight: 800; background: #fff; }
-  .stepper input:focus { box-shadow: none; }
+/* ===== Giỏ hàng ===== */
+.subhead{display:flex;align-items:center;gap:8px;padding:16px 12px 8px}
+.subhead__back{width:44px;height:44px;border:0;background:transparent;font:400 22px/1.25 var(--font-body);color:var(--color-ink)}
+.subhead__title{font:800 22px/1.2 var(--font-heading)}
+.subhead__count{font:500 var(--fs-small)/1.25 var(--font-body);color:var(--color-ink-3)}
+.slips{padding:8px var(--page-x) 0;display:flex;flex-direction:column;gap:20px}
+.slip{background:var(--color-surface);border:1px solid var(--color-ink);border-radius:var(--radius-sm);padding:16px;display:flex;flex-direction:column;gap:14px}
+.slip__head{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--color-ink);padding-bottom:10px}
+.slip__headtext{display:flex;flex-direction:column;gap:4px}
+.slip__title{font:800 14px/1.2 var(--font-heading);letter-spacing:.1em;text-transform:uppercase}
+.slip__time{font:400 var(--fs-meta)/1.25 var(--font-body);color:var(--color-ink-3)}
+.slip__free{background:var(--color-sua);color:var(--color-surface);font:700 var(--fs-kicker)/1.25 var(--font-body);letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:var(--radius-xs);flex:none}
+.line{display:flex;gap:12px;align-items:flex-start}
+.line__img{width:52px;height:52px;border-radius:var(--radius-sm);object-fit:cover;background:var(--color-white);flex:none}
+.line__body{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.line__top{display:flex;justify-content:space-between;gap:8px}
+.line__name{font:600 var(--fs-body-sm)/1.35 var(--font-body)}
+.line__total{font:700 var(--fs-body-sm)/1.35 var(--font-body);flex:none}
+.line__meta{font:400 var(--fs-meta)/1.35 var(--font-body);color:var(--color-ink-3);margin-top:-4px}
+.line__saved{font:500 var(--fs-meta)/1.3 var(--font-body);color:var(--color-sua);margin-top:-4px}
+.line__ctl{display:flex;justify-content:space-between;align-items:center}
+.line__del{min-height:44px;padding:0 6px;border:0;background:transparent;display:flex;align-items:center;gap:6px;color:var(--color-ink-3);font:500 var(--fs-small)/1.25 var(--font-body)}
+.meter{display:flex;flex-direction:column;gap:6px}
+.meter__cells{display:flex;gap:4px}
+.meter__cells i{flex:1;height:8px;border:1px solid var(--color-sua)}
+.meter__cells i.is-full{background:var(--color-sua)}
+.meter__note{font:500 var(--fs-meta)/1.3 var(--font-body);color:var(--color-sua)}
+.slip__warn{display:flex;gap:6px;font:500 var(--fs-meta)/1.4 var(--font-body);color:var(--color-dau)}
+.slip__warn svg{flex:none;margin-top:1px}
+.totals{padding:24px var(--page-x) 0;display:flex;flex-direction:column;gap:6px}
+.totals__row{display:flex;justify-content:space-between;align-items:baseline}
+.totals__label{font:600 16px/1.25 var(--font-body)}
+.totals__sum{font:800 26px/1 var(--font-heading)}
+.totals__sub{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font:400 var(--fs-body-sm)/1.4 var(--font-body);color:var(--color-ink-2)}
+.totals__sub span:last-child{flex:none;font-weight:600;color:var(--color-ink)}
+.totals__sub + .totals__row{padding-top:10px;margin-top:4px;border-top:1px solid var(--color-line)}
+.totals__note{font:400 var(--fs-meta)/1.5 var(--font-body);color:var(--color-ink-2)}
+.form{border:0;margin:0;min-width:0;padding:32px var(--page-x) 0;display:flex;flex-direction:column;gap:16px;transition:opacity var(--dur) var(--ease)}
+.form h3{font:800 var(--fs-h3)/1.2 var(--font-heading)}
+.form[disabled]{opacity:.55}
+.field{display:flex;flex-direction:column;gap:6px}
+.field__label{font:600 var(--fs-small)/1.25 var(--font-body)}
+.field__label i{font-style:normal;font-weight:400;color:var(--color-ink-3)}
+.field input,.field textarea{width:100%;min-height:48px;border-radius:var(--radius-sm);border:1px solid var(--color-line);background:var(--color-surface);padding:0 14px;font:400 var(--fs-input)/1.25 var(--font-body);color:var(--color-ink);outline:none;-webkit-appearance:none;appearance:none}
+.field textarea{min-height:88px;padding:12px 14px;line-height:1.5;resize:none}
+.field input::placeholder,.field textarea::placeholder{color:var(--color-mute)}
+.field input:focus,.field textarea:focus{border:1.5px solid var(--color-sua);box-shadow:0 0 0 3px var(--color-sua-tint)}
+.field.is-error input{border:1.5px solid var(--color-dau);box-shadow:0 0 0 3px var(--color-dau-tint)}
+.field__error{display:flex;align-items:center;gap:6px;font:500 var(--fs-meta)/1.4 var(--font-body);color:var(--color-dau)}
+.field__error svg{flex:none}
+.submit{padding:24px var(--page-x) calc(28px + env(safe-area-inset-bottom,0px))}
+.btn.is-loading{opacity:.8;cursor:progress}
+.spinner{width:18px;height:18px;border-radius:var(--radius-round);border:2px solid rgba(251,247,240,.3);border-top-color:var(--color-surface);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{min-height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px 40px 40px;text-align:center}
+.empty__art{width:112px;height:112px;border-radius:var(--radius-round);background:var(--color-sua-tint);display:flex;align-items:center;justify-content:center}
+.empty__title{font:800 20px/1.3 var(--font-heading)}
+.empty__text{font:400 var(--fs-body-sm)/1.5 var(--font-body);color:var(--color-ink-2)}
+.empty .btn{padding:0 24px}
 
-  .summary { background: #fbf5e7; border: 1.5px dashed var(--pink-bright); border-radius: 14px; padding: 14px 16px; margin: 6px 0 16px; }
-  .summary .row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.92rem; color: #5f5647; }
-  .summary .grand { border-top: 1px solid #e6dcc4; margin-top: 8px; padding-top: 10px; font-size: 1.25rem; font-weight: 800; color: var(--green-800); }
-  .summary .grand span:last-child { color: var(--amber); }
+.form{--accent:var(--color-sua);--accent-tint:var(--color-sua-tint)}
+.pay{display:flex;flex-direction:column;gap:10px}
+.field.is-error .opt{border-color:var(--color-dau)}
+.opt__fee{font:700 15px/1.2 var(--font-body);flex:none}
+.field__hint{font:400 var(--fs-meta)/1.5 var(--font-body);color:var(--color-ink-2)}
+.paybox{background:var(--color-surface);border:1px solid var(--color-ink);border-radius:var(--radius-sm);padding:16px;display:flex;flex-direction:column;gap:14px}
+.paybox__title{font:800 14px/1.2 var(--font-heading);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--color-ink);padding-bottom:10px}
+.paybox__qr{align-self:center;width:220px;max-width:100%;height:auto;border-radius:var(--radius-sm);display:block}
+.paybox__rows{display:flex;flex-direction:column;gap:10px}
+.paybox__row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.paybox__text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.paybox__value{font:700 16px/1.3 var(--font-body);overflow-wrap:anywhere}
+.paybox__value--price{font:800 20px/1.1 var(--font-heading);color:var(--color-dau)}
+.paybox__note{font:400 var(--fs-meta)/1.5 var(--font-body);color:var(--color-ink-2)}
 
-  .btn-submit { width: 100%; border: none; background: var(--ok); color: #fff; padding: 15px; border-radius: 14px; font-size: 1.08rem; font-weight: 800; cursor: pointer; transition: opacity .15s; }
-  .btn-submit:hover { opacity: 0.92; }
+/* ===== Cảm ơn và lỗi ===== */
+.result{padding:48px var(--page-x) 28px;display:flex;flex-direction:column;gap:24px;min-height:100vh;min-height:100dvh}
+.result--error{gap:20px}
+.result__head{display:flex;flex-direction:column;gap:12px}
+.result__icon{width:56px;height:56px;border-radius:var(--radius-round);background:var(--color-sua);display:flex;align-items:center;justify-content:center}
+.result__icon--error{background:var(--color-dau-tint)}
+.result h2{font:800 var(--fs-h2)/1.2 var(--font-heading)}
+.result--error h2{font-size:var(--fs-h2-sm)}
+.result__lead{font:400 var(--fs-body)/1.6 var(--font-body);color:var(--color-ink-2)}
+.codebox{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--color-surface);border:var(--frame-double);padding:12px 14px}
+.codebox__text{display:flex;flex-direction:column;gap:4px}
+.codebox__code{font:700 20px/1.25 var(--font-body);letter-spacing:.04em}
+.codebox__copy{min-height:44px;padding:0 14px;border-radius:var(--radius-sm);border:1px solid var(--color-line);background:var(--color-paper);font:600 var(--fs-small)/1.25 var(--font-body);color:var(--color-ink);flex:none}
+.summary{display:flex;flex-direction:column;gap:16px}
+.summary__day{display:flex;flex-direction:column;gap:8px}
+.summary__dayhead{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.summary__dayname{font:800 16px/1.2 var(--font-heading)}
+.summary__ship{font:500 var(--fs-meta)/1.25 var(--font-body);color:var(--color-ink-3)}
+.summary__row{display:flex;justify-content:space-between;gap:12px;font:400 var(--fs-body-sm)/1.4 var(--font-body)}
+.summary__row span:last-child{flex:none}
+.summary__row--sub{color:var(--color-ink-2)}
+.summary__total{display:flex;justify-content:space-between;align-items:baseline;padding-top:12px;border-top:1px solid var(--color-line)}
+.summary__total span:first-child{font:600 15px/1.25 var(--font-body)}
+.summary__total span:last-child{font:800 22px/1 var(--font-heading)}
+.summary__note{font:400 var(--fs-meta)/1.5 var(--font-body);color:var(--color-ink-2);margin-top:-8px}
+.result__actions{display:flex;flex-direction:column;gap:10px}
+.result__contact{font:400 var(--fs-small)/1.5 var(--font-body);color:var(--color-ink-2)}
+.result__contact b{color:var(--color-ink)}
+.toast{position:fixed;left:16px;right:16px;bottom:calc(24px + env(safe-area-inset-bottom,0px));max-width:calc(var(--page-max) - 32px);margin:0 auto;z-index:60;background:var(--color-ink);color:var(--color-surface);border-radius:var(--radius-sm);padding:14px 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-float);font:500 var(--fs-body-sm)/1.4 var(--font-body);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.toast.is-open{opacity:1;transform:translateY(0)}
+.toast svg{flex:none}
+.has-cartbar .toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+.noscript{padding:24px var(--page-x);font:500 var(--fs-body)/1.6 var(--font-body);color:var(--color-dau)}
 
-  /* BEANS trust */
-  .beans { display: grid; grid-template-columns: 1fr 1.1fr; gap: 16px; align-items: center; }
-  @media (max-width: 520px) { .beans { grid-template-columns: 1fr; } }
-  .beans img { width: 100%; border-radius: 18px; display: block; box-shadow: var(--shadow); }
-  .beans .t { font-weight: 800; color: var(--cream); margin-bottom: 6px; font-size: 1.1rem; }
-  .beans .d { color: var(--muted-cream); font-size: 0.92rem; }
-  .beans .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-  .beans .tags span { background: var(--green-700); color: var(--pink); font-size: 0.78rem; font-weight: 700; padding: 5px 12px; border-radius: 999px; }
+@media (max-width:389px){.tab{font-size:14px}}
 
-  /* CTA */
-  .cta { text-align: center; padding: 8px 0; }
-  .cta p { color: var(--muted-cream); margin: 0 0 14px; }
-  .btn-zalo { display: inline-block; background: var(--pink); color: var(--green-900); font-weight: 800; padding: 15px 34px; border-radius: 999px; text-decoration: none; box-shadow: var(--shadow); font-size: 1.05rem; transition: transform .1s, background .15s; }
-  .btn-zalo:hover { background: var(--pink-bright); }
-  .btn-zalo:active { transform: scale(0.97); }
-  .cta .phone { margin-top: 14px; color: var(--cream); font-size: 1.15rem; font-weight: 800; letter-spacing: 1px; }
-  .cta .phone small { display:block; font-weight:600; font-size:0.72rem; color:var(--muted-cream); letter-spacing:2px; text-transform:uppercase; margin-bottom:2px; }
-
-  footer.site { text-align: center; padding: 26px 16px 34px; color: var(--muted-cream); font-size: 0.82rem; }
-  footer.site b { color: var(--pink); }
-
-  /* MODAL */
-  .overlay { position: fixed; inset: 0; background: rgba(10,25,16,0.62); display: none; align-items: center; justify-content: center; padding: 18px; z-index: 60; }
-  .overlay.show { display: flex; }
-  .modal { background: var(--cream); color: var(--ink); border-radius: 22px; max-width: 440px; width: 100%; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-  .modal h3 { margin: 0 0 4px; color: var(--ok); font-size: 1.3rem; }
-  .modal .lead { color: #7a6f58; font-size: 0.9rem; margin: 0 0 14px; }
-  .modal pre { background: #fbf5e7; border: 1.5px solid #ece0c8; border-radius: 12px; padding: 14px; font-size: 0.85rem; white-space: pre-wrap; word-break: break-word; max-height: 250px; overflow: auto; margin: 0; font-family: ui-monospace, Menlo, Consolas, monospace; }
-  .modal .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
-  .modal .actions .full { grid-column: 1 / -1; }
-  .modal button, .modal a.mbtn { display: block; text-align: center; text-decoration: none; padding: 13px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; font-size: 0.95rem; }
-  .b-copy { background: var(--green-700); color: #fff; }
-  .b-zalo { background: var(--pink); color: var(--green-900); }
-  .b-close { background: #e7ddc6; color: var(--ink); }
-
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* ===== Máy tính (theo bản Desktop 1280px) ===== */
+@media (min-width:960px){
+  :root{--page-x:80px;--page-max:1280px}
+  .announce{font-size:13px;padding:12px}
+  .topbar{padding:20px var(--page-x);border-bottom:1px solid var(--color-ink)}
+  .topbar .wordmark{gap:5px}
+  .topbar .wordmark__name,.footer .wordmark__name{font-size:18px;padding:6px 2px}
+  .topbar__right{display:flex;align-items:center;gap:28px}
+  .topbar__nav{display:flex;gap:28px;font:500 15px/1 var(--font-body)}
+  .topbar__nav a{color:var(--color-ink);text-decoration:none}
+  .topbar__nav a:hover{color:var(--color-dau)}
+  .cartbtn{padding:0 18px;font:600 14px/1 var(--font-body)}
+  .cartbtn svg{width:18px;height:18px}
+  .cartbtn__label{display:inline}
+  .cartbtn__badge{display:none}
+  .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;padding:40px var(--page-x) 56px}
+  .hero__text{gap:24px}
+  .hero .kicker{font-size:13px}
+  .hero h1{font-size:56px;line-height:1.08}
+  .hero__cta .btn{min-height:52px;padding:0 32px;font-size:16px}
+  .hero__phone{display:inline;font:400 14px/1.4 var(--font-body);color:var(--color-ink-2)}
+  .hero__figure{justify-self:center;width:336px}
+  .hero__figure img{width:336px;height:450px;aspect-ratio:auto}
+  .stamp{right:-48px;bottom:48px;width:112px;height:112px;gap:4px;box-shadow:0 0 0 4px var(--color-paper),0 0 0 5px var(--color-dau)}
+  .stamp__hand{font-size:26px}
+  .stamp__text{font-size:10px;line-height:1.25}
+  .tabs{gap:12px}
+  .tab{min-height:64px;font-size:18px}
+  .sec{padding-top:80px}
+  .schedule,.why,.faq{display:grid;grid-template-columns:320px 1fr;gap:48px;align-items:start}
+  .schedule{padding-top:64px}
+  .schedule__head{flex-direction:column;align-items:flex-start;gap:12px}
+  .schedule__head h2,.why h2,.faq h2{font-size:32px}
+  .schedule__lead{display:block;font:400 15px/1.6 var(--font-body);color:var(--color-ink-2)}
+  .cutoff{font-weight:600;font-size:14px;gap:8px}
+  .schedule__grid{gap:16px}
+  .cook{padding:20px;gap:8px;min-height:152px}
+  .cook.is-soon{padding:18px}
+  .cook__tag{height:22px}
+  .cook.is-soon .cook__tag{font-size:11px;padding:6px 10px}
+  .cook__day{font-size:24px;line-height:1}
+  .cook__date{font-size:14px}
+  .cook__flavor{font-size:14px;line-height:1.45}
+  .nuts__head{flex-direction:row;justify-content:space-between;align-items:flex-end;gap:24px}
+  .nuts__head>div{display:flex;flex-direction:column;gap:10px}
+  .nuts__head h2{font-size:40px;line-height:1.15}
+  .nuts__head .kicker{font-size:12px}
+  .nuts__sub{font-size:15px}
+  .nuts{padding-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+  .nut:nth-child(even){padding-top:48px}
+  .nut .nut__row,.nut:nth-child(even) .nut__row{flex-direction:column;align-items:stretch}
+  .nut__img{width:100%;height:300px}
+  .nut__body{gap:16px}
+  .nut__body .tag{font-size:12px;padding:7px 12px}
+  .nut__name{font-size:20px}
+  .nut__desc{font-size:15px;line-height:1.55}
+  .nut__price{font-size:22px}
+  .nut__buy .btn{padding:0 20px;font-size:15px}
+  .nut__arrow{display:none}
+  .duo{display:grid;grid-template-columns:1fr 1.25fr;gap:24px;align-items:stretch;padding:80px var(--page-x) 0}
+  .pack-wrap,.daily{padding:0}
+  .pack-wrap{display:flex}
+  .pack{flex:1;padding:34px;gap:20px;justify-content:space-between}
+  .pack__name{font-size:36px;line-height:1.1}
+  .pack__lead{font-size:15px}
+  .pack__list{font-size:15px;gap:10px;padding-top:8px}
+  .pack__price{font-size:40px}
+  .pack__buy .btn{min-height:52px;padding:0 28px;font-size:16px}
+  .daily>.kicker{display:none}
+  .daily__card{flex:1;display:grid;grid-template-columns:1fr 1fr}
+  .daily__img{display:flex;align-items:center;justify-content:center;background:var(--color-paper)}
+  .daily__body{padding:32px;gap:12px}
+  .daily__kicker{display:block}
+  .daily__name{font-size:28px}
+  .daily__unit{font-size:14px}
+  .daily__desc{font-size:15px}
+  .daily__buy{margin-top:auto}
+  .daily__price{font-size:30px}
+  .daily__tier{font-size:13px}
+  .daily__buy .btn{min-height:52px;padding:0 26px;font-size:16px}
+  .why{padding-top:96px}
+  .why__list{display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
+  .why__item{flex-direction:column;gap:10px}
+  .why__n{font-size:32px;width:auto}
+  .why__t{line-height:1.4}
+  .ticker{margin-top:80px}
+  .faq{padding-bottom:96px}
+  .faq__q{min-height:64px;padding:16px 0;gap:16px;font-size:17px}
+  .faq__icon{width:32px;height:32px;font-size:18px}
+  .faq__a{padding:0 64px 20px 0;font-size:15px;line-height:1.65;max-width:720px}
+  .footer{margin-top:0;padding:56px var(--page-x) 64px;display:grid;grid-template-columns:1.2fr 3fr;gap:40px}
+  .footer__cols{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;font-size:15px}
+  .footer__col{gap:6px}
+  .cartbar{left:auto;right:max(var(--page-x),calc((100vw - var(--page-max))/2 + var(--page-x)));bottom:24px;margin:0;padding:10px 10px 10px 22px;gap:32px;box-shadow:0 10px 30px rgba(30,47,58,.24)}
+  .cartbar__info{gap:4px}
+  .cartbar__total{font-size:18px}
+  .cartbar .btn{min-height:52px;padding:0 26px}
+  /* Tab cold brew, giỏ hàng, cảm ơn, lỗi: thiết kế chỉ có bản điện thoại nên giữ cột hẹp ở giữa */
+  .narrow{--page-x:20px;max-width:560px;margin:0 auto}
+  .sheet,.toast{--page-x:20px;max-width:520px}
+  .toast{max-width:488px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:0ms!important}
+  .spinner{animation-duration:2s}
+}
 </style>
 </head>
 <body>
-  <header class="site">
-    <span class="eyebrow">Specialty Cold Brew</span>
-    <h1 class="wordmark"><span class="cool">COOL</span> <span class="brew">BREW</span></h1>
-    <div class="subtag">Cold Brew ủ lạnh · nhà làm thủ công</div>
-    <div class="subtag2">Mỗi mẻ một loại hạt · một vị riêng</div>
-    <div class="loc">📍 TP. Đà Lạt</div>
+
+<!-- ===================== TRANG CHÍNH ===================== -->
+<div id="view-home" class="page">
+  <div class="announce" id="announce"></div>
+  <header class="topbar">
+    <a class="wordmark" href="#sua" data-action="tab" data-tab="sua" aria-label="Tạp hóa thiên nhiên, về đầu trang">
+      <span class="wordmark__name">Tạp hóa thiên nhiên</span>
+      <span class="wordmark__sub">Nhà làm · Đà Lạt</span>
+    </a>
+    <div class="topbar__right">
+      <nav class="topbar__nav" aria-label="Điều hướng">
+        <a href="#sua" data-action="tab" data-tab="sua">Sữa nấu tươi</a>
+        <a href="#coldbrew" data-action="tab" data-tab="coldbrew">Cold brew &amp; cốt dâu</a>
+        <a href="#hoi-dap" data-action="scroll" data-target="hoi-dap">Hỏi đáp</a>
+      </nav>
+      <button class="cartbtn" type="button" data-action="open-cart" aria-label="Mở giỏ hàng">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg>
+        <span class="cartbtn__label" id="cartbtn-label">Giỏ</span>
+        <span class="cartbtn__badge" id="cart-badge" hidden>0</span>
+      </button>
+    </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <div class="hero">
-      <video class="hero-media" autoplay muted loop playsinline preload="metadata"
-             poster="images/coolbrew/hero-poster.jpg">
-        <source src="videos/coolbrew-hero.mp4" type="video/mp4" />
-        <img class="hero-media" src="images/coolbrew/bottle-330-a.jpg" alt="Ly Cold Brew COOL BREW ủ lạnh giữa vườn Đà Lạt" />
-      </video>
-      <div class="badge"><b>330</b><span>ml / chai</span></div>
-    </div>
-
-    <!-- STORY -->
-    <section class="card card-glass story">
-      <h2>Gọi hội mê cà — cùng mình nuôi dự án</h2>
-      <p>Dạo này mình đang lên cơn nghiền thử hạt từ <b>Son Pacamara, Robusta Đắk Lắk</b>, cho đến những mẻ <b>blend lạ</b>… loại nào cũng muốn brew thử để xem ly cold brew đổi vị thế nào.</p>
-      <p class="quote">Thử nhiều thì tốn hạt, tốn công ủ — nên mình nghĩ ra vụ này: bạn ủng hộ một chai, mình có kinh phí xoay vòng mua hạt + ủ mẻ mới, đổi lại bạn được uống đủ loại cold brew ngon, mỗi mẻ một vị. Win-win đúng không? ☕</p>
-    </section>
-
-    <!-- WHY -->
-    <section class="card card-glass">
-      <h2>Tại sao chọn COOL BREW?</h2>
-      <div class="why">
-        <div class="feat">
-          <div class="chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#16301f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4M9 6h6M9 6v3l-2 4v7a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-7l-2-4V6"/></svg>
-          </div>
-          <div><div class="t">Ủ bằng bình Hario</div><div class="d">Lưới lọc dài, siêu mịn — không lẫn cặn bột</div></div>
-        </div>
-        <div class="feat">
-          <div class="chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#16301f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
-          </div>
-          <div><div class="t">Nước khoáng sạch</div><div class="d">Nước ngon thì cà mới ngon, vị cân bằng</div></div>
-        </div>
-        <div class="feat">
-          <div class="chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#16301f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12c4-8 14-8 14 0-4 8-14 8-14 0z"/><path d="M9 15c2-4 4-6 6-6"/></svg>
-          </div>
-          <div><div class="t">Đa dạng hạt cà</div><div class="d">Son Pacamara, Robusta Đắk Lắk, blend lạ…</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SIZES -->
-    <section class="card card-glass">
-      <h2>Hai dung tích cho bạn chọn</h2>
-      <div class="sizes">
-        <div class="size">
-          <img class="ph" src="images/coolbrew/bottle-330-b.jpg" alt="Chai Cold Brew 330ml nắp vuông" />
-          <div class="body">
-            <div class="vol">330ml</div>
-            <div class="shape">Chai nắp vuông</div>
-            <div class="prices">
-              <div><div class="lab">Chai mới</div><div class="val">55k</div></div>
-              <div><div class="lab">Đổi vỏ</div><div class="val">45k</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="size">
-          <img class="ph" src="images/coolbrew/bottle-250-a.jpg" alt="Chai Cold Brew 250ml dáng dẹp" />
-          <div class="body">
-            <div class="vol">250ml</div>
-            <div class="shape">Chai dẹp</div>
-            <div class="prices">
-              <div><div class="lab">Chai mới</div><div class="val">40k</div></div>
-              <div><div class="lab">Đổi vỏ</div><div class="val">35k</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="recirc-note">♻️ Vỏ chai tuần hoàn — mang vỏ cũ quay lại nạp đầy chai mới, rẻ hơn & bảo vệ môi trường.</div>
-    </section>
-
-    <!-- ORDER FORM -->
-    <section class="card card-cream">
-      <h2>📝 Đặt cold brew ngay</h2>
-      <form id="order-form" novalidate>
-        <div class="field">
-          <label for="bottle-type">Loại chai</label>
-          <select id="bottle-type">
-            <option value="330-new" data-price="55000" data-label="330ml · chai mới">330ml (nắp vuông) — chai mới, kèm chai thủy tinh · 55k</option>
-            <option value="330-refill" data-price="45000" data-label="330ml · đổi vỏ">330ml (nắp vuông) — đổi vỏ cũ · 45k</option>
-            <option value="250-new" data-price="40000" data-label="250ml · chai mới">250ml (dẹp) — chai mới · 40k</option>
-            <option value="250-refill" data-price="35000" data-label="250ml · đổi vỏ">250ml (dẹp) — đổi vỏ cũ · 35k</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Số lượng chai <span class="req">*</span></label>
-          <div class="stepper">
-            <button type="button" id="qty-minus" aria-label="Giảm">−</button>
-            <input type="number" id="qty" value="1" min="1" max="50" inputmode="numeric" />
-            <button type="button" id="qty-plus" aria-label="Tăng">+</button>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="date">Ngày muốn nhận <span class="req">*</span></label>
-          <input type="date" id="date" required />
-          <div class="hint">Mình ủ theo mẻ nên nhận đơn trước tối thiểu <b>1 ngày</b> (sớm nhất là ngày mai) nhé!</div>
-        </div>
-
-        <div class="field">
-          <label>Khung giờ giao</label>
-          <div class="fixed-slot">🕑 Giao <b>buổi chiều 14:00 – 17:00</b>, tất cả các ngày trong tuần.</div>
-        </div>
-
-        <div class="field">
-          <label for="phone">Số điện thoại <span class="req">*</span></label>
-          <input type="tel" id="phone" placeholder="0387566754" required pattern="[0-9]{9,11}" inputmode="numeric" />
-        </div>
-
-        <div class="field">
-          <label for="address">Địa chỉ nhận hàng <span class="req">*</span></label>
-          <textarea id="address" placeholder="Số nhà, đường, phường/xã — khu vực Đà Lạt" required></textarea>
-          <div class="hint">Hiện mình chỉ nhận đơn tại khu vực <b>Đà Lạt</b> thôi nha.</div>
-        </div>
-
-        <div class="field">
-          <label for="note">Ghi chú (không bắt buộc)</label>
-          <textarea id="note" placeholder="Muốn thử mẻ mới nhất, giao giờ chiều..."></textarea>
-        </div>
-
-        <div class="summary">
-          <div class="row"><span id="s-desc">1 chai (330ml · chai mới)</span><span id="s-unit">55.000đ x 1</span></div>
-          <div class="row grand"><span>Tổng cộng</span><span id="s-total">55.000đ</span></div>
-        </div>
-
-        <button type="submit" class="btn-submit">Xác nhận đơn hàng</button>
-      </form>
-    </section>
-
-    <!-- BEANS -->
-    <section class="card card-glass">
-      <div class="beans">
-        <img src="images/coolbrew/beans.jpg" alt="Các loại hạt cà phê specialty dùng để ủ cold brew" />
-        <div>
-          <div class="t">Hàng thật, làm thật 🌱</div>
-          <div class="d">Mỗi mẻ ủ từ hạt specialty chọn lọc, đổi liên tục để bạn không bao giờ chán vị.</div>
-          <div class="tags"><span>Son Pacamara</span><span>Robusta Đắk Lắk</span><span>Blend lạ</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-      <p>Cần tư vấn vị cà phê mẻ mới nhất? Nhắn mình để <b style="color:var(--pink)">"kết nạp hội"</b> ☕</p>
-      <a class="btn-zalo" id="cta-zalo" href="https://zalo.me/0387566754" target="_blank" rel="noopener">💬 Kết nối Zalo</a>
-      <div class="phone"><small>Đặt ngay · Zalo/SĐT</small>0387 566 754</div>
-    </section>
-  </main>
-
-  <footer class="site">© 2026 <b>COOL BREW</b> · Cold Brew ủ lạnh thủ công · TP. Đà Lạt 🌲</footer>
-
-  <!-- MODAL -->
-  <div class="overlay" id="overlay">
-    <div class="modal">
-      <h3>✅ Đơn của bạn đã sẵn sàng!</h3>
-      <p class="lead">Bấm <b>Gửi qua Zalo</b> rồi <b>dán</b> nội dung bên dưới cho mình để chốt đơn nha.</p>
-      <pre id="receipt"></pre>
-      <div class="actions">
-        <button class="b-copy" id="btn-copy">📋 Sao chép đơn</button>
-        <a class="mbtn b-zalo" id="btn-zalo" href="https://zalo.me/0387566754" target="_blank" rel="noopener">💬 Gửi qua Zalo</a>
-        <button class="b-close full" id="btn-close">Đóng</button>
+  <section class="hero" id="hero">
+    <div class="hero__text">
+      <div class="kicker">Nhà làm · giao chiều</div>
+      <h1>Đồ uống nhà làm, giao chiều nội thành Đà Lạt</h1>
+      <div class="hero__cta">
+        <button class="btn btn--ink" type="button" data-action="scroll" data-target="tabs">Đặt ngay</button>
+        <span class="hero__phone">Zalo / ĐT <span data-phone></span></span>
       </div>
     </div>
+    <div class="hero__figure">
+      <img src="img/chai-pet-tay.png" alt="Chai sữa hạt nấu tươi" width="672" height="900">
+      <span class="stamp" aria-hidden="true"><span class="stamp__hand">nấu</span><span class="stamp__text">THEO ĐƠN<br>MỖI NGÀY</span></span>
+    </div>
+  </section>
+
+  <div class="tabs" id="tabs" role="tablist" aria-label="Nhóm sản phẩm">
+    <button class="tab tab--sua" type="button" role="tab" id="tabbtn-sua" aria-controls="tab-sua" aria-selected="true" data-action="tab" data-tab="sua">Sữa nấu tươi</button>
+    <button class="tab tab--dau" type="button" role="tab" id="tabbtn-coldbrew" aria-controls="tab-coldbrew" aria-selected="false" data-action="tab" data-tab="coldbrew">Cold brew &amp; cốt dâu</button>
   </div>
 
+  <main>
+    <div id="tab-sua" role="tabpanel" aria-labelledby="tabbtn-sua"></div>
+    <div id="tab-coldbrew" class="narrow" role="tabpanel" aria-labelledby="tabbtn-coldbrew" hidden></div>
+  </main>
+
+  <div class="ticker" aria-hidden="true"><span>Nấu theo đơn ·</span><span>Giao chiều nội thành ·</span><span>Nhà làm Đà Lạt ·</span><span>Nấu theo đơn ·</span><span>Giao chiều nội thành ·</span><span>Nhà làm Đà Lạt ·</span><span>Nấu theo đơn ·</span><span>Giao chiều nội thành ·</span><span>Nhà làm Đà Lạt ·</span><span>Nấu theo đơn ·</span><span>Giao chiều nội thành ·</span><span>Nhà làm Đà Lạt ·</span></div>
+
+  <section class="sec faq" id="hoi-dap">
+    <h2>Hỏi đáp</h2>
+    <div class="faq__list" id="faq-list"></div>
+  </section>
+
+  <footer class="footer">
+    <div class="wordmark">
+      <span class="wordmark__name">Tạp hóa thiên nhiên</span>
+      <span class="wordmark__sub">Nhà làm · Đà Lạt</span>
+    </div>
+    <div class="footer__cols">
+      <div class="footer__col"><span class="footer__label">Zalo / ĐT</span><a class="footer__phone" data-phone-link><span data-phone></span></a></div>
+      <div class="footer__col"><span class="footer__label">Fanpage</span><a data-fb-link target="_blank" rel="noopener"></a></div>
+      <div class="footer__col"><span class="footer__label">Khu vực giao</span><span>Giao nội thành Đà Lạt</span></div>
+    </div>
+  </footer>
+
+  <div class="cartbar" id="cartbar" hidden>
+    <div class="cartbar__info">
+      <span class="cartbar__count" id="cartbar-count"></span>
+      <span class="cartbar__total" id="cartbar-total"></span>
+    </div>
+    <button class="btn btn--paper" type="button" data-action="open-cart">Xem giỏ</button>
+  </div>
+</div>
+
+<!-- ===================== GIỎ HÀNG ===================== -->
+<div id="view-cart" class="page narrow" hidden>
+  <div class="subhead">
+    <button class="subhead__back" type="button" data-action="go-home" aria-label="Quay lại menu">←</button>
+    <span class="subhead__title">Giỏ hàng</span>
+    <span class="subhead__count" id="cart-count"></span>
+  </div>
+  <div id="cart-empty" class="empty" hidden>
+    <div class="empty__art"><svg width="52" height="60" viewBox="0 0 52 60" fill="none" stroke="#3D5A3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 4h14v8l6 8v32a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4V20l6-8z"></path><path d="M19 12h14"></path><path d="M13 32c6-3 12 3 26 0" stroke-dasharray="3 4"></path></svg></div>
+    <div class="kicker kicker--dau">chưa có chai nào</div>
+    <div class="empty__title">Giỏ hàng đang trống</div>
+    <div class="empty__text">Chọn một chai sữa hạt hay một combo cold brew rồi quay lại đây nhé.</div>
+    <button class="btn btn--outline" type="button" data-action="go-home">Quay lại menu</button>
+  </div>
+  <div id="cart-full">
+    <div class="slips" id="cart-slips"></div>
+    <div class="totals">
+      <div class="totals__sub"><span>Tiền hàng</span><span id="cart-goods"></span></div>
+      <div class="totals__sub"><span id="cart-shiplabel">Phí ship</span><span id="cart-ship"></span></div>
+      <div class="totals__row"><span class="totals__label">Tổng tiền</span><span class="totals__sum" id="cart-total"></span></div>
+      <p class="totals__note" id="cart-shipnote"></p>
+    </div>
+    <form id="order-form" novalidate>
+      <fieldset class="form" id="order-fields">
+        <h3>Thông tin giao hàng</h3>
+        <label class="field" data-field="name">
+          <span class="field__label">Họ tên</span>
+          <input name="name" type="text" autocomplete="name" maxlength="80">
+        </label>
+        <label class="field" data-field="phone">
+          <span class="field__label">Số điện thoại</span>
+          <input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16">
+        </label>
+        <label class="field" data-field="address">
+          <span class="field__label">Địa chỉ giao <i>(nội thành Đà Lạt)</i></span>
+          <input name="address" type="text" autocomplete="street-address" maxlength="200">
+        </label>
+        <div class="field" data-field="zone">
+          <span class="field__label" id="zone-label">Khu vực giao <i>(để tính phí ship)</i></span>
+          <div class="pay" id="zone-options" role="radiogroup" aria-labelledby="zone-label"></div>
+          <span class="field__hint" id="zone-hint"></span>
+        </div>
+        <div class="field" data-field="payment">
+          <span class="field__label" id="pay-label">Hình thức thanh toán</span>
+          <div class="pay" id="pay-options" role="radiogroup" aria-labelledby="pay-label"></div>
+        </div>
+        <label class="field" data-field="note">
+          <span class="field__label">Ghi chú <i>(không bắt buộc)</i></span>
+          <textarea name="note" placeholder="Ví dụ: gọi trước khi giao" maxlength="500"></textarea>
+        </label>
+        <!-- Honeypot của Web3Forms: người thật không thấy ô này -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+      </fieldset>
+      <div class="submit">
+        <button class="btn btn--dau btn--block" type="submit" id="submit-btn"></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== CẢM ƠN ===================== -->
+<div id="view-thanks" class="page narrow" hidden>
+  <div class="result">
+    <div class="result__head">
+      <div class="result__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F7F1E3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+      <div class="kicker kicker--dau">cảm ơn bạn!</div>
+      <h2>Shop đã nhận đơn</h2>
+      <p class="result__lead">Tạp hóa thiên nhiên sẽ gọi hoặc nhắn Zalo xác nhận đơn trong ngày.</p>
+    </div>
+    <div class="codebox">
+      <div class="codebox__text"><span class="label">Mã đơn</span><span class="codebox__code" id="thanks-code"></span></div>
+      <button class="codebox__copy" type="button" data-action="copy-code">Sao chép</button>
+    </div>
+    <div class="paybox" id="thanks-pay" hidden></div>
+    <div class="summary" id="thanks-summary"></div>
+    <button class="btn btn--ink btn--block" type="button" data-action="finish">Về trang chính</button>
+  </div>
+</div>
+
+<!-- ===================== GỬI LỖI ===================== -->
+<div id="view-error" class="page narrow" hidden>
+  <div class="result result--error">
+    <div class="result__icon result__icon--error"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A8322A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"></path><path d="M12 19.5h.01"></path></svg></div>
+    <h2>Đơn chưa gửi được</h2>
+    <p class="result__lead">Kết nối đang chập chờn nên đơn chưa tới shop. Giỏ hàng vẫn còn nguyên. Bạn có thể gửi đơn qua Zalo cho shop, hoặc thử gửi lại.</p>
+    <div class="result__actions">
+      <a class="btn btn--sua btn--block" id="zalo-btn" target="_blank" rel="noopener" data-action="zalo">Gửi qua Zalo</a>
+      <button class="btn btn--outline btn--block" type="button" data-action="retry">Thử gửi lại</button>
+    </div>
+    <div class="result__contact">Zalo / ĐT: <b data-phone></b></div>
+  </div>
+</div>
+
+<!-- ===================== BOTTOM SHEET + TOAST ===================== -->
+<div class="overlay" id="overlay" hidden data-action="close-sheet"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Chọn tùy chọn" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D9CBB0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+  <span id="toast-text"></span>
+</div>
+<noscript><p class="noscript">Trang đặt hàng cần bật JavaScript. Bạn cũng có thể nhắn Zalo 0387 566 754 để đặt.</p></noscript>
+
 <script>
-  const ZALO_PHONE = "0387566754";
-  // Dán URL Web App Google Apps Script vào đây để đơn tự lưu vào Google Sheet.
-  const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxyt5D0mxNwSJBJXzUbs9YZz4NCkwXO9MESuxbBEy5DJr9KNlFOk5RHSINedL9P5FKOXQ/exec";
-  const fmt = (n) => n.toLocaleString("vi-VN") + "đ";
+/* =====================================================================
+   CONFIG · Mọi thứ chủ shop cần sửa đều nằm ở đây.
+   Sửa xong lưu file và đưa lại lên GitHub là trang cập nhật.
+   ===================================================================== */
+const CONFIG = {
+  // Access key của Web3Forms (lấy ở web3forms.com bằng email nhận đơn)
+  WEB3FORMS_KEY: 'DAN-ACCESS-KEY-WEB3FORMS-VAO-DAY',
 
-  const typeEl  = document.getElementById("bottle-type");
-  const qtyEl   = document.getElementById("qty");
-  const dateEl  = document.getElementById("date");
-  const SLOT    = "Chiều (14:00 – 17:00)";
-  const phoneEl = document.getElementById("phone");
-  const addrEl  = document.getElementById("address");
-  const noteEl  = document.getElementById("note");
+  SHOP_NAME: 'Tạp hóa thiên nhiên',
+  PHONE: '0387566754',                 // dùng cho link Zalo và gọi điện
+  PHONE_DISPLAY: '0387 566 754',
+  FACEBOOK: 'facebook.com/taphoathiennhien',
 
-  // date min = tomorrow (đặt trước tối thiểu 1 ngày)
-  const pad = (n) => String(n).padStart(2, "0");
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const minStr = tomorrow.getFullYear() + "-" + pad(tomorrow.getMonth() + 1) + "-" + pad(tomorrow.getDate());
-  dateEl.min = minStr;
-  dateEl.value = minStr;
+  TIMEZONE: 'Asia/Ho_Chi_Minh',        // mọi phép tính ngày giờ theo giờ Việt Nam
+  CUTOFF_HOUR: 10,                     // giờ chốt đơn: 10:00
+  CUTOFF_MINUTE: 0,
+  DELIVERY_WINDOW: '14h–17h',
 
-  function clampQty() {
-    let v = parseInt(qtyEl.value, 10);
-    if (isNaN(v) || v < 1) v = 1;
-    if (v > 50) v = 50;
-    qtyEl.value = v;
-    return v;
-  }
-  document.getElementById("qty-minus").addEventListener("click", () => { qtyEl.value = clampQty() - 1; updateSummary(); });
-  document.getElementById("qty-plus").addEventListener("click",  () => { qtyEl.value = clampQty() + 1; updateSummary(); });
-  qtyEl.addEventListener("input", updateSummary);
-  typeEl.addEventListener("change", updateSummary);
+  DAYS_SELECTABLE: 7,                  // số ngày cho chọn (yến mạch lắc dâu, cold brew, cốt dâu)
+  NUT_WEEKS_SELECTABLE: 3,             // sữa hạt: ngày nấu gần nhất + 2 tuần kế tiếp
 
-  function currentUnitPrice() { return parseInt(typeEl.selectedOptions[0].dataset.price, 10); }
-  function typeLabel() { return typeEl.selectedOptions[0].dataset.label; }
+  FREESHIP_MIN_BOTTLES: 7,             // từ 7 chai cùng ngày giao thì freeship ("trên 6 chai")
+  // Phí ship theo khu vực, tính 1 lần cho mỗi ngày giao chưa đủ chai freeship.
+  // fee: null = shop báo phí riêng khi xác nhận đơn (web không cộng vào tổng).
+  SHIP_FROM: 'trung tâm Đà Lạt',
+  SHIP_ZONES: [
+    { id: 'z1', name: 'Đến 3 km',   fee: 15000, areas: 'Phường 1, 2, 6, gần hết phường 4 và 5, đầu phường 7, khu Đại học Đà Lạt' },
+    { id: 'z2', name: '3–5 km',     fee: 25000, areas: 'Hồ Xuân Hương, phường 3, Ga Đà Lạt và Yersin, Thánh Mẫu, Thung lũng Tình Yêu' },
+    { id: 'z3', name: '5–7 km',     fee: 35000, areas: 'Phường 9, Hùng Vương, Vạn Thành, Măng Lin' },
+    { id: 'z4', name: '7–10 km',    fee: 45000, areas: 'Hồ Than Thở, Lạc Dương' },
+    { id: 'z5', name: 'Trên 10 km', fee: null,  areas: 'Thái Phiên, Trại Mát, Xuân Thọ, Tà Nung' },
+  ],
+  SHIP_QUOTE_NOTE: 'Chưa gồm phí ship, shop báo khi xác nhận đơn',
 
-  const sDesc = document.getElementById("s-desc");
-  const sUnit = document.getElementById("s-unit");
-  const sTotal = document.getElementById("s-total");
+  // Hạt Moka Cầu Đất: true = còn hàng, false = hiện "Tạm hết"
+  MOKA_AVAILABLE: true,
+  // Phụ phí Moka theo cỡ combo (trường "moka" của sản phẩm trỏ vào đây)
+  MOKA_FEE: { '500ml': 20000, '1L': 35000 },
 
-  function updateSummary() {
-    const qty = clampQty();
-    const unit = currentUnitPrice();
-    sDesc.textContent = qty + " chai (" + typeLabel() + ")";
-    sUnit.textContent = fmt(unit) + " x " + qty;
-    sTotal.textContent = fmt(unit * qty);
-  }
-  updateSummary();
+  // Hình thức thanh toán khách được chọn trong giỏ hàng. Bỏ bớt một dòng nếu không muốn nhận hình thức đó.
+  PAYMENT_METHODS: [
+    { id: 'transfer', name: 'Chuyển khoản trước', desc: 'Mã QR và số tài khoản hiện ngay sau khi gửi đơn' },
+    { id: 'cod', name: 'Tiền mặt khi nhận hàng', desc: 'Trả tiền mặt cho người giao lúc nhận hàng' },
+  ],
+  // Tài khoản nhận chuyển khoản. QR là file ảnh trong thư mục img/
+  BANK: {
+    name: 'VietinBank',
+    branch: 'CN Nam Đà Nẵng - Hội sở',
+    account: '100887872745',
+    holder: 'LE THI MINH TAM',
+    qr: 'qr-vietinbank.jpg',
+  },
 
-  document.getElementById("order-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const qty = clampQty();
-    const date = dateEl.value;
-    const slot = SLOT;
-    const phone = phoneEl.value.trim();
-    const addr = addrEl.value.trim();
-    const note = noteEl.value.trim();
+  BEANS: [
+    { id: 'thanh', name: 'Thanh', desc: 'Arabica Cầu Đất sơ chế ướt – chua thanh, hương trái cây' },
+    { id: 'dam',   name: 'Đậm',   desc: 'Arabica + Robusta sơ chế honey – đậm, ngọt hậu' },
+    { id: 'moka',  name: 'Moka Cầu Đất', desc: 'Giới hạn theo đợt', comboOnly: true },
+  ],
 
-    if (!date) { alert("Bạn chọn ngày muốn nhận giúp mình nhé!"); dateEl.focus(); return; }
-    if (date < dateEl.min) { alert("Mình cần đặt trước tối thiểu 1 ngày, bạn chọn từ ngày mai trở đi nhé!"); dateEl.focus(); return; }
-    if (!/^[0-9]{9,11}$/.test(phone)) { alert("Số điện thoại chưa hợp lệ (9–11 chữ số)."); phoneEl.focus(); return; }
-    if (!addr) { alert("Bạn nhập địa chỉ nhận hàng nhé!"); addrEl.focus(); return; }
+  /* Sản phẩm.
+     type : 'nut' (sữa hạt) | 'pack' (gói tuần) | 'daily' (món mỗi ngày) | 'coldbrew' | 'syrup' (cốt dâu)
+     rule : 'cookday' = chỉ giao đúng ngày nấu, chốt 10h sáng ngày nấu
+            'sameday' = giao mọi ngày, chốt 10h sáng cùng ngày
+            'nextday' = giao mọi ngày, đặt trước 1 ngày
+     bottles : số chai tính cho freeship (mỗi 1 đơn vị)
+     cookDay : 0 = Chủ nhật, 1 = thứ hai ... 6 = thứ bảy
+     tier : bậc giá. { type:'all', min:4, price:25000 } = từ 4 chai thì mọi chai 25.000đ
+                     { type:'pack', size:4, price:145000 } = cứ 4 chai 145.000đ, phần lẻ tính giá thường
+     img : tên file ảnh trong thư mục img/ */
+  PRODUCTS: [
+    // Nhóm A · Sữa hạt
+    { id: 'hanh-nhan', type: 'nut', rule: 'cookday', cookDay: 1, name: 'Hạnh nhân – yến mạch – hạt sen',
+      desc: 'Bùi béo hạnh nhân, sánh mịn yến mạch, thơm dịu hạt sen.', unit: 'Chai 500ml', price: 65000, bottles: 1, img: 'sua-hanh-nhan.png' },
+    { id: 'gao-rang', type: 'nut', rule: 'cookday', cookDay: 3, name: 'Gạo rang – đậu phộng – mè đen',
+      desc: 'Béo bùi đậm đà, thơm mộc mạc gạo rang.', unit: 'Chai 500ml', price: 65000, bottles: 1, img: 'sua-gao-rang.png' },
+    { id: 'bi-do', type: 'nut', rule: 'cookday', cookDay: 5, name: 'Bí đỏ – hạt kê – hạt điều',
+      desc: 'Ngọt thanh bí đỏ, béo mượt như kem hạt điều, thơm bùi hạt kê.', unit: 'Chai 500ml', price: 65000, bottles: 1, img: 'sua-bi-do.png' },
+    { id: 'goi-tuan', type: 'pack', name: 'Gói cả tuần', desc: '3 vị, mỗi vị giao đúng ngày nấu',
+      items: ['hanh-nhan', 'gao-rang', 'bi-do'], price: 185000, listPrice: 195000, tag: 'Tiết kiệm 10k', bottles: 1, img: 'chai-pet-tay.png' },
 
-    const unit = currentUnitPrice();
-    const total = unit * qty;
-    const [y, m, d] = date.split("-");
-    const dateVN = d + "/" + m + "/" + y;
+    // Nhóm B · Sữa yến mạch lắc dâu tây
+    { id: 'yen-mach-dau', type: 'daily', rule: 'sameday', name: 'Sữa yến mạch lắc dâu tây',
+      desc: 'Sữa yến mạch nấu tươi mỗi sáng, dâu tây Đà Lạt xay nguyên quả, không dùng sữa đóng hộp. Lớp dâu dưới đáy, lắc đều trước khi uống.',
+      unit: 'Chai PET 350ml', unitShort: 'Chai 350ml', price: 30000, tier: { type: 'all', min: 4, price: 25000 }, bottles: 1, img: 'yen-mach-ly-ngang.png' },
 
-    const text =
-`===== ĐƠN COOL BREW =====
-Loại: ${qty} chai (${typeLabel()})
-Đơn giá: ${fmt(unit)}/chai
-Ngày muốn nhận: ${dateVN}
-Khung giờ giao: ${slot}
-SĐT: ${phone}
-Địa chỉ: ${addr}
-${note ? "Ghi chú: " + note + "\n" : ""}-------------------------
-TỔNG CỘNG: ${fmt(total)}
-=========================`;
+    // Nhóm C · Cold brew & combo
+    { id: 'chai-lac-dau', type: 'coldbrew', rule: 'nextday', name: 'Chai lắc dâu 330ml',
+      desc: 'Cốt dâu dưới đáy, cold brew phía trên, lắc là uống', sub: '4 chai: 145k', sheetNote: '4 chai: 145.000đ',
+      price: 39000, tier: { type: 'pack', size: 4, price: 145000 }, bottles: 1, needsBean: true, img: 'coldbrew-ly.png' },
+    { id: 'combo-mini', type: 'coldbrew', rule: 'nextday', name: 'Combo Mini',
+      desc: 'Cold brew 500ml + cốt dâu 100ml', price: 99000, bottles: 2, needsBean: true, moka: '500ml', img: 'coldbrew-ly.png' },
+    { id: 'combo-dau-dam', type: 'coldbrew', rule: 'nextday', name: 'Combo Dâu Đậm',
+      desc: 'Cold brew 500ml + cốt dâu 250ml, nhiều dâu, pha được nhiều kiểu', price: 159000, bottles: 2, needsBean: true, moka: '500ml', img: 'coldbrew-ly.png' },
+    { id: 'combo-nha', type: 'coldbrew', rule: 'nextday', name: 'Combo Nhà',
+      desc: 'Cold brew 1L + cốt dâu 330ml', sub: '~24k/ly', sheetNote: 'khoảng 24k/ly', tag: 'GỢI Ý', featured: true,
+      price: 179000, bottles: 2, needsBean: true, moka: '1L', img: 'coldbrew-ly.png' },
+    { id: 'cold-brew-thuan', type: 'coldbrew', rule: 'nextday', name: 'Cold brew thuần 330ml',
+      desc: 'Ủ lạnh qua đêm', price: 40000, bottles: 1, needsBean: true, img: 'coldbrew-ly.png' },
 
-    document.getElementById("receipt").textContent = text;
-    document.getElementById("btn-zalo").href = "https://zalo.me/" + ZALO_PHONE;
-    document.getElementById("overlay").classList.add("show");
+    // Nhóm D · Cốt dâu bán lẻ
+    { id: 'cot-dau-1l', type: 'syrup', rule: 'nextday', name: 'Cốt dâu 1 lít', size: '1 lít', yield: 'Pha khoảng 50 ly',
+      tag: 'Lời nhất', featured: true, price: 169000, bottles: 1, img: 'cot-dau-hu.png' },
+    { id: 'cot-dau-500', type: 'syrup', rule: 'nextday', name: 'Cốt dâu 500ml', size: '500ml', yield: 'Pha khoảng 25 ly',
+      price: 89000, bottles: 1, img: 'cot-dau-hu.png' },
+    { id: 'cot-dau-330', type: 'syrup', rule: 'nextday', name: 'Cốt dâu 330ml', size: '330ml', yield: 'Pha khoảng 16 ly',
+      price: 65000, bottles: 1, img: 'cot-dau-hu.png' },
+  ],
 
-    if (SHEET_ENDPOINT) {
-      const payload = {
-        loai_chai: typeLabel(), so_luong: qty, don_gia: unit, tong_tien: total,
-        ngay_nhan: dateVN, khung_gio: slot, sdt: phone, dia_chi: addr, ghi_chu: note
-      };
-      fetch(SHEET_ENDPOINT, {
-        method: "POST", mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload)
-      }).catch(() => {});
+  // Chỉ dùng khi thử nghiệm: giả lập "bây giờ" theo giờ Việt Nam, ví dụ '2026-10-09T09:30'. Để trống khi chạy thật.
+  TEST_NOW: '',
+};
+
+/* ===================== Nội dung tĩnh ===================== */
+const FREESHIP_TEXT = `Freeship khi đặt trên ${CONFIG.FREESHIP_MIN_BOTTLES - 1} chai cùng ngày giao`;
+const WHY = ['Ngâm hạt qua đêm', 'Rửa sạch', 'Nấu và đun sôi lại trước khi đóng chai', 'Nấu theo đơn', 'Không chất bảo quản'];
+const FAQ = [
+  { q: 'Bảo quản từng loại thế nào?', a: 'Sữa hạt: tủ lạnh, dùng trong 3 ngày. Sữa yến mạch lắc dâu và cold brew: giữ ngăn mát. Cốt dâu: ngăn mát, dùng trong 2 tuần.' },
+  { q: 'Sữa bị lắng có sao không?', a: 'Sữa lắng là tự nhiên. Lắc đều trước khi uống.' },
+  { q: 'Bé mấy tuổi uống được sữa hạt?', a: 'Bé từ 2 tuổi uống được sữa hạt với lượng nhỏ. Bé dưới 2 tuổi chưa nên uống, và sữa hạt không thay sữa mẹ hay sữa công thức.' },
+  { q: 'Trẻ em uống cold brew được không?', a: 'Cold brew có caffeine, không dành cho trẻ em.' },
+  { q: 'Sao hàng giao bằng chai nhựa?', a: 'Hàng giao bằng chai nhựa PET để tiện vận chuyển.' },
+  { q: 'Phí ship tính thế nào?', get a() { return CONFIG.SHIP_ZONES.map(z => `${z.name}: ${z.fee == null ? 'shop báo riêng' : money(z.fee)}`).join('. ') + `. Khoảng cách tính từ ${CONFIG.SHIP_FROM}, mỗi ngày giao tính ship 1 lần.`; } },
+  { q: 'Khi nào được freeship?', a: FREESHIP_TEXT + '.' },
+];
+const STEPS = [
+  { icon: '●', tag: '30ml', t: 'Cốt dâu và đá', d: 'Cho 30ml cốt dâu vào ly, thêm đá.' },
+  { icon: '☕', tag: '120ml', t: 'Rót cold brew', d: 'Rót chậm 120ml cold brew để giữ tầng đỏ dưới đáy.' },
+  { icon: '+', tag: 'Tùy chọn', t: 'Thành latte dâu', d: 'Thêm sữa tươi, sữa yến mạch hoặc kem sữa.' },
+];
+const DOW_SHORT = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+const DOW_NUM = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+const DOW_LONG = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+const ICON_CLOCK = (s, w) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>`;
+const ICON_ALERT = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>';
+const ICON_TRASH = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-12M9 7V4h6v3"></path></svg>';
+const ARROW = '<svg width="80" height="44" viewBox="0 0 80 44" fill="none" stroke="#3D5A3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8c14-6 30-4 36 6 4 7-4 12-8 7-4-6 6-12 16-6 8 5 14 14 20 24"></path><path d="M64 30l6 9 2-11"></path></svg>';
+
+/* ===================== Tiện ích ===================== */
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const money = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
+const moneyK = n => (n % 1000 === 0 ? n / 1000 : (n / 1000).toFixed(1).replace('.', ',')) + 'k';
+const lower = s => s.charAt(0).toLowerCase() + s.slice(1);
+const prod = id => CONFIG.PRODUCTS.find(p => p.id === id);
+const byType = type => CONFIG.PRODUCTS.filter(p => p.type === type);
+const bean = id => CONFIG.BEANS.find(b => b.id === id);
+const payMethod = id => CONFIG.PAYMENT_METHODS.find(m => m.id === id);
+const shipZone = id => CONFIG.SHIP_ZONES.find(z => z.id === id);
+const cutoffLabel = () => CONFIG.CUTOFF_HOUR + 'h' + (CONFIG.CUTOFF_MINUTE ? String(CONFIG.CUTOFF_MINUTE).padStart(2, '0') : '');
+const imgSrc = file => 'img/' + file;
+
+/* Ngày giờ: luôn tính theo múi giờ CONFIG.TIMEZONE, không phụ thuộc đồng hồ máy khách.
+   Ngày được giữ ở dạng chuỗi 'YYYY-MM-DD'. */
+function vnNow() {
+  const test = /^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2})/.exec(CONFIG.TEST_NOW || '');
+  if (test) return { iso: test[1], minutes: +test[2] * 60 + +test[3] };
+  const parts = {};
+  new Intl.DateTimeFormat('en-GB', { timeZone: CONFIG.TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })
+    .formatToParts(new Date()).forEach(p => { parts[p.type] = p.value; });
+  return { iso: `${parts.year}-${parts.month}-${parts.day}`, minutes: (+parts.hour % 24) * 60 + +parts.minute };
+}
+const beforeCutoff = now => now.minutes < CONFIG.CUTOFF_HOUR * 60 + CONFIG.CUTOFF_MINUTE;
+function addDays(iso, n) {
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
+}
+const dowOf = iso => new Date(iso + 'T00:00:00Z').getUTCDay();
+const dm = iso => `${+iso.slice(8, 10)}/${+iso.slice(5, 7)}`;          // 9/10
+const dm2 = iso => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;           // 09/10
+const dayLong = iso => `${DOW_LONG[dowOf(iso)]} ${dm(iso)}`;            // Thứ sáu 9/10
+const dayShort = iso => `${DOW_SHORT[dowOf(iso)]} ${dm(iso)}`;          // T6 9/10
+
+/* Các ngày giao còn đặt được của một sản phẩm, theo quy tắc của nó. */
+function datesFor(p) {
+  const now = vnNow(), open = beforeCutoff(now), out = [];
+  if (p.rule === 'cookday') {
+    let diff = (p.cookDay - dowOf(now.iso) + 7) % 7;
+    if (diff === 0 && !open) diff = 7;
+    for (let i = 0; i < CONFIG.NUT_WEEKS_SELECTABLE; i++) {
+      out.push({ iso: addDays(now.iso, diff + 7 * i), label: i === 0 ? 'Gần nhất' : i === 1 ? 'Tuần sau' : `${i} tuần sau` });
     }
-  });
+  } else {
+    const start = p.rule === 'sameday' && open ? 0 : 1;
+    for (let i = 0; i < CONFIG.DAYS_SELECTABLE; i++) {
+      const iso = addDays(now.iso, start + i);
+      out.push({ iso, label: DOW_SHORT[dowOf(iso)] });
+    }
+  }
+  return out;
+}
+/* Gói tuần: mỗi lựa chọn là một tuần trọn vẹn (thứ hai đến chủ nhật), mỗi vị giao đúng ngày nấu trong tuần đó.
+   Tuần gần nhất là tuần mà ngày nấu đầu tuần còn kịp đặt. */
+function packOptions(p) {
+  const weekday = id => (prod(id).cookDay + 6) % 7;                    // thứ hai = 0
+  const ids = p.items.slice().sort((a, b) => weekday(a) - weekday(b));
+  const start = datesFor(prod(ids[0]))[0].iso;
+  const labels = ['Gần nhất', 'Kế tiếp', 'Sau nữa'];
+  const out = [];
+  for (let i = 0; i < CONFIG.NUT_WEEKS_SELECTABLE; i++) {
+    const items = ids.map(id => ({ id, iso: addDays(start, weekday(id) - weekday(ids[0]) + 7 * i) }));
+    out.push({ items, iso: items[0].iso, label: labels[i] || `Tuần ${i + 1}` });
+  }
+  return out;
+}
+const stillOrderable = (p, iso) => iso >= datesFor(p)[0].iso;
 
-  document.getElementById("btn-close").addEventListener("click", () => document.getElementById("overlay").classList.remove("show"));
-  document.getElementById("overlay").addEventListener("click", (e) => { if (e.target.id === "overlay") e.currentTarget.classList.remove("show"); });
-  document.getElementById("btn-copy").addEventListener("click", async () => {
-    const text = document.getElementById("receipt").textContent;
-    const btn = document.getElementById("btn-copy");
-    try { await navigator.clipboard.writeText(text); }
-    catch { const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
-    btn.textContent = "✅ Đã sao chép!";
-    setTimeout(() => (btn.textContent = "📋 Sao chép đơn"), 1600);
+/* ===================== Giá ===================== */
+function tierPrice(p, qty) {
+  const t = p.tier;
+  if (!t) return p.price * qty;
+  if (t.type === 'all') return qty * (qty >= t.min ? t.price : p.price);
+  if (t.type === 'pack') return Math.floor(qty / t.size) * t.price + (qty % t.size) * p.price;
+  return p.price * qty;
+}
+const mokaFee = (p, beanId) => (beanId === 'moka' && p.moka ? CONFIG.MOKA_FEE[p.moka] || 0 : 0);
+
+/* ===================== Trạng thái ===================== */
+const state = {
+  view: 'home',            // home | cart | thanks | error
+  tab: 'sua',              // sua | coldbrew
+  cart: [],                // { id, productId, bean, date, qty } hoặc gói tuần { id, productId, pack:[{id, iso}], date, qty }
+  sheet: null,             // { productId, bean, date, qty, option }
+  payment: null,           // id trong CONFIG.PAYMENT_METHODS
+  zone: null,              // id trong CONFIG.SHIP_ZONES
+  errors: {},
+  sending: false,
+  pending: null,           // đơn đang gửi dở (giữ mã đơn và những ngày đã gửi xong khi thử lại)
+  lastOrder: null,
+  faqOpen: 0,
+};
+let nextId = 1;
+
+/* Bung giỏ hàng thành từng dòng theo ngày giao, tính giá bậc và giảm giá. */
+function cartLines() {
+  const lines = [], seen = {};
+  state.cart.forEach(e => {
+    const p = prod(e.productId);
+    if (p.type === 'pack') {
+      e.pack.forEach((it, i) => {
+        const f = prod(it.id);
+        lines.push({
+          entryId: e.id, date: it.iso, name: f.name, img: f.img, qty: e.qty, bottles: p.bottles * e.qty,
+          total: i === 0 ? p.price * e.qty : 0, saved: 0, pack: i === 0 ? 'first' : 'child',
+          meta: i === 0 ? `${f.unit} · ${p.name} ${money(p.price)}` : `${f.unit} · (thuộc gói tuần)`,
+          valid: stillOrderable(f, it.iso),
+        });
+      });
+      return;
+    }
+    const key = p.id + '|' + e.date, before = seen[key] || 0;
+    seen[key] = before + e.qty;
+    const fee = mokaFee(p, e.bean);
+    const goods = tierPrice(p, before + e.qty) - tierPrice(p, before);
+    const b = e.bean ? bean(e.bean) : null;
+    let meta = p.type === 'coldbrew' || p.type === 'syrup' ? (p.type === 'syrup' ? p.yield : p.desc.split(',')[0]) : `${p.unitShort || p.unit} · ${money(p.price)}`;
+    if (fee) meta += ` · Moka +${moneyK(fee)}`;
+    lines.push({
+      entryId: e.id, date: e.date, name: p.name + (b ? ` · hạt ${b.name}` : ''), img: p.img, qty: e.qty, bottles: p.bottles * e.qty,
+      total: goods + fee * e.qty, saved: p.price * e.qty - goods, meta, valid: stillOrderable(p, e.date),
+    });
   });
+  return lines;
+}
+function cartGroups() {
+  const map = {}, zone = shipZone(state.zone);
+  cartLines().forEach(l => { (map[l.date] = map[l.date] || []).push(l); });
+  return Object.keys(map).sort().map(date => {
+    const lines = map[date];
+    const bottles = lines.reduce((s, l) => s + l.bottles, 0);
+    const free = bottles >= CONFIG.FREESHIP_MIN_BOTTLES;
+    return {
+      date, lines, bottles,
+      total: lines.reduce((s, l) => s + l.total, 0),
+      free,
+      ship: free ? 0 : zone && zone.fee != null ? zone.fee : null,   // null = chưa biết (chưa chọn khu vực hoặc shop báo riêng)
+      need: Math.max(0, CONFIG.FREESHIP_MIN_BOTTLES - bottles),
+      valid: lines.every(l => l.valid),
+    };
+  });
+}
+const cartTotal = groups => groups.reduce((s, g) => s + g.total, 0);
+const shipTotal = groups => groups.reduce((s, g) => s + (g.ship || 0), 0);
+const shipUnknown = groups => groups.some(g => g.ship === null);
+const grandTotal = groups => cartTotal(groups) + shipTotal(groups);
+const shipLabel = g => g.free ? 'Freeship' : g.ship === null ? 'Phí ship báo sau' : `Ship ${money(g.ship)}`;
+
+/* ===================== Dựng trang chính ===================== */
+function renderStatic() {
+  $('#announce').textContent = FREESHIP_TEXT;
+  $$('[data-phone]').forEach(el => { el.textContent = CONFIG.PHONE_DISPLAY; });
+  $$('[data-phone-link]').forEach(el => { el.href = 'tel:' + CONFIG.PHONE; });
+  $$('[data-fb-link]').forEach(el => { el.href = 'https://' + CONFIG.FACEBOOK; el.textContent = CONFIG.FACEBOOK; });
+  $('#zalo-btn').href = 'https://zalo.me/' + CONFIG.PHONE;
+  renderFaq();
+  renderSua();
+  renderColdbrew();
+}
+
+function renderFaq() {
+  $('#faq-list').innerHTML = FAQ.map((f, i) => {
+    const open = state.faqOpen === i;
+    return `<div class="faq__item">
+      <button class="faq__q" type="button" data-action="faq" data-index="${i}" aria-expanded="${open}" aria-controls="faq-a-${i}">
+        <span>${esc(f.q)}</span><span class="faq__icon" aria-hidden="true">${open ? '−' : '+'}</span>
+      </button>
+      <p class="faq__a" id="faq-a-${i}"${open ? '' : ' hidden'}>${esc(f.a)}</p>
+    </div>`;
+  }).join('');
+}
+
+function renderSua() {
+  const nuts = byType('nut'), packs = byType('pack'), daily = byType('daily');
+  const next = nuts.map(p => datesFor(p)[0].iso);
+  const soonest = next.slice().sort()[0];
+  const schedule = nuts.map((p, i) => {
+    const soon = next[i] === soonest;
+    return `<div class="cook${soon ? ' is-soon' : ''}">
+      <span class="cook__tag">${soon ? 'Sắp nấu' : ''}</span>
+      <div class="cook__day">${DOW_NUM[p.cookDay]}</div>
+      <div class="cook__date">${dm(next[i])}</div>
+      <div class="cook__flavor">${esc(p.name)}</div>
+    </div>`;
+  }).join('');
+  const nutCards = nuts.map((p, i) => `<div class="nut">
+      <div class="nut__row">
+        <div class="nut__img"><img src="${imgSrc(p.img)}" alt="${esc(p.name)}" loading="lazy"></div>
+        <div class="nut__body">
+          <span class="tag tag--sua">Nấu ${lower(DOW_LONG[p.cookDay])}</span>
+          <div class="nut__name">${esc(p.name)}</div>
+          <div class="nut__desc">${esc(p.desc)}</div>
+          <div class="nut__buy">
+            <div class="nut__price">${money(p.price)}</div>
+            <button class="btn btn--outline-sua btn--sm" type="button" data-action="add" data-id="${p.id}" aria-label="Thêm ${esc(p.name)}">Thêm</button>
+          </div>
+        </div>
+      </div>
+      ${i < nuts.length - 1 ? `<div class="nut__arrow">${ARROW}</div>` : ''}
+    </div>`).join('');
+  const packCards = packs.map(p => `<div class="pack-wrap"><div class="pack">
+      <div class="pack__top"><div class="pack__kicker">trọn tuần</div>${p.tag ? `<span class="pack__save">${esc(p.tag)}</span>` : ''}</div>
+      <div class="pack__title"><div class="pack__name">${esc(p.name)}</div><div class="pack__lead">${esc(p.desc)}</div></div>
+      <div class="pack__list">${p.items.map(id => `<div><b>${DOW_SHORT[prod(id).cookDay]}</b><span>${esc(prod(id).name)}</span></div>`).join('')}</div>
+      <div class="pack__buy">
+        <div class="pack__prices">${p.listPrice ? `<div class="pack__old">${money(p.listPrice)}</div>` : ''}<div class="pack__price">${money(p.price)}</div></div>
+        <button class="btn btn--paper" type="button" data-action="add" data-id="${p.id}">Thêm gói</button>
+      </div>
+    </div></div>`).join('');
+  const dailyCards = daily.map(p => `<div class="daily">
+      <div class="kicker kicker--dau">món mỗi ngày</div>
+      <div class="daily__card">
+        <div class="daily__img"><img src="${imgSrc(p.img)}" alt="${esc(p.name)}" loading="lazy"></div>
+        <div class="daily__body">
+          <div class="kicker kicker--dau daily__kicker">món mỗi ngày</div>
+          <span class="tag tag--dau">Nấu mỗi ngày · đặt trước ${cutoffLabel()}</span>
+          <div class="daily__name">${esc(p.name)}</div>
+          <div class="daily__unit">${esc(p.unit)}</div>
+          <p class="daily__desc">${esc(p.desc)}</p>
+          <div class="daily__buy">
+            <div class="daily__prices"><div class="daily__price">${money(p.price)}</div>${p.tier ? `<div class="daily__tier">Từ ${p.tier.min} chai còn ${money(p.tier.price)}/chai</div>` : ''}</div>
+            <button class="btn btn--sua" type="button" data-action="add" data-id="${p.id}" aria-label="Thêm ${esc(p.name)}">Thêm</button>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+  const first = nuts[0];
+  $('#tab-sua').innerHTML = `
+    <section class="sec schedule">
+      <div class="schedule__head">
+        <h2>Lịch nấu tuần</h2>
+        <p class="schedule__lead">Mỗi vị nấu một ngày cố định, giao chiều ${CONFIG.DELIVERY_WINDOW}.</p>
+        <div class="cutoff">${ICON_CLOCK(16, 1.8)}Đặt trước ${cutoffLabel()} sáng</div>
+      </div>
+      <div class="schedule__grid">${schedule}</div>
+    </section>
+    <section class="sec nuts__head">
+      <div><div class="kicker kicker--sm">Sữa hạt nấu tươi mỗi tuần</div><h2>Ba vị, ba ngày nấu</h2></div>
+      <div class="nuts__sub">${first ? `${esc(first.unit)} · ${money(first.price)} · ` : ''}bảo quản tủ lạnh 3 ngày</div>
+    </section>
+    <div class="nuts">${nutCards}</div>
+    <div class="duo">${packCards}${dailyCards}</div>
+    <section class="sec why">
+      <h2>Vì sao nấu tươi</h2>
+      <div class="why__list">${WHY.map((t, i) => `<div class="why__item"><span class="why__n">${i + 1}</span><div class="why__t">${esc(t)}</div></div>`).join('')}</div>
+    </section>`;
+}
+
+function renderColdbrew() {
+  const menu = byType('coldbrew'), syrups = byType('syrup');
+  const bigSyrup = syrups.find(s => s.featured), smallSyrups = syrups.filter(s => s !== bigSyrup);
+  const rows = menu.map((p, i) => {
+    const title = p.featured
+      ? `<span class="menu__titlewrap"><span class="menu__name">${esc(p.name)}</span>${p.tag ? `<span class="hot-tag">${esc(p.tag)}</span>` : ''}</span>`
+      : `<span class="menu__name">${esc(p.name)}</span>`;
+    return `<div class="menu__row${p.featured ? ' is-hot' : ''}">
+      <span class="menu__n">${i + 1}</span>
+      <div class="menu__body">
+        <div class="menu__line">${title}<span class="menu__price">${moneyK(p.price)}</span></div>
+        <div class="menu__line"><span class="menu__desc">${esc(p.desc)}</span><span class="menu__sub">${esc(p.sub || '')}</span></div>
+      </div>
+      <button class="menu__add" type="button" data-action="add" data-id="${p.id}" aria-label="Thêm ${esc(p.name)}">+</button>
+    </div>`;
+  }).join('');
+  const mokaDesc = Object.keys(CONFIG.MOKA_FEE).map(size => `+${moneyK(CONFIG.MOKA_FEE[size])} combo ${size}`).join(' / ');
+  const beans = CONFIG.BEANS.map(b => `<div class="bean">
+      <div class="bean__top"><span class="bean__name">${esc(b.name)}</span>${b.comboOnly ? `<span class="tag tag--dau">${CONFIG.MOKA_AVAILABLE ? 'Giới hạn theo đợt' : 'Tạm hết'}</span>` : ''}</div>
+      <div class="bean__desc">${esc(b.comboOnly ? mokaDesc : b.desc)}</div>
+    </div>`).join('');
+  $('#tab-coldbrew').innerHTML = `
+    <section class="sec cb-intro">
+      <div class="cb-intro__head">
+        <div class="cb-intro__title"><div class="kicker kicker--sm kicker--dau">Nhà làm · Đà Lạt</div><h2>Cold brew &amp; cốt dâu nhà làm</h2></div>
+        <img class="cb-intro__img" src="img/coldbrew-ly.png" alt="Ly cold brew dâu">
+      </div>
+      <p>Cold brew ủ lạnh qua đêm từ hạt tuyển Lâm Đồng, rang mộc – êm, dịu, không gắt. Cốt dâu Đà Lạt nấu từng mẻ nhỏ – chua ngọt tự nhiên, đỏ au.</p>
+      <div class="notice">${ICON_CLOCK(18, 1.8)}Đặt trước 1 ngày – giao mỗi ngày ${CONFIG.DELIVERY_WINDOW}</div>
+    </section>
+    <div class="menu">${rows}</div>
+    <section class="sec syrup">
+      <div class="kicker kicker--dau">nấu tay từng mẻ</div>
+      <h2>Cốt dâu bán lẻ</h2>
+      ${bigSyrup ? `<div class="syrup__big">
+        <div class="syrup__bigtop">${bigSyrup.tag ? `<span class="syrup__best">${esc(bigSyrup.tag)}</span>` : '<span></span>'}<button class="btn btn--light btn--sm" type="button" data-action="add" data-id="${bigSyrup.id}" aria-label="Thêm ${esc(bigSyrup.name)}">Thêm</button></div>
+        <div class="syrup__bigrow"><span class="syrup__bigsize">${esc(bigSyrup.size)}</span><span class="syrup__bigprice">${moneyK(bigSyrup.price)}</span></div>
+        <span class="syrup__yield">${esc(bigSyrup.yield)}</span>
+      </div>` : ''}
+      <div class="syrup__grid">${smallSyrups.map(s => `<div class="syrup__card">
+        <div class="syrup__cardtop"><span class="syrup__size">${esc(s.size)}</span><span class="syrup__price">${moneyK(s.price)}</span></div>
+        <span class="syrup__cardyield">${esc(s.yield)}</span>
+        <button class="btn btn--outline-dau btn--sm" type="button" data-action="add" data-id="${s.id}" aria-label="Thêm ${esc(s.name)}">Thêm</button>
+      </div>`).join('')}</div>
+      <div class="syrup__info">
+        <img src="img/cot-dau-hu.png" alt="Hũ cốt dâu" loading="lazy">
+        <div>
+          <span><b>Thành phần:</b> dâu Đà Lạt, đường phèn, đường vàng, chút chanh vàng – không phẩm màu, không hương liệu.</span>
+          <span><b>Bảo quản:</b> ngăn mát, dùng trong 2 tuần.</span>
+        </div>
+      </div>
+    </section>
+    <section class="sec beans">
+      <div class="kicker kicker--sm kicker--dau">Chọn hạt</div>
+      <div class="beans__lead">Hạt tuyển Lâm Đồng, rang mộc</div>
+      ${beans}
+    </section>
+    <section class="sec steps">
+      <div class="steps__head"><div class="kicker kicker--sm kicker--dau">Cách pha</div><h2>Một ly cold brew dâu, ba bước</h2></div>
+      <div class="steps__wrap">
+        <div class="steps__list">${STEPS.map((s, i) => `<div class="step">
+          <span class="step__n">${i + 1}</span>
+          <div class="step__body">
+            <span class="step__tag"><span class="step__icon" aria-hidden="true">${s.icon}</span>${esc(s.tag)}</span>
+            <span class="step__t">${esc(s.t)}</span>
+            <span class="step__d">${esc(s.d)}</span>
+          </div>
+        </div>`).join('')}</div>
+        <img src="img/coldbrew-dau-pha.png" alt="Rót cốt dâu vào ly cold brew" loading="lazy">
+      </div>
+    </section>`;
+}
+
+/* ===================== Điều hướng ===================== */
+function renderView() {
+  ['home', 'cart', 'thanks', 'error'].forEach(v => { $('#view-' + v).hidden = state.view !== v; });
+  const coldbrew = state.tab === 'coldbrew';
+  $('#tab-sua').hidden = coldbrew;
+  $('#tab-coldbrew').hidden = !coldbrew;
+  $('#hero').hidden = coldbrew;
+  $('#tabs').classList.toggle('is-top', coldbrew);
+  $('#tabbtn-sua').setAttribute('aria-selected', String(!coldbrew));
+  $('#tabbtn-coldbrew').setAttribute('aria-selected', String(coldbrew));
+  renderCartBar();
+  if (state.view === 'cart') renderCart();
+}
+function setTab(tab, scroll) {
+  state.tab = tab;
+  if (state.view !== 'home') state.view = 'home';
+  history.replaceState(null, '', '#' + tab);
+  renderView();
+  if (scroll) {
+    if (tab === 'coldbrew') window.scrollTo(0, 0);
+    else $('#tabs').scrollIntoView({ block: 'start' });
+  }
+}
+function go(view) {
+  state.view = view;
+  if (view === 'cart' && location.hash !== '#gio-hang') history.pushState(null, '', '#gio-hang');
+  if (view === 'home' && location.hash === '#gio-hang') history.replaceState(null, '', '#' + state.tab);
+  renderView();
+  window.scrollTo(0, 0);
+}
+window.addEventListener('popstate', () => {
+  if (state.sending) return;
+  closeSheet(true);
+  const h = location.hash;
+  if (h === '#gio-hang') state.view = 'cart';
+  else { state.view = 'home'; if (h === '#coldbrew' || h === '#sua') state.tab = h.slice(1); }
+  renderView();
+  window.scrollTo(0, 0);
+});
+
+/* ===================== Thanh giỏ hàng ===================== */
+function renderCartBar() {
+  const groups = cartGroups();
+  const count = state.cart.length;
+  const badge = $('#cart-badge');
+  badge.hidden = count === 0;
+  badge.textContent = count;
+  $('#cartbtn-label').textContent = count ? `Giỏ · ${count}` : 'Giỏ';
+  const show = count > 0 && state.view === 'home';
+  $('#cartbar').hidden = !show;
+  document.body.classList.toggle('has-cartbar', show);
+  $('#cartbar-count').textContent = `${count} món`;
+  $('#cartbar-total').textContent = money(cartTotal(groups));
+}
+
+/* ===================== Bottom sheet ===================== */
+function openSheet(productId) {
+  const p = prod(productId);
+  if (!p) return;
+  const s = { productId, qty: 1, bean: null, date: null, option: 0 };
+  if (p.type !== 'pack') s.date = datesFor(p)[0].iso;
+  state.sheet = s;
+  renderSheet();
+  const sheet = $('#sheet'), overlay = $('#overlay');
+  sheet.hidden = false; overlay.hidden = false;
+  sheet.scrollTop = 0;
+  document.body.classList.add('is-locked');
+  requestAnimationFrame(() => requestAnimationFrame(() => { sheet.classList.add('is-open'); overlay.classList.add('is-open'); }));
+  const close = $('.sheet__close', sheet);
+  if (close) close.focus({ preventScroll: true });
+}
+function closeSheet(instant) {
+  if (!state.sheet) return;
+  state.sheet = null;
+  const sheet = $('#sheet'), overlay = $('#overlay');
+  sheet.classList.remove('is-open'); overlay.classList.remove('is-open');
+  sheet.style.transform = '';
+  document.body.classList.remove('is-locked');
+  const done = () => { if (!state.sheet) { sheet.hidden = true; overlay.hidden = true; } };
+  if (instant) done(); else setTimeout(done, 200);
+}
+/* Số chai cùng món, cùng ngày đã có trong giỏ (để giá bậc tính gộp cho đúng). */
+function existingQty(p, date) {
+  return state.cart.filter(e => e.productId === p.id && e.date === date).reduce((s, e) => s + e.qty, 0);
+}
+function sheetPrice() {
+  const s = state.sheet, p = prod(s.productId);
+  if (p.type === 'pack') return { total: p.price * s.qty, base: p.price * s.qty, had: 0 };
+  const had = p.tier ? existingQty(p, s.date) : 0;
+  const fee = mokaFee(p, s.bean) * s.qty;
+  return { total: tierPrice(p, had + s.qty) - tierPrice(p, had) + fee, base: p.price * s.qty + fee, had };
+}
+function renderSheet() {
+  const s = state.sheet, p = prod(s.productId), sheet = $('#sheet');
+  const accent = p.type === 'coldbrew' || p.type === 'syrup' ? 'dau' : 'sua';
+  const oldChips = $('.chips', sheet), scrollLeft = oldChips ? oldChips.scrollLeft : 0;
+  sheet.dataset.accent = accent;
+  sheet.setAttribute('aria-label', p.name);
+  const now = vnNow();
+
+  // Tiêu đề
+  let sub;
+  if (p.type === 'nut') sub = `${p.unit} · ${money(p.price)} · nấu ${lower(DOW_LONG[p.cookDay])}`;
+  else if (p.type === 'pack') sub = `${p.items.length} chai 500ml · ${money(p.price)} · mỗi vị giao đúng ngày nấu`;
+  else if (p.type === 'daily') sub = `${p.unit} · nấu mỗi ngày`;
+  else if (p.type === 'syrup') sub = `${money(p.price)} · ${lower(p.yield)} · ngăn mát, dùng trong 2 tuần`;
+  else sub = p.desc.split(',')[0] + (p.sheetNote ? ` · ${p.sheetNote}` : '');
+  const plain = p.type === 'coldbrew';
+  let html = `<div class="sheet__grab" data-grab><span></span></div>
+    <div class="sheet__head" data-grab>
+      ${plain ? '' : `<img class="sheet__img" src="${imgSrc(p.img)}" alt="">`}
+      <div class="sheet__title">
+        <div class="sheet__nameline"><span class="sheet__name${plain ? ' sheet__name--lg' : ''}">${esc(p.name)}</span>${plain && p.tag ? `<span class="hot-tag hot-tag--solid">${esc(p.tag)}</span>` : ''}</div>
+        <span class="sheet__sub">${esc(sub)}</span>
+      </div>
+      <button class="sheet__close" type="button" data-action="close-sheet" aria-label="Đóng">×</button>
+    </div>`;
+
+  // Chọn hạt
+  if (p.needsBean) {
+    const opts = CONFIG.BEANS.filter(b => !b.comboOnly || p.moka).map(b => {
+      const fee = b.comboOnly ? CONFIG.MOKA_FEE[p.moka] : 0;
+      const out = b.comboOnly && !CONFIG.MOKA_AVAILABLE;
+      const on = s.bean === b.id;
+      return `<button class="opt${on ? ' is-on' : ''}" type="button" role="radio" aria-checked="${on}" data-action="bean" data-bean="${b.id}"${out ? ' disabled' : ''}>
+        <span class="opt__dot"></span>
+        <span class="opt__text"><span class="opt__name">${esc(b.name)}${fee ? ` <i>+${moneyK(fee)}</i>` : ''}</span><span class="opt__desc">${esc(b.desc)}</span></span>
+        ${out ? '<span class="opt__out">Tạm hết</span>' : ''}
+      </button>`;
+    }).join('');
+    html += `<div class="sheet__block" role="radiogroup" aria-label="Chọn hạt"><div class="label">Chọn hạt</div>${opts}</div>`;
+  }
+
+  // Ngày giao
+  if (p.type === 'pack') {
+    const options = packOptions(p), cur = options[s.option];
+    html += `<div class="sheet__block">
+      <div class="sheet__blockhead"><span class="label">Tuần bắt đầu</span><span class="sheet__hint">Giao đúng ngày nấu, chiều ${CONFIG.DELIVERY_WINDOW}</span></div>
+      <div class="chips chips--grid">${options.map((o, i) => `<button class="chip${i === s.option ? ' is-on' : ''}" type="button" aria-pressed="${i === s.option}" data-action="option" data-option="${i}"><small>${o.label}</small><b>từ ${dayShort(o.iso)}</b></button>`).join('')}</div>
+      <div class="packdates">${cur.items.map(it => `<div><b>${dayShort(it.iso)}</b><span>${esc(prod(it.id).name)}</span></div>`).join('')}</div>
+      <div class="sheet__note">${ICON_CLOCK(14, 2)}Đặt trước ${cutoffLabel()} sáng ${lower(dayLong(options[0].iso))} để kịp tuần gần nhất</div>
+    </div>`;
+  } else if (p.rule === 'cookday') {
+    const dates = datesFor(p);
+    html += `<div class="sheet__block">
+      <div class="sheet__blockhead"><span class="label">Ngày giao</span><span class="sheet__hint">Giao đúng ngày nấu, chiều ${CONFIG.DELIVERY_WINDOW}</span></div>
+      <div class="chips chips--grid">${dates.map(d => `<button class="chip${d.iso === s.date ? ' is-on' : ''}" type="button" aria-pressed="${d.iso === s.date}" data-action="date" data-date="${d.iso}"><small>${d.label}</small><b>${dayShort(d.iso)}</b></button>`).join('')}</div>
+      <div class="sheet__note">${ICON_CLOCK(14, 2)}Đặt trước ${cutoffLabel()} sáng ${lower(DOW_LONG[p.cookDay])} để kịp mẻ ${dm(s.date)}</div>
+    </div>`;
+  } else {
+    const dates = datesFor(p);
+    const closed = p.rule === 'sameday' && !beforeCutoff(now) ? `<div class="chip is-closed" aria-disabled="true"><small>Đã chốt</small><b>${dm(now.iso)}</b></div>` : '';
+    const hint = p.rule === 'sameday' ? `Chốt đơn trước ${cutoffLabel()}` : `Đặt trước 1 ngày · ${CONFIG.DELIVERY_WINDOW}`;
+    html += `<div class="sheet__block sheet__block--flush">
+      <div class="sheet__blockhead"><span class="label">Ngày giao</span><span class="sheet__hint">${hint}</span></div>
+      <div class="chips">${closed}${dates.map(d => `<button class="chip${d.iso === s.date ? ' is-on' : ''}" type="button" aria-pressed="${d.iso === s.date}" data-action="date" data-date="${d.iso}"><small>${d.label}</small><b>${dm(d.iso)}</b></button>`).join('')}</div>
+    </div>`;
+  }
+
+  // Số lượng
+  html += `<div class="sheet__qty"><span class="label">Số lượng</span>
+    <div class="stepper"><button type="button" data-action="sheet-qty" data-delta="-1" aria-label="Giảm"${s.qty <= 1 ? ' disabled' : ''}>−</button><span aria-live="polite">${s.qty}</span><button type="button" data-action="sheet-qty" data-delta="1" aria-label="Tăng"${s.qty >= 99 ? ' disabled' : ''}>+</button></div>
+  </div>`;
+
+  // Giá bậc
+  const price = sheetPrice();
+  if (p.tier && price.total < price.base) {
+    const all = price.had + s.qty;
+    const title = p.tier.type === 'all' ? `Đã áp giá từ ${p.tier.min} chai` : `Đã áp giá ${p.tier.size} chai ${money(p.tier.price)}`;
+    let detail = p.tier.type === 'all' && !price.had ? `${s.qty} × ${money(p.tier.price)}` : `Tiết kiệm ${money(price.base - price.total)}`;
+    if (price.had) detail += ` · tính gộp ${all} chai cùng ngày (giỏ đã có ${price.had})`;
+    html += `<div class="tierbox"><div><b>${title}</b><span>${detail}</span></div><s>${money(price.base)}</s></div>`;
+  }
+
+  // Nút thêm
+  const needBean = p.needsBean && !s.bean;
+  html += `<div class="sheet__foot"><button class="btn btn--block sheet__add" type="button" data-action="confirm-add"${needBean ? ' disabled' : ''}>${needBean ? 'Chọn hạt để thêm vào giỏ' : `Thêm vào giỏ – ${money(price.total)}`}</button></div>`;
+
+  sheet.innerHTML = html;
+  const chips = $('.chips', sheet);
+  if (chips) chips.scrollLeft = scrollLeft;
+}
+function confirmAdd() {
+  const s = state.sheet;
+  if (!s) return;
+  const p = prod(s.productId);
+  if (p.needsBean && !s.bean) return;
+  if (p.type === 'pack') {
+    const opt = packOptions(p)[s.option];
+    const found = state.cart.find(e => e.productId === p.id && e.date === opt.iso);
+    if (found) found.qty = Math.min(99, found.qty + s.qty);
+    else state.cart.push({ id: nextId++, productId: p.id, pack: opt.items, date: opt.iso, qty: s.qty });
+  } else {
+    if (!datesFor(p).some(d => d.iso === s.date)) { s.date = datesFor(p)[0].iso; renderSheet(); toast('Ngày vừa chọn đã chốt đơn, mời bạn chọn lại ngày giao'); return; }
+    const found = state.cart.find(e => e.productId === p.id && e.date === s.date && (e.bean || null) === (s.bean || null));
+    if (found) found.qty = Math.min(99, found.qty + s.qty);
+    else state.cart.push({ id: nextId++, productId: p.id, bean: s.bean, date: s.date, qty: s.qty });
+  }
+  closeSheet();
+  renderCartBar();
+  toast('Đã thêm vào giỏ');
+}
+
+/* Vuốt xuống để đóng sheet */
+(function bindSheetDrag() {
+  const sheet = $('#sheet');
+  let startY = null, dy = 0;
+  sheet.addEventListener('touchstart', e => {
+    if (!e.target.closest('[data-grab]') || e.target.closest('button')) return;
+    startY = e.touches[0].clientY; dy = 0;
+    sheet.classList.add('is-dragging');
+  }, { passive: true });
+  sheet.addEventListener('touchmove', e => {
+    if (startY === null) return;
+    dy = Math.max(0, e.touches[0].clientY - startY);
+    sheet.style.transform = `translateY(${dy}px)`;
+  }, { passive: true });
+  const end = () => {
+    if (startY === null) return;
+    startY = null;
+    sheet.classList.remove('is-dragging');
+    sheet.style.transform = '';
+    if (dy > 80) closeSheet();
+  };
+  sheet.addEventListener('touchend', end);
+  sheet.addEventListener('touchcancel', end);
+})();
+
+/* ===================== Giỏ hàng ===================== */
+function renderCart() {
+  const groups = cartGroups();
+  const empty = state.cart.length === 0;
+  $('#cart-empty').hidden = !empty;
+  $('#cart-full').hidden = empty;
+  const bottles = groups.reduce((s, g) => s + g.bottles, 0);
+  $('#cart-count').textContent = empty ? '' : `· ${bottles} chai`;
+  if (empty) return;
+  const cells = n => Array.from({ length: CONFIG.FREESHIP_MIN_BOTTLES }, (_, i) => `<i${i < n ? ' class="is-full"' : ''}></i>`).join('');
+  $('#cart-slips').innerHTML = groups.map(g => `<div class="slip">
+      <div class="slip__head">
+        <div class="slip__headtext"><span class="slip__title">Phiếu đơn · ${dayLong(g.date)}</span><span class="slip__time">Giao ${CONFIG.DELIVERY_WINDOW}</span></div>
+        ${g.free ? '<span class="slip__free">Freeship</span>' : ''}
+      </div>
+      ${g.lines.map(l => `<div class="line">
+        <img class="line__img" src="${imgSrc(l.img)}" alt="">
+        <div class="line__body">
+          <div class="line__top"><span class="line__name">${esc(l.name)}</span><span class="line__total">${money(l.total)}</span></div>
+          <span class="line__meta">${esc(l.meta)}</span>
+          ${l.saved > 0 ? `<span class="line__saved">Đã giảm ${money(l.saved)} nhờ giá mua nhiều</span>` : ''}
+          <div class="line__ctl">
+            <div class="stepper stepper--sm"><button type="button" data-action="qty" data-id="${l.entryId}" data-delta="-1" aria-label="Giảm"${l.qty <= 1 ? ' disabled' : ''}>−</button><span>${l.qty}</span><button type="button" data-action="qty" data-id="${l.entryId}" data-delta="1" aria-label="Tăng"${l.qty >= 99 ? ' disabled' : ''}>+</button></div>
+            <button class="line__del" type="button" data-action="remove" data-id="${l.entryId}">${ICON_TRASH}${l.pack ? 'Xóa gói' : 'Xóa'}</button>
+          </div>
+        </div>
+      </div>`).join('')}
+      ${g.valid ? '' : `<div class="slip__warn">${ICON_ALERT}<span>Ngày này đã qua giờ chốt đơn. Bạn xóa món rồi chọn lại ngày giao khác nhé.</span></div>`}
+      <div class="meter">
+        <div class="meter__cells" role="img" aria-label="${g.bottles} trên ${CONFIG.FREESHIP_MIN_BOTTLES} chai để freeship">${cells(g.bottles)}</div>
+        <span class="meter__note">${g.free ? 'Đơn ngày này được freeship' : `Thêm ${g.need} chai nữa để được freeship`}</span>
+      </div>
+    </div>`).join('');
+  const unfree = groups.filter(g => !g.free).length, zone = shipZone(state.zone);
+  $('#cart-goods').textContent = money(cartTotal(groups));
+  $('#cart-shiplabel').textContent = unfree > 1 && zone && zone.fee != null ? `Phí ship (${unfree} ngày giao × ${money(zone.fee)})` : 'Phí ship';
+  $('#cart-ship').textContent = unfree === 0 ? 'Freeship' : !zone ? 'Chọn khu vực' : zone.fee == null ? 'Shop báo riêng' : money(shipTotal(groups));
+  $('#cart-total').textContent = money(grandTotal(groups));
+  $('#cart-shipnote').textContent = unfree === 0 ? 'Tất cả ngày giao trong đơn đều được freeship'
+    : (!zone ? 'Chọn khu vực giao bên dưới để web tính phí ship' : zone.fee == null ? CONFIG.SHIP_QUOTE_NOTE : 'Đã gồm phí ship')
+      + (groups.length > 1 ? `. Mỗi ngày giao tính ship 1 lần${unfree < groups.length ? ', ngày đã freeship thì không tính' : ''}.` : '');
+  renderFormState();
+}
+function renderFormState() {
+  const groups = cartGroups();
+  $('#order-fields').disabled = state.sending;
+  const btn = $('#submit-btn');
+  btn.disabled = state.sending;
+  btn.classList.toggle('is-loading', state.sending);
+  btn.innerHTML = state.sending ? '<span class="spinner"></span>Đang gửi...' : `Gửi đơn – ${money(grandTotal(groups))}`;
+  $('#zone-options').innerHTML = CONFIG.SHIP_ZONES.map(z => {
+    const on = state.zone === z.id;
+    return `<button class="opt${on ? ' is-on' : ''}" type="button" role="radio" aria-checked="${on}" data-action="zone" data-zone="${z.id}">
+      <span class="opt__dot"></span>
+      <span class="opt__text"><span class="opt__name">${esc(z.name)}</span><span class="opt__desc">${esc(z.areas)}</span></span>
+      <span class="opt__fee">${z.fee == null ? 'Báo riêng' : money(z.fee)}</span>
+    </button>`;
+  }).join('');
+  $('#zone-hint').textContent = `Khoảng cách tính từ ${CONFIG.SHIP_FROM}. Không chắc khu vực nào thì bạn chọn mức gần đúng, shop sẽ báo lại khi xác nhận đơn.`;
+  $('#pay-options').innerHTML = CONFIG.PAYMENT_METHODS.map(m => {
+    const on = state.payment === m.id;
+    return `<button class="opt${on ? ' is-on' : ''}" type="button" role="radio" aria-checked="${on}" data-action="pay" data-pay="${m.id}">
+      <span class="opt__dot"></span>
+      <span class="opt__text"><span class="opt__name">${esc(m.name)}</span><span class="opt__desc">${esc(m.desc)}</span></span>
+    </button>`;
+  }).join('');
+  $$('#order-form .field').forEach(f => {
+    const msg = state.errors[f.dataset.field];
+    f.classList.toggle('is-error', !!msg);
+    const old = $('.field__error', f);
+    if (old) old.remove();
+    if (msg) f.insertAdjacentHTML('beforeend', `<span class="field__error">${ICON_ALERT}${esc(msg)}</span>`);
+  });
+}
+function changeQty(id, delta) {
+  const e = state.cart.find(x => x.id === id);
+  if (!e) return;
+  e.qty = Math.max(1, Math.min(99, e.qty + delta));
+  renderCart(); renderCartBar();
+}
+function removeEntry(id) {
+  state.cart = state.cart.filter(x => x.id !== id);
+  renderCart(); renderCartBar();
+}
+
+/* ===================== Gửi đơn ===================== */
+function readForm() {
+  const f = $('#order-form');
+  return {
+    name: f.elements.name.value.trim().replace(/\s+/g, ' '),
+    phone: f.elements.phone.value.replace(/[\s.\-]/g, ''),
+    address: f.elements.address.value.trim(),
+    note: f.elements.note.value.trim(),
+    payment: state.payment,
+    zone: state.zone,
+  };
+}
+function validate(c) {
+  const errors = {};
+  if (!c.name) errors.name = 'Bạn cho shop xin họ tên';
+  if (!/^0\d{9}$/.test(c.phone)) errors.phone = 'Số điện thoại cần đủ 10 số, bắt đầu bằng 0';
+  if (!c.address) errors.address = 'Bạn cho shop xin địa chỉ giao trong nội thành Đà Lạt';
+  if (!shipZone(c.zone)) errors.zone = 'Bạn chọn giúp shop khu vực giao để tính phí ship';
+  if (!payMethod(c.payment)) errors.payment = 'Bạn chọn giúp shop hình thức thanh toán';
+  return errors;
+}
+function makeCode() {
+  const abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const rand = new Uint32Array(4);
+  (window.crypto || window.msCrypto).getRandomValues(rand);
+  const today = vnNow().iso;
+  return `THN-${today.slice(8, 10)}${today.slice(5, 7)}-${Array.from(rand, n => abc[n % abc.length]).join('')}`;
+}
+const lineText = l => `${l.qty} × ${l.name}` + (l.pack === 'child' ? ' · 0đ (thuộc gói tuần)' : `${l.pack === 'first' ? ' · gói tuần' : ''} · ${money(l.total)}`);
+function buildOrder(customer) {
+  const groups = cartGroups();
+  return { code: makeCode(), customer, groups, goods: cartTotal(groups), ship: shipTotal(groups), total: grandTotal(groups), sent: {}, signature: JSON.stringify([state.cart, customer]) };
+}
+const payText = order => payMethod(order.customer.payment).name
+  + (order.customer.payment === 'transfer' && order.groups.length > 1 ? ` (khách chuyển 1 lần cho cả đơn ${money(order.total)})` : '');
+const zoneText = c => { const z = shipZone(c.zone); return z ? `${z.name} (${z.areas})` : '(chưa chọn)'; };
+function daySubject(order, g) {
+  return `[${DOW_SHORT[dowOf(g.date)]} ${dm2(g.date)}] ${order.code} · ${g.bottles} chai${g.free ? ' · FREESHIP' : ''} · ${order.customer.name}`;
+}
+function dayBody(order, g, index) {
+  const c = order.customer, n = order.groups.length;
+  return [
+    `Mã đơn: ${order.code}`,
+    `Ngày giao: ${DOW_LONG[dowOf(g.date)]} ${dm2(g.date)} · ${CONFIG.DELIVERY_WINDOW}`,
+    n > 1 ? `Đơn này có ${n} ngày giao (email này là ngày ${index + 1}/${n})` : null,
+    '',
+    ...g.lines.map(lineText),
+    '',
+    `Tổng số chai: ${g.bottles}`,
+    `Tiền hàng ngày này: ${money(g.total)}`,
+    g.free ? 'Phí ship: Freeship' : g.ship === null ? `Phí ship: ${CONFIG.SHIP_QUOTE_NOTE}` : `Phí ship: ${money(g.ship)}`,
+    `Tổng thu ngày này: ${money(g.total + (g.ship || 0))}${g.ship === null ? ' + phí ship' : ''}`,
+    `Thanh toán: ${payText(order)}`,
+    '',
+    `Họ tên: ${c.name}`,
+    `SĐT: ${c.phone}`,
+    `Địa chỉ: ${c.address}`,
+    `Khu vực: ${zoneText(c)}`,
+    `Ghi chú: ${c.note || '(không có)'}`,
+  ].filter(x => x !== null).join('\n');
+}
+function zaloText(order) {
+  const c = order.customer, out = [`ĐƠN ĐẶT HÀNG ${order.code}`, ''];
+  order.groups.forEach(g => {
+    out.push(`▸ Giao ${DOW_LONG[dowOf(g.date)]} ${dm2(g.date)} · ${CONFIG.DELIVERY_WINDOW}`);
+    g.lines.forEach(l => out.push(lineText(l)));
+    out.push(`${g.bottles} chai · ${money(g.total)} · ${shipLabel(g)}`, '');
+  });
+  const pm = payMethod(c.payment);
+  out.push(`Tiền hàng: ${money(order.goods)}`, `Phí ship: ${money(order.ship)}${shipUnknown(order.groups) ? ' (còn phí ship shop báo sau)' : ''}`, `Tổng tiền: ${money(order.total)}`,
+    `Thanh toán: ${pm ? pm.name : '(chưa chọn)'}`, '', `Họ tên: ${c.name}`, `SĐT: ${c.phone}`, `Địa chỉ: ${c.address}`, `Khu vực: ${zoneText(c)}`);
+  if (c.note) out.push(`Ghi chú: ${c.note}`);
+  return out.join('\n');
+}
+async function sendDay(order, g, index) {
+  const payload = {
+    access_key: CONFIG.WEB3FORMS_KEY,
+    subject: daySubject(order, g),
+    from_name: `Web đặt hàng ${CONFIG.SHOP_NAME}`,
+    message: dayBody(order, g, index),
+  };
+  if ($('#order-form').elements.botcheck.checked) payload.botcheck = true;
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 20000);
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
+      signal: ctl.signal,
+    });
+    const data = await res.json();
+    if (!data || data.success !== true) throw new Error((data && data.message) || 'Web3Forms từ chối đơn');
+  } finally { clearTimeout(timer); }
+}
+async function submitOrder() {
+  if (state.sending || !state.cart.length) return;
+  const customer = readForm();
+  state.errors = validate(customer);
+  if (Object.keys(state.errors).length) {
+    renderFormState();
+    const first = $('#order-form .field.is-error input, #order-form .field.is-error button');
+    if (first) { first.focus({ preventScroll: true }); first.closest('.field').scrollIntoView({ block: 'center' }); }
+    return;
+  }
+  if (cartGroups().some(g => !g.valid)) {
+    renderCart();
+    toast('Có ngày giao đã qua giờ chốt đơn, bạn xem lại giỏ nhé');
+    $('.slip__warn').scrollIntoView({ block: 'center' });
+    return;
+  }
+  // Thử lại cùng một đơn thì giữ mã đơn và bỏ qua những ngày đã gửi xong
+  const signature = JSON.stringify([state.cart, customer]);
+  const order = state.pending && state.pending.signature === signature ? state.pending : buildOrder(customer);
+  state.pending = order;
+  state.sending = true;
+  if (state.view !== 'cart') { state.view = 'cart'; renderView(); } else renderFormState();
+  try {
+    for (let i = 0; i < order.groups.length; i++) {
+      const g = order.groups[i];
+      if (order.sent[g.date]) continue;
+      await sendDay(order, g, i);
+      order.sent[g.date] = true;
+    }
+    state.sending = false;
+    state.lastOrder = order;
+    state.pending = null;
+    state.cart = [];
+    $('#order-form').reset();
+    state.payment = null;
+    state.zone = null;
+    renderThanks(order);
+    go('thanks');
+  } catch (err) {
+    console.error('Gửi đơn lỗi:', err);
+    state.sending = false;
+    go('error');
+  }
+}
+function renderThanks(order) {
+  $('#thanks-code').textContent = order.code;
+  const pay = $('#thanks-pay'), bank = CONFIG.BANK;
+  pay.hidden = order.customer.payment !== 'transfer';
+  if (!pay.hidden) {
+    const row = (label, value, copy, cls) => `<div class="paybox__row">
+        <div class="paybox__text"><span class="label">${label}</span><span class="paybox__value${cls || ''}">${esc(value)}</span></div>
+        ${copy ? `<button class="codebox__copy" type="button" data-action="copy" data-copy="${esc(copy)}" data-done="Đã sao chép ${lower(label)}">Sao chép</button>` : ''}
+      </div>`;
+    pay.innerHTML = `<div class="paybox__title">Chuyển khoản trước</div>
+      <img class="paybox__qr" src="${imgSrc(bank.qr)}" alt="Mã QR chuyển khoản ${esc(bank.name)}" width="700" height="770">
+      <div class="paybox__rows">
+        ${row('Số tiền', money(order.total), String(order.total), ' paybox__value--price')}
+        ${row('Số tài khoản', bank.account, bank.account)}
+        ${row('Chủ tài khoản', bank.holder)}
+        ${row('Ngân hàng', `${bank.name} · ${bank.branch}`)}
+        ${row('Nội dung chuyển khoản', order.code, order.code)}
+      </div>
+      <p class="paybox__note">Mã QR chưa có sẵn số tiền, bạn nhập số tiền và nội dung như trên giúp shop.${shipUnknown(order.groups) ? ' Số tiền này chưa gồm phí ship, shop báo khi xác nhận đơn.' : order.ship ? ' Số tiền này đã gồm phí ship.' : ''}</p>`;
+  }
+  $('#thanks-summary').innerHTML = order.groups.map(g => `<div class="summary__day">
+      <div class="summary__dayhead"><span class="summary__dayname">${dayLong(g.date)}</span><span class="summary__ship">${shipLabel(g)}</span></div>
+      ${g.lines.map(l => `<div class="summary__row"><span>${l.qty} × ${esc(l.name)}${l.pack === 'first' ? ' · gói tuần' : ''}</span><span>${l.pack === 'child' ? '0đ (thuộc gói tuần)' : money(l.total)}</span></div>`).join('')}
+    </div>`).join('')
+    + `<div class="summary__day">
+        <div class="summary__row summary__row--sub"><span>Tiền hàng</span><span>${money(order.goods)}</span></div>
+        <div class="summary__row summary__row--sub"><span>Phí ship</span><span>${order.ship || !shipUnknown(order.groups) ? (order.ship ? money(order.ship) : 'Freeship') : 'Shop báo riêng'}</span></div>
+      </div>`
+    + `<div class="summary__total"><span>Tổng tiền</span><span>${money(order.total)}</span></div>`
+    + (shipUnknown(order.groups) ? `<span class="summary__note">${esc(CONFIG.SHIP_QUOTE_NOTE)}</span>` : '');
+}
+
+/* ===================== Toast và clipboard ===================== */
+let toastTimer;
+function toast(text) {
+  const el = $('#toast');
+  $('#toast-text').textContent = text;
+  el.classList.add('is-open');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('is-open'), 3200);
+}
+function copyText(text) {
+  let ok = false;
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px';
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0, text.length);
+  try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  ta.remove();
+  if (!ok && navigator.clipboard) { navigator.clipboard.writeText(text).catch(() => {}); ok = true; }
+  return ok;
+}
+
+/* ===================== Sự kiện ===================== */
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-action]');
+  if (!el) return;
+  const a = el.dataset.action, s = state.sheet;
+  if (a === 'zalo') {          // để nguyên hành vi mở link của thẻ <a>, chỉ copy thêm nội dung đơn
+    const customer = readForm();
+    const order = state.pending || buildOrder(customer);
+    toast(copyText(zaloText(order)) ? 'Đã copy đơn, dán vào Zalo để gửi' : 'Chưa copy được, bạn nhắn Zalo cho shop giúp nhé');
+    return;
+  }
+  if (el.tagName === 'A') e.preventDefault();
+  if (a === 'tab') setTab(el.dataset.tab, true);
+  else if (a === 'scroll') { const t = document.getElementById(el.dataset.target); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  else if (a === 'faq') { const i = +el.dataset.index; state.faqOpen = state.faqOpen === i ? -1 : i; renderFaq(); const q = $(`[data-action="faq"][data-index="${i}"]`); if (q) q.focus({ preventScroll: true }); }
+  else if (a === 'add') openSheet(el.dataset.id);
+  else if (a === 'close-sheet') closeSheet();
+  else if (a === 'bean' && s) { s.bean = el.dataset.bean; renderSheet(); }
+  else if (a === 'date' && s) { s.date = el.dataset.date; renderSheet(); }
+  else if (a === 'option' && s) { s.option = +el.dataset.option; renderSheet(); }
+  else if (a === 'sheet-qty' && s) { s.qty = Math.max(1, Math.min(99, s.qty + +el.dataset.delta)); renderSheet(); }
+  else if (a === 'confirm-add') confirmAdd();
+  else if (a === 'open-cart') go('cart');
+  else if (a === 'go-home') { if (!state.sending) go('home'); }
+  else if (a === 'pay') { state.payment = el.dataset.pay; delete state.errors.payment; renderFormState(); const b = $(`[data-pay="${state.payment}"]`); if (b) b.focus({ preventScroll: true }); }
+  else if (a === 'zone') { state.zone = el.dataset.zone; delete state.errors.zone; renderCart(); const b = $(`[data-zone="${state.zone}"]`); if (b) b.focus({ preventScroll: true }); }
+  else if (a === 'copy') toast(copyText(el.dataset.copy) ? el.dataset.done : 'Chưa sao chép được');
+  else if (a === 'qty') changeQty(+el.dataset.id, +el.dataset.delta);
+  else if (a === 'remove') removeEntry(+el.dataset.id);
+  else if (a === 'retry') submitOrder();
+  else if (a === 'copy-code') toast(copyText(state.lastOrder ? state.lastOrder.code : '') ? 'Đã sao chép mã đơn' : 'Chưa sao chép được');
+  else if (a === 'finish') { state.tab = 'sua'; go('home'); history.replaceState(null, '', '#sua'); }
+});
+$('#order-form').addEventListener('submit', e => { e.preventDefault(); submitOrder(); });
+$('#order-form').addEventListener('input', e => {
+  const field = e.target.closest('.field');
+  if (field && state.errors[field.dataset.field]) { delete state.errors[field.dataset.field]; renderFormState(); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && state.sheet) closeSheet(); });
+
+/* ===================== Khởi động ===================== */
+(function init() {
+  const h = location.hash;
+  if (h === '#coldbrew') state.tab = 'coldbrew';
+  if (h === '#gio-hang') state.view = 'cart';
+  renderStatic();
+  renderView();
+  // Qua giờ chốt đơn trong lúc khách đang mở trang thì lịch nấu và giỏ hàng tự cập nhật
+  let stamp = JSON.stringify(vnNow().iso + beforeCutoff(vnNow()));
+  setInterval(() => {
+    const now = JSON.stringify(vnNow().iso + beforeCutoff(vnNow()));
+    if (now === stamp) return;
+    stamp = now;
+    renderSua();
+    if (state.sheet) renderSheet();
+    if (state.view === 'cart' && !state.sending) renderCart();
+  }, 30000);
+})();
 </script>
 </body>
 </html>
