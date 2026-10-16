@@ -121,6 +121,21 @@ price: 39000, tier: { type: 'pack', size: 4, price: 145000 },
 Phụ phí Moka: `MOKA_FEE: { '500ml': 20000, '1L': 35000 }`.
 Gói tuần: `price: 185000, listPrice: 195000, tag: 'Tiết kiệm 10k'`.
 
+### Giá mở bán (giảm giá có hạn)
+
+```js
+PROMO: {
+  label: 'Giá mở bán',
+  until: '2026-12-12',
+  prices: { 'hanh-nhan': 55000, 'gao-rang': 55000, 'bi-do': 55000, 'goi-tuan': 150000 },
+},
+```
+
+- Đơn đặt đến hết ngày `until` (giờ Việt Nam) được giá trong `prices`; giá thường trong danh sách sản phẩm hiện gạch ngang bên cạnh. Qua ngày đó web tự về giá thường, không cần sửa gì.
+- Tính theo **ngày khách đặt**, không theo ngày giao: đặt ngày 12/12 cho ngày giao 14/12 vẫn được giá mở bán.
+- Muốn tắt sớm: đổi thành `until: ''`. Muốn kéo dài: đổi ngày.
+- Gói tuần: giá mở bán 150.000đ (3 × 55.000đ rồi giảm thêm 15.000đ), vẫn gạch ngang giá gốc 195.000đ, nhãn tự đổi thành "Tiết kiệm 45k". Hết đợt thì về 185.000đ và "Tiết kiệm 10k" như cũ.
+
 ### Hết hạt Moka
 
 ```js
@@ -152,6 +167,7 @@ SHIP_ZONES: [
 ],
 ```
 
+- Gói cả tuần giao 3 ngày nên được **tặng ship 1 ngày** (ngày muộn nhất trong gói còn phải tính ship), 2 ngày còn lại tính theo khu vực. Email ngày được tặng ghi `Phí ship: Tặng ship (gói cả tuần)`.
 - Đổi phí: sửa số sau `fee:`. `fee: null` nghĩa là shop báo phí riêng, web không cộng vào tổng và ghi rõ "chưa gồm phí ship".
 - Đổi tên khu vực khách nhìn thấy: sửa `name:` và `areas:`.
 - Thêm hoặc bớt khu vực: copy hoặc xóa nguyên một dòng, `id` phải khác nhau.

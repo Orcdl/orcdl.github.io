@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tạp hóa thiên nhiên · Đồ uống nhà làm, giao chiều nội thành Đà Lạt</title>
-<meta name="description" content="Sữa hạt nấu tươi, sữa yến mạch lắc dâu, cold brew và cốt dâu nhà làm tại Đà Lạt. Nấu theo đơn, giao chiều 14h–17h nội thành. Freeship khi đặt trên 6 chai cùng ngày giao.">
+<meta name="description" content="Sữa hạt nấu tươi, sữa yến mạch lắc dâu, cold brew và cốt dâu nhà làm tại Đà Lạt. Nấu theo đơn, giao chiều 14h–17h nội thành. Freeship từ 7 chai cùng ngày giao.">
 <meta name="theme-color" content="#1E2F3A">
 <meta name="format-detection" content="telephone=no">
 
@@ -189,6 +189,9 @@ button[disabled]{cursor:not-allowed}
 .nut__desc{font:400 var(--fs-small)/1.5 var(--font-body);color:var(--color-ink-2)}
 .nut__buy{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:4px}
 .nut__price{font:800 18px/1 var(--font-heading);color:var(--color-dau)}
+.nut__prices{display:flex;flex-direction:column;gap:4px}
+.nut__promo{font:700 var(--fs-kicker)/1.25 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--color-dau)}
+.nut__old{font:400 var(--fs-small)/1 var(--font-body);color:var(--color-ink-3)}
 .nut__arrow{display:flex;justify-content:center;padding:4px 0}
 .nut:nth-child(even) .nut__arrow svg{transform:scaleX(-1)}
 .duo{display:flex;flex-direction:column}
@@ -366,6 +369,7 @@ button[disabled]{cursor:not-allowed}
 .chip.is-closed b{text-decoration:line-through}
 .sheet__note{display:flex;align-items:center;gap:6px;font:500 var(--fs-meta)/1.4 var(--font-body);color:var(--color-sua)}
 .sheet__note svg{flex:none}
+.sheet__note--ship{color:var(--color-ink-2)}
 .packdates{display:flex;flex-direction:column;gap:6px;font:400 var(--fs-small)/1.4 var(--font-body);color:var(--color-ink-2)}
 .packdates div{display:flex;gap:10px}
 .packdates b{width:64px;flex:none;font-weight:600;color:var(--color-ink)}
@@ -800,7 +804,7 @@ const CONFIG = {
   DAYS_SELECTABLE: 7,                  // số ngày cho chọn (yến mạch lắc dâu, cold brew, cốt dâu)
   NUT_WEEKS_SELECTABLE: 3,             // sữa hạt: ngày nấu gần nhất + 2 tuần kế tiếp
 
-  FREESHIP_MIN_BOTTLES: 7,             // từ 7 chai cùng ngày giao thì freeship ("trên 6 chai")
+  FREESHIP_MIN_BOTTLES: 7,             // từ 7 chai cùng ngày giao thì freeship
   // Phí ship theo khu vực, tính 1 lần cho mỗi ngày giao chưa đủ chai freeship.
   // fee: null = shop báo phí riêng khi xác nhận đơn (web không cộng vào tổng).
   SHIP_FROM: 'trung tâm Đà Lạt',
@@ -812,6 +816,14 @@ const CONFIG = {
     { id: 'z5', name: 'Trên 10 km', fee: null,  areas: 'Thái Phiên, Trại Mát, Xuân Thọ, Tà Nung' },
   ],
   SHIP_QUOTE_NOTE: 'Chưa gồm phí ship, shop báo khi xác nhận đơn',
+
+  // Giá mở bán: áp dụng cho đơn đặt đến hết ngày "until" (giờ Việt Nam). Qua ngày đó web tự về giá thường trong PRODUCTS.
+  // Muốn tắt sớm thì đặt until: '' . Gói tuần giữ giá gạch ngang gốc (listPrice), nhãn tiết kiệm tự tính lại.
+  PROMO: {
+    label: 'Giá mở bán',
+    until: '2026-12-12',
+    prices: { 'hanh-nhan': 55000, 'gao-rang': 55000, 'bi-do': 55000, 'goi-tuan': 150000 },   // gói = 3 × 55.000đ − 15.000đ
+  },
 
   // Hạt Moka Cầu Đất: true = còn hàng, false = hiện "Tạm hết"
   MOKA_AVAILABLE: true,
@@ -892,15 +904,16 @@ const CONFIG = {
 };
 
 /* ===================== Nội dung tĩnh ===================== */
-const FREESHIP_TEXT = `Freeship khi đặt trên ${CONFIG.FREESHIP_MIN_BOTTLES - 1} chai cùng ngày giao`;
+const FREESHIP_TEXT = `Freeship từ ${CONFIG.FREESHIP_MIN_BOTTLES} chai cùng ngày giao`;
 const WHY = ['Ngâm hạt qua đêm', 'Rửa sạch', 'Nấu và đun sôi lại trước khi đóng chai', 'Nấu theo đơn', 'Không chất bảo quản'];
+const packShipText = p => `Giao ${p.items.length} ngày, tặng ship 1 ngày, ${p.items.length - 1} ngày còn lại tính ship theo khu vực`;
 const FAQ = [
   { q: 'Bảo quản từng loại thế nào?', a: 'Sữa hạt: tủ lạnh, dùng trong 3 ngày. Sữa yến mạch lắc dâu và cold brew: giữ ngăn mát. Cốt dâu: ngăn mát, dùng trong 2 tuần.' },
   { q: 'Sữa bị lắng có sao không?', a: 'Sữa lắng là tự nhiên. Lắc đều trước khi uống.' },
   { q: 'Bé mấy tuổi uống được sữa hạt?', a: 'Bé từ 2 tuổi uống được sữa hạt với lượng nhỏ. Bé dưới 2 tuổi chưa nên uống, và sữa hạt không thay sữa mẹ hay sữa công thức.' },
   { q: 'Trẻ em uống cold brew được không?', a: 'Cold brew có caffeine, không dành cho trẻ em.' },
   { q: 'Sao hàng giao bằng chai nhựa?', a: 'Hàng giao bằng chai nhựa PET để tiện vận chuyển.' },
-  { q: 'Phí ship tính thế nào?', get a() { return CONFIG.SHIP_ZONES.map(z => `${z.name}: ${z.fee == null ? 'shop báo riêng' : money(z.fee)}`).join('. ') + `. Khoảng cách tính từ ${CONFIG.SHIP_FROM}, mỗi ngày giao tính ship 1 lần.`; } },
+  { q: 'Phí ship tính thế nào?', get a() { return CONFIG.SHIP_ZONES.map(z => `${z.name}: ${z.fee == null ? 'shop báo riêng' : money(z.fee)}`).join('. ') + `. Khoảng cách tính từ ${CONFIG.SHIP_FROM}, mỗi ngày giao tính ship 1 lần. Gói cả tuần được tặng ship 1 ngày.`; } },
   { q: 'Khi nào được freeship?', a: FREESHIP_TEXT + '.' },
 ];
 const STEPS = [
@@ -987,6 +1000,27 @@ function packOptions(p) {
 const stillOrderable = (p, iso) => iso >= datesFor(p)[0].iso;
 
 /* ===================== Giá ===================== */
+/* Giá mở bán: ghi đè giá sản phẩm lúc mở trang, giá cũ chuyển thành giá gạch ngang. */
+const promoOn = () => !!CONFIG.PROMO.until && vnNow().iso <= CONFIG.PROMO.until;
+function applyPromo() {
+  if (!promoOn()) return;
+  const prices = CONFIG.PROMO.prices;
+  Object.keys(prices).forEach(id => {
+    const p = prod(id);
+    if (!p || p.type === 'pack') return;
+    p.listPrice = p.price; p.price = prices[id]; p.promo = true;
+  });
+  Object.keys(prices).forEach(id => {
+    const p = prod(id);
+    if (!p || p.type !== 'pack') return;
+    p.listPrice = p.listPrice || p.price; p.price = prices[id]; p.promo = true;
+    p.tag = `Tiết kiệm ${moneyK(p.listPrice - p.price)}`;
+  });
+}
+const promoText = () => {
+  const nut = byType('nut').find(p => p.promo);
+  return nut ? `${CONFIG.PROMO.label} ${money(nut.price)}/chai sữa hạt 500ml đến hết ${dm2(CONFIG.PROMO.until)}` : '';
+};
 function tierPrice(p, qty) {
   const t = p.tier;
   if (!t) return p.price * qty;
@@ -1046,7 +1080,7 @@ function cartLines() {
 function cartGroups() {
   const map = {}, zone = shipZone(state.zone);
   cartLines().forEach(l => { (map[l.date] = map[l.date] || []).push(l); });
-  return Object.keys(map).sort().map(date => {
+  const groups = Object.keys(map).sort().map(date => {
     const lines = map[date];
     const bottles = lines.reduce((s, l) => s + l.bottles, 0);
     const free = bottles >= CONFIG.FREESHIP_MIN_BOTTLES;
@@ -1059,16 +1093,24 @@ function cartGroups() {
       valid: lines.every(l => l.valid),
     };
   });
+  // Gói cả tuần: tặng ship 1 ngày giao (ngày muộn nhất trong gói còn phải tính ship)
+  state.cart.filter(e => prod(e.productId).type === 'pack').forEach(e => {
+    const g = e.pack.map(it => groups.find(x => x.date === it.iso)).reverse().find(x => x && !x.free && !x.packFree);
+    if (g) { g.packFree = true; if (g.ship !== null || zone) g.ship = 0; }
+  });
+  return groups;
 }
 const cartTotal = groups => groups.reduce((s, g) => s + g.total, 0);
 const shipTotal = groups => groups.reduce((s, g) => s + (g.ship || 0), 0);
 const shipUnknown = groups => groups.some(g => g.ship === null);
 const grandTotal = groups => cartTotal(groups) + shipTotal(groups);
-const shipLabel = g => g.free ? 'Freeship' : g.ship === null ? 'Phí ship báo sau' : `Ship ${money(g.ship)}`;
+const PACK_FREE_TEXT = 'Tặng ship (gói cả tuần)';
+const charged = g => !g.free && !g.packFree;
+const shipLabel = g => g.free ? 'Freeship' : g.packFree ? PACK_FREE_TEXT : g.ship === null ? 'Phí ship báo sau' : `Ship ${money(g.ship)}`;
 
 /* ===================== Dựng trang chính ===================== */
 function renderStatic() {
-  $('#announce').textContent = FREESHIP_TEXT;
+  $('#announce').textContent = [promoText(), FREESHIP_TEXT].filter(Boolean).join(' · ');
   $$('[data-phone]').forEach(el => { el.textContent = CONFIG.PHONE_DISPLAY; });
   $$('[data-phone-link]').forEach(el => { el.href = 'tel:' + CONFIG.PHONE; });
   $$('[data-fb-link]').forEach(el => { el.href = 'https://' + CONFIG.FACEBOOK; el.textContent = CONFIG.FACEBOOK; });
@@ -1111,7 +1153,7 @@ function renderSua() {
           <div class="nut__name">${esc(p.name)}</div>
           <div class="nut__desc">${esc(p.desc)}</div>
           <div class="nut__buy">
-            <div class="nut__price">${money(p.price)}</div>
+            <div class="nut__prices">${p.promo ? `<span class="nut__promo">${esc(CONFIG.PROMO.label)}</span>` : ''}<div class="nut__price">${money(p.price)}${p.listPrice ? ` <s class="nut__old">${money(p.listPrice)}</s>` : ''}</div></div>
             <button class="btn btn--outline-sua btn--sm" type="button" data-action="add" data-id="${p.id}" aria-label="Thêm ${esc(p.name)}">Thêm</button>
           </div>
         </div>
@@ -1120,7 +1162,7 @@ function renderSua() {
     </div>`).join('');
   const packCards = packs.map(p => `<div class="pack-wrap"><div class="pack">
       <div class="pack__top"><div class="pack__kicker">trọn tuần</div>${p.tag ? `<span class="pack__save">${esc(p.tag)}</span>` : ''}</div>
-      <div class="pack__title"><div class="pack__name">${esc(p.name)}</div><div class="pack__lead">${esc(p.desc)}</div></div>
+      <div class="pack__title"><div class="pack__name">${esc(p.name)}</div><div class="pack__lead">${esc(p.desc)}</div><div class="pack__lead">${packShipText(p)}</div></div>
       <div class="pack__list">${p.items.map(id => `<div><b>${DOW_SHORT[prod(id).cookDay]}</b><span>${esc(prod(id).name)}</span></div>`).join('')}</div>
       <div class="pack__buy">
         <div class="pack__prices">${p.listPrice ? `<div class="pack__old">${money(p.listPrice)}</div>` : ''}<div class="pack__price">${money(p.price)}</div></div>
@@ -1240,7 +1282,10 @@ function renderColdbrew() {
 }
 
 /* ===================== Điều hướng ===================== */
+let shownView = null;
 function renderView() {
+  if (shownView !== null && shownView !== state.view) hideToast();   // toast của view cũ không đi theo sang view mới
+  shownView = state.view;
   ['home', 'cart', 'thanks', 'error'].forEach(v => { $('#view-' + v).hidden = state.view !== v; });
   const coldbrew = state.tab === 'coldbrew';
   $('#tab-sua').hidden = coldbrew;
@@ -1380,6 +1425,7 @@ function renderSheet() {
       <div class="chips chips--grid">${options.map((o, i) => `<button class="chip${i === s.option ? ' is-on' : ''}" type="button" aria-pressed="${i === s.option}" data-action="option" data-option="${i}"><small>${o.label}</small><b>từ ${dayShort(o.iso)}</b></button>`).join('')}</div>
       <div class="packdates">${cur.items.map(it => `<div><b>${dayShort(it.iso)}</b><span>${esc(prod(it.id).name)}</span></div>`).join('')}</div>
       <div class="sheet__note">${ICON_CLOCK(14, 2)}Đặt trước ${cutoffLabel()} sáng ${lower(dayLong(options[0].iso))} để kịp tuần gần nhất</div>
+      <div class="sheet__note sheet__note--ship">${ICON_ALERT}${packShipText(p)}</div>
     </div>`;
   } else if (p.rule === 'cookday') {
     const dates = datesFor(p);
@@ -1480,7 +1526,7 @@ function renderCart() {
   $('#cart-slips').innerHTML = groups.map(g => `<div class="slip">
       <div class="slip__head">
         <div class="slip__headtext"><span class="slip__title">Phiếu đơn · ${dayLong(g.date)}</span><span class="slip__time">Giao ${CONFIG.DELIVERY_WINDOW}</span></div>
-        ${g.free ? '<span class="slip__free">Freeship</span>' : ''}
+        ${g.free ? '<span class="slip__free">Freeship</span>' : g.packFree ? '<span class="slip__free">Tặng ship</span>' : ''}
       </div>
       ${g.lines.map(l => `<div class="line">
         <img class="line__img" src="${imgSrc(l.img)}" alt="">
@@ -1497,17 +1543,17 @@ function renderCart() {
       ${g.valid ? '' : `<div class="slip__warn">${ICON_ALERT}<span>Ngày này đã qua giờ chốt đơn. Bạn xóa món rồi chọn lại ngày giao khác nhé.</span></div>`}
       <div class="meter">
         <div class="meter__cells" role="img" aria-label="${g.bottles} trên ${CONFIG.FREESHIP_MIN_BOTTLES} chai để freeship">${cells(g.bottles)}</div>
-        <span class="meter__note">${g.free ? 'Đơn ngày này được freeship' : `Thêm ${g.need} chai nữa để được freeship`}</span>
+        <span class="meter__note">${g.free ? 'Đơn ngày này được freeship' : g.packFree ? 'Ngày này được tặng ship nhờ gói cả tuần' : `Thêm ${g.need} chai nữa để được freeship`}</span>
       </div>
     </div>`).join('');
-  const unfree = groups.filter(g => !g.free).length, zone = shipZone(state.zone);
+  const unfree = groups.filter(charged).length, zone = shipZone(state.zone);
   $('#cart-goods').textContent = money(cartTotal(groups));
   $('#cart-shiplabel').textContent = unfree > 1 && zone && zone.fee != null ? `Phí ship (${unfree} ngày giao × ${money(zone.fee)})` : 'Phí ship';
-  $('#cart-ship').textContent = unfree === 0 ? 'Freeship' : !zone ? 'Chọn khu vực' : zone.fee == null ? 'Shop báo riêng' : money(shipTotal(groups));
+  $('#cart-ship').textContent = unfree === 0 ? (groups.some(g => g.packFree) ? 'Tặng ship' : 'Freeship') : !zone ? 'Chọn khu vực' : zone.fee == null ? 'Shop báo riêng' : money(shipTotal(groups));
   $('#cart-total').textContent = money(grandTotal(groups));
-  $('#cart-shipnote').textContent = unfree === 0 ? 'Tất cả ngày giao trong đơn đều được freeship'
+  $('#cart-shipnote').textContent = unfree === 0 ? 'Không ngày giao nào trong đơn phải tính ship'
     : (!zone ? 'Chọn khu vực giao bên dưới để web tính phí ship' : zone.fee == null ? CONFIG.SHIP_QUOTE_NOTE : 'Đã gồm phí ship')
-      + (groups.length > 1 ? `. Mỗi ngày giao tính ship 1 lần${unfree < groups.length ? ', ngày đã freeship thì không tính' : ''}.` : '');
+      + (groups.length > 1 ? `. Mỗi ngày giao tính ship 1 lần${unfree < groups.length ? ', ngày freeship hoặc được tặng ship thì không tính' : ''}.` : '');
   renderFormState();
 }
 function renderFormState() {
@@ -1588,6 +1634,22 @@ function buildOrder(customer) {
 const payText = order => payMethod(order.customer.payment).name
   + (order.customer.payment === 'transfer' && order.groups.length > 1 ? ` (khách chuyển 1 lần cho cả đơn ${money(order.total)})` : '');
 const zoneText = c => { const z = shipZone(c.zone); return z ? `${z.name} (${z.areas})` : '(chưa chọn)'; };
+/* Tin nhắn xác nhận cả đơn, viết sẵn để shop copy từ email rồi dán vào Zalo của khách. */
+function confirmText(order) {
+  const c = order.customer, bank = CONFIG.BANK, unknown = shipUnknown(order.groups);
+  const out = [`${CONFIG.SHOP_NAME} xin xác nhận đơn ${order.code} của bạn ${c.name}:`, ''];
+  order.groups.forEach(g => {
+    out.push(`▸ Giao ${DOW_LONG[dowOf(g.date)]} ${dm2(g.date)} · ${CONFIG.DELIVERY_WINDOW}`);
+    g.lines.forEach(l => out.push(lineText(l)));
+    out.push(g.free ? 'Phí ship: Freeship' : g.packFree ? `Phí ship: ${PACK_FREE_TEXT}` : g.ship === null ? 'Phí ship: [shop điền]' : `Phí ship: ${money(g.ship)}`, '');
+  });
+  out.push(unknown ? `Tiền hàng: ${money(order.goods)} + phí ship ở trên` : `Tổng tiền: ${money(order.total)}` + (order.ship ? ` (tiền hàng ${money(order.goods)} + ship ${money(order.ship)})` : ''));
+  out.push(c.payment === 'transfer'
+    ? `Thanh toán: chuyển khoản trước vào ${bank.name} ${bank.account} (${bank.holder}), nội dung ${order.code}`
+    : `Thanh toán: ${lower(payMethod(c.payment).name)}`);
+  out.push(`Giao đến: ${c.address}`, '', `Cần đổi gì bạn nhắn shop qua Zalo ${CONFIG.PHONE_DISPLAY} nhé. Cảm ơn bạn!`);
+  return out.join('\n');
+}
 function daySubject(order, g) {
   return `[${DOW_SHORT[dowOf(g.date)]} ${dm2(g.date)}] ${order.code} · ${g.bottles} chai${g.free ? ' · FREESHIP' : ''} · ${order.customer.name}`;
 }
@@ -1602,7 +1664,7 @@ function dayBody(order, g, index) {
     '',
     `Tổng số chai: ${g.bottles}`,
     `Tiền hàng ngày này: ${money(g.total)}`,
-    g.free ? 'Phí ship: Freeship' : g.ship === null ? `Phí ship: ${CONFIG.SHIP_QUOTE_NOTE}` : `Phí ship: ${money(g.ship)}`,
+    g.free ? 'Phí ship: Freeship' : g.packFree ? `Phí ship: ${PACK_FREE_TEXT}` : g.ship === null ? `Phí ship: ${CONFIG.SHIP_QUOTE_NOTE}` : `Phí ship: ${money(g.ship)}`,
     `Tổng thu ngày này: ${money(g.total + (g.ship || 0))}${g.ship === null ? ' + phí ship' : ''}`,
     `Thanh toán: ${payText(order)}`,
     '',
@@ -1611,6 +1673,10 @@ function dayBody(order, g, index) {
     `Địa chỉ: ${c.address}`,
     `Khu vực: ${zoneText(c)}`,
     `Ghi chú: ${c.note || '(không có)'}`,
+    '',
+    ...(index === 0
+      ? ['===== TIN NHẮN XÁC NHẬN · copy phần dưới, dán vào Zalo của khách =====', '', confirmText(order)]
+      : [`Tin nhắn xác nhận viết sẵn cho cả đơn nằm ở email ngày 1/${n} (cùng mã ${order.code}).`]),
   ].filter(x => x !== null).join('\n');
 }
 function zaloText(order) {
@@ -1732,6 +1798,14 @@ function toast(text) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => el.classList.remove('is-open'), 3200);
 }
+function hideToast() {
+  const el = $('#toast');
+  clearTimeout(toastTimer);
+  el.style.transition = 'none';
+  el.classList.remove('is-open');
+  void el.offsetWidth;
+  el.style.transition = '';
+}
 function copyText(text) {
   let ok = false;
   const ta = document.createElement('textarea');
@@ -1792,6 +1866,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && state.shee
   const h = location.hash;
   if (h === '#coldbrew') state.tab = 'coldbrew';
   if (h === '#gio-hang') state.view = 'cart';
+  applyPromo();
   renderStatic();
   renderView();
   // Qua giờ chốt đơn trong lúc khách đang mở trang thì lịch nấu và giỏ hàng tự cập nhật
