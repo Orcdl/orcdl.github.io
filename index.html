@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tạp hóa thiên nhiên · Đồ uống nhà làm, giao chiều nội thành Đà Lạt</title>
-<meta name="description" content="Sữa hạt nấu tươi, sữa yến mạch lắc dâu, cold brew và cốt dâu nhà làm tại Đà Lạt. Nấu theo đơn, giao chiều 14h–17h nội thành. Freeship từ 7 chai cùng ngày giao.">
+<meta name="description" content="Sữa hạt nấu tươi, cold brew và cốt dâu nhà làm tại Đà Lạt. Nấu theo đơn, giao chiều 14h–17h nội thành. Freeship từ 7 chai cùng ngày giao.">
 <meta name="theme-color" content="#1E2F3A">
 <meta name="format-detection" content="telephone=no">
 
@@ -13,7 +13,7 @@
 <meta property="og:locale" content="vi_VN">
 <meta property="og:site_name" content="Tạp hóa thiên nhiên">
 <meta property="og:title" content="Tạp hóa thiên nhiên · Đồ uống nhà làm Đà Lạt">
-<meta property="og:description" content="Sữa hạt nấu tươi, sữa yến mạch lắc dâu, cold brew và cốt dâu. Nấu theo đơn, giao chiều nội thành Đà Lạt.">
+<meta property="og:description" content="Sữa hạt nấu tươi, cold brew và cốt dâu. Nấu theo đơn, giao chiều nội thành Đà Lạt.">
 <meta property="og:url" content="https://orcdl.github.io/">
 <meta property="og:image" content="https://orcdl.github.io/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -555,6 +555,7 @@ button[disabled]{cursor:not-allowed}
   .nut__buy .btn{padding:0 20px;font-size:15px}
   .nut__arrow{display:none}
   .duo{display:grid;grid-template-columns:1fr 1.25fr;gap:24px;align-items:stretch;padding:80px var(--page-x) 0}
+  .duo--single{grid-template-columns:minmax(0,640px);justify-content:center}
   .pack-wrap,.daily{padding:0}
   .pack-wrap{display:flex}
   .pack{flex:1;padding:34px;gap:20px;justify-content:space-between}
@@ -801,7 +802,7 @@ const CONFIG = {
   CUTOFF_MINUTE: 0,
   DELIVERY_WINDOW: '14h–17h',
 
-  DAYS_SELECTABLE: 7,                  // số ngày cho chọn (yến mạch lắc dâu, cold brew, cốt dâu)
+  DAYS_SELECTABLE: 7,                  // số ngày cho chọn (cold brew, cốt dâu)
   NUT_WEEKS_SELECTABLE: 3,             // sữa hạt: ngày nấu gần nhất + 2 tuần kế tiếp
 
   FREESHIP_MIN_BOTTLES: 7,             // từ 7 chai cùng ngày giao thì freeship
@@ -871,11 +872,6 @@ const CONFIG = {
     { id: 'goi-tuan', type: 'pack', name: 'Gói cả tuần', desc: '3 vị, mỗi vị giao đúng ngày nấu',
       items: ['hanh-nhan', 'gao-rang', 'bi-do'], price: 185000, listPrice: 195000, tag: 'Tiết kiệm 10k', bottles: 1, img: 'chai-pet-tay.png' },
 
-    // Nhóm B · Sữa yến mạch lắc dâu tây
-    { id: 'yen-mach-dau', type: 'daily', rule: 'sameday', name: 'Sữa yến mạch lắc dâu tây',
-      desc: 'Sữa yến mạch nấu tươi mỗi sáng, dâu tây Đà Lạt xay nguyên quả, không dùng sữa đóng hộp. Lớp dâu dưới đáy, lắc đều trước khi uống.',
-      unit: 'Chai PET 350ml', unitShort: 'Chai 350ml', price: 30000, tier: { type: 'all', min: 4, price: 25000 }, bottles: 1, img: 'yen-mach-ly-ngang.png' },
-
     // Nhóm C · Cold brew & combo
     { id: 'chai-lac-dau', type: 'coldbrew', rule: 'nextday', name: 'Chai lắc dâu 330ml',
       desc: 'Cốt dâu dưới đáy, cold brew phía trên, lắc là uống', sub: '4 chai: 145k', sheetNote: '4 chai: 145.000đ',
@@ -908,7 +904,7 @@ const FREESHIP_TEXT = `Freeship từ ${CONFIG.FREESHIP_MIN_BOTTLES} chai cùng n
 const WHY = ['Ngâm hạt qua đêm', 'Rửa sạch', 'Nấu và đun sôi lại trước khi đóng chai', 'Nấu theo đơn', 'Không chất bảo quản'];
 const packShipText = p => `Giao ${p.items.length} ngày, tặng ship 1 ngày, ${p.items.length - 1} ngày còn lại tính ship theo khu vực`;
 const FAQ = [
-  { q: 'Bảo quản từng loại thế nào?', a: 'Sữa hạt: tủ lạnh, dùng trong 3 ngày. Sữa yến mạch lắc dâu và cold brew: giữ ngăn mát. Cốt dâu: ngăn mát, dùng trong 2 tuần.' },
+  { q: 'Bảo quản từng loại thế nào?', a: 'Sữa hạt: tủ lạnh, dùng trong 3 ngày. Cold brew: giữ ngăn mát. Cốt dâu: ngăn mát, dùng trong 2 tuần.' },
   { q: 'Sữa bị lắng có sao không?', a: 'Sữa lắng là tự nhiên. Lắc đều trước khi uống.' },
   { q: 'Bé mấy tuổi uống được sữa hạt?', a: 'Bé từ 2 tuổi uống được sữa hạt với lượng nhỏ. Bé dưới 2 tuổi chưa nên uống, và sữa hạt không thay sữa mẹ hay sữa công thức.' },
   { q: 'Trẻ em uống cold brew được không?', a: 'Cold brew có caffeine, không dành cho trẻ em.' },
@@ -1201,7 +1197,7 @@ function renderSua() {
       <div class="nuts__sub">${first ? `${esc(first.unit)} · ${money(first.price)} · ` : ''}bảo quản tủ lạnh 3 ngày</div>
     </section>
     <div class="nuts">${nutCards}</div>
-    <div class="duo">${packCards}${dailyCards}</div>
+    <div class="duo${dailyCards ? '' : ' duo--single'}">${packCards}${dailyCards}</div>
     <section class="sec why">
       <h2>Vì sao nấu tươi</h2>
       <div class="why__list">${WHY.map((t, i) => `<div class="why__item"><span class="why__n">${i + 1}</span><div class="why__t">${esc(t)}</div></div>`).join('')}</div>

@@ -77,12 +77,12 @@ Mỗi sáng: mở nhãn của hôm đó, mỗi email là một chuyến giao, ti
 Mở web trên điện thoại và đặt một đơn gồm **2 ngày giao, trong đó 1 ngày đủ 7 chai**. Ví dụ:
 
 1. Tab **Cold brew & cốt dâu**: thêm **Combo Nhà**, chọn hạt Đậm, ngày giao **ngày mai**, số lượng 1.
-2. Tab **Sữa nấu tươi**: thêm **Sữa yến mạch lắc dâu tây**, chọn ngày **ngày kia**, số lượng **7**.
+2. Cũng tab đó: thêm **Chai lắc dâu 330ml**, chọn hạt Đậm, ngày giao **ngày kia**, số lượng **7**.
 3. Bấm **Xem giỏ**. Kiểm tra:
    - Có 2 phiếu đơn, mỗi phiếu một ngày.
    - Phiếu ngày mai: 2 chai (combo tính 2 chai), dòng "Thêm 5 chai nữa để được freeship".
-   - Phiếu ngày kia: 7 chai, nhãn **FREESHIP**, giá 7 × 25.000đ = 175.000đ, có dòng "Đã giảm 35.000đ".
-4. Nhập họ tên, số điện thoại, địa chỉ, chọn khu vực giao **Đến 3 km**, chọn hình thức thanh toán, ghi chú "ĐƠN THỬ". Kiểm tra phần tổng: Tiền hàng 354.000đ, Phí ship 15.000đ (chỉ tính cho ngày mai), Tổng tiền 369.000đ. Rồi bấm **Gửi đơn**.
+   - Phiếu ngày kia: 7 chai, nhãn **FREESHIP**, giá 262.000đ (4 chai 145.000đ + 3 × 39.000đ), có dòng "Đã giảm 11.000đ".
+4. Nhập họ tên, số điện thoại, địa chỉ, chọn khu vực giao **Đến 3 km**, chọn hình thức thanh toán, ghi chú "ĐƠN THỬ". Kiểm tra phần tổng: Tiền hàng 441.000đ, Phí ship 15.000đ (chỉ tính cho ngày mai), Tổng tiền 456.000đ. Rồi bấm **Gửi đơn**.
 5. Màn hình cảm ơn hiện mã đơn dạng `THN-0910-AB12`.
 6. Mở Gmail, phải thấy **2 email cùng mã đơn**:
    - Email ngày mai: tiêu đề **không** có chữ FREESHIP, trong thư có dòng `Phí ship: 15.000đ` và `Tổng thu ngày này: 194.000đ`.
@@ -111,7 +111,7 @@ Tìm tên món, sửa số sau `price:`.
 Giá theo bậc nằm ở `tier`:
 
 ```js
-// Sữa yến mạch lắc dâu: từ 4 chai thì mọi chai 25.000đ
+// Ví dụ: từ 4 chai thì mọi chai 25.000đ (hiện chưa món nào dùng kiểu này)
 price: 30000, tier: { type: 'all', min: 4, price: 25000 },
 
 // Chai lắc dâu: cứ 4 chai 145.000đ, phần lẻ 39.000đ/chai
